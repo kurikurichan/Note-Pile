@@ -1,20 +1,23 @@
 from app.models import db, User
 
+default_pic = "https://i.redd.it/px2cv3hts9651.png"
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', password='password', photo=default_pic)
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', email='marnie@aa.io', password='password', photo=default_pic)
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie', email='bobbie@aa.io', password='password', photo=default_pic)
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
 
     db.session.commit()
+
+
 
 
 # Uses a raw SQL query to TRUNCATE the users table.

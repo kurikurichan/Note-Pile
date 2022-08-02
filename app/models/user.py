@@ -1,4 +1,5 @@
-from .db import db
+from .db import db, Scratch
+from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -9,7 +10,18 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    photo = db.Column(db.String(215), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    notebooks = relationship("Notebook", back_populates="user", cascade= "all, delete")
+    pages = relationship("Page", back_populates="user", cascade= "all, delete")
+    scratch = relationship("Scratch", back_populates="user")
+
+    # automatically create a scratch table
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        self.scratch.append(Scratch(userId=self.id))
+
 
     @property
     def password(self):
