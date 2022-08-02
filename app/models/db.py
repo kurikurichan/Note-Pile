@@ -3,14 +3,13 @@ from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Text, Boolean, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from datetime import datetime
 
 db = SQLAlchemy()
 
 class Notebook(db.Model):
     __tablename__ = "notebooks"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     userId = Column(Integer, db.ForeignKey("users.id"), nullable=False)
     title = Column(String(30), default="Untitled", nullable=False)
 
@@ -27,7 +26,7 @@ class Notebook(db.Model):
 class Page(db.Model):
     __tablename__ = "pages"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     userId = Column(Integer, ForeignKey("users.id"), nullable=False)
     notebookId = Column(Integer, ForeignKey("notebooks.id"), nullable=False)
     title = Column(String(30), default="My Notebook" + str(id), nullable=False)
@@ -56,7 +55,7 @@ class Page(db.Model):
 class Scratch(db.Model):
     __tablename__ = "scratches"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     userId = Column(Integer, ForeignKey("users.id"), nullable=False)
     content = Column(Text, nullable=True)
 

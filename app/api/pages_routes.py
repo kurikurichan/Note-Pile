@@ -1,0 +1,61 @@
+from flask import Blueprint, jsonify, request
+from ..models.db import db
+from flask_login import login_required
+from app.models.db import Page
+
+pages_routes = Blueprint('pages', __name__)
+
+# note - am gonna need the stuff in trash later but can prob just load that from the front end or w/e
+# or can do it here, doesn't matter
+
+# GET /api/pages/:notebookId - read all pages of a notebook (not trash ones)
+@pages_routes.route('/<int:notebookId>')
+@login_required
+def pages(notebookId):
+    pages = Page.query.filter(Page.trashed == False, Page.notebookId == notebookId).all()
+    return {'pages': [page.to_dict() for page in pages]}
+
+# GET/api/pages/trash - get all pages in trash
+@pages_routes.route('/')
+@login_required
+def trash():
+    trashed_pages = Page.query.filter(Page.trashed == True).all()
+    return {'trash': [page.to_dict() for page in trashed_pages]}
+
+# POST /api/pages/:notebookId - create a new page
+@pages_routes.route('/<int:notebookId>')
+@login_required
+def new_page(notebookId):
+
+    new_page = Page(
+        userId=request.json["userId"],
+        notebookId=notebookId,
+        title=request.json["title"],
+        content=request.json["content"]
+    )
+
+    db.session.add(new_page)
+    db.session.commit()
+    return new_page.to_dict()
+
+# PUT /api/pages/:notebookId/:pageId - update page contents
+@pages_routes.route('/<int:notebookId>/<int:pageId>')
+@login_required
+def update_page(notebookId, pageId):
+
+    page = Page.query.get(pageId)
+
+    userId = request.json["userId"]
+
+    if userId == page.userId and page:
+        db.session.delete(page)
+        db.session.commit()
+        return jsonify(pageId)
+    else:
+        return jsonify({"error"})
+
+
+
+
+
+# DELETE /api/pages/:pageId/:pageId - delete page
