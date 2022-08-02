@@ -16,14 +16,14 @@ def pages(notebookId):
     return {'pages': [page.to_dict() for page in pages]}
 
 # GET/api/pages/trash - get all pages in trash
-@pages_routes.route('/')
+@pages_routes.route('/trash')
 @login_required
 def trash():
     trashed_pages = Page.query.filter(Page.trashed == True).all()
     return {'trash': [page.to_dict() for page in trashed_pages]}
 
 # POST /api/pages/:notebookId - create a new page
-@pages_routes.route('/<int:notebookId>')
+@pages_routes.route('/<int:notebookId>', methods=["POST"])
 @login_required
 def new_page(notebookId):
 
@@ -38,14 +38,48 @@ def new_page(notebookId):
     db.session.commit()
     return new_page.to_dict()
 
-# PUT /api/pages/:notebookId/:pageId - update page contents
-@pages_routes.route('/<int:notebookId>/<int:pageId>')
+# PUT /api/pages/:pageId - update page contents
+@pages_routes.route('/<int:pageId>', methods=["PUT"])
 @login_required
-def update_page(notebookId, pageId):
+def update_page(pageId):
 
     page = Page.query.get(pageId)
-
     userId = request.json["userId"]
+
+
+    if userId == page.userId:
+        page.title = request.json["title"]
+        page.content = request.json["content"]
+
+        db.session.commit()
+        return page.to_dict()
+    else:
+        return jsonify({"error"})
+
+# PUT /api/pages/trash/:pageId - put page in trash
+@pages_routes.route('/trash/<int:pageId>', methods=["PUT"])
+@login_required
+def update_page(pageId):
+
+    page = Page.query.get(pageId)
+    userId = request.json["userId"]
+
+
+    if userId == page.userId:
+        page.trashed = True
+
+        db.session.commit()
+        return page.to_dict()
+    else:
+        return jsonify({"error"})
+
+
+# DELETE /api/pages/:userId/:pageId - delete page
+@pages_routes.route('/<int:userId>/<int:pageId>', methods=["DELETE"])
+@login_required
+def update_page(userId, pageId):
+
+    page = Page.query.get(pageId)
 
     if userId == page.userId and page:
         db.session.delete(page)
@@ -53,9 +87,3 @@ def update_page(notebookId, pageId):
         return jsonify(pageId)
     else:
         return jsonify({"error"})
-
-
-
-
-
-# DELETE /api/pages/:pageId/:pageId - delete page
