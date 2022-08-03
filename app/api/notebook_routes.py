@@ -46,7 +46,7 @@ def update_notebook(notebookId):
     else:
         return jsonify({"error"})
 
-# DELETE /api/notebooks/:notebookId - delete single notebook
+# DELETE /api/notebooks/:userId/:notebookId - delete single notebook
 @notebook_routes.route('/<int:userId>/<int:notebookId>', methods=["DELETE"])
 @login_required
 def delete_notebook(userId, notebookId):
