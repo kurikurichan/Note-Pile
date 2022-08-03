@@ -16,7 +16,6 @@ def seed_pages():
     trash2 = Page(
         userId= 1, notebookId= 1, title="uh oh", content=sample_content, trashed=True)
 
-#####
     db.session.add(first)
     db.session.add(second)
     db.session.add(third)
