@@ -89,7 +89,7 @@ const notebooks = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
       case GET_ALL_NOTEBOOKS:
-        action.notebooks.forEach((notebook) => {
+        action.notebooks.notebooks.forEach((notebook) => {
           newState[notebook.id] = notebook;
         });
         return newState;
