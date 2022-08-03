@@ -107,6 +107,11 @@ const pages = (state = {}, action) => {
       default:
         return state;
     }
-  };
+};
 
-  export default pages;
+export default pages;
+
+
+//TODO:
+// add trash stuff to this file and test it
+// need trash seeder data 

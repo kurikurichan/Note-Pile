@@ -11,10 +11,17 @@ def seed_pages():
         userId= 1, notebookId= 1, title="Page 2", content=sample_content)
     third = Page(
         userId= 1, notebookId= 1, title="Page 3", content=sample_content)
+    trash1 = Page(
+        userId= 1, notebookId= 1, title="whoops", content=sample_content, trashed=True)
+    trash2 = Page(
+        userId= 1, notebookId= 1, title="uh oh", content=sample_content, trashed=True)
 
     db.session.add(first)
     db.session.add(second)
     db.session.add(third)
+    db.session.add(trash1)
+    db.session.add(trash2)
+
 
     db.session.commit()
 
