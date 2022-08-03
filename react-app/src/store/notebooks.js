@@ -61,13 +61,13 @@ export const newNotebook = (notebook) => async (dispatch) => {
 };
 
 
-export const editNotebook = (name, id) => async (dispatch) => {
-    const res = await fetch(`/api/servers/${id}/edit`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(name),
-    });
+// export const editNotebook = (name, id) => async (dispatch) => {
+//     const res = await fetch(`/api/servers/${id}/edit`, {
+//       method: "PUT",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(name),
+//     });
 
-    const data = await res.json();
-    dispatch(editServer(data));
-};
+//     const data = await res.json();
+//     dispatch(editServer(data));
+// };

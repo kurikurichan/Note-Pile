@@ -59,7 +59,7 @@ def update_page(pageId):
 # PUT /api/pages/trash/:pageId - put page in trash
 @pages_routes.route('/trash/<int:pageId>', methods=["PUT"])
 @login_required
-def update_page(pageId):
+def trash_page(pageId):
 
     page = Page.query.get(pageId)
     userId = request.json["userId"]
@@ -77,7 +77,7 @@ def update_page(pageId):
 # DELETE /api/pages/:userId/:pageId - delete page
 @pages_routes.route('/<int:userId>/<int:pageId>', methods=["DELETE"])
 @login_required
-def update_page(userId, pageId):
+def delete_page(userId, pageId):
 
     page = Page.query.get(pageId)
 
