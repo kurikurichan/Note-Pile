@@ -3,6 +3,7 @@ from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Text, Boolean, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -32,8 +33,10 @@ class Page(db.Model):
     title = Column(String(30), default="My Notebook" + str(id), nullable=False)
     content = Column(Text, nullable=True)
     trashed = Column(Boolean, default=False, nullable=False)
-    created_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now())
-    updated_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now(), onupdate=func.now())
+    # created_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now())
+    # updated_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now(), onupdate=func.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime, nullable=True, default=datetime.now(), onupdate=datetime.now)
 
     # maybe get rid of userId relationship for pages?
     user = relationship("User", back_populates="pages")
