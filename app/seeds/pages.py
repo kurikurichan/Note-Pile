@@ -21,7 +21,6 @@ def seed_pages():
     db.session.add(third)
     db.session.add(trash1)
     db.session.add(trash2)
-    # this is to trigger heroku
 
     db.session.commit()
 
