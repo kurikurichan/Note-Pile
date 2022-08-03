@@ -1,20 +1,21 @@
 from app.models import db, User
 from app.models.db import Page
+from datetime import datetime
 
 sample_content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 # Adds a demo user, you can add other users here if you want
 def seed_pages():
     first = Page(
-        userId= 1, notebookId= 1, title="Page 1", content= sample_content, trashed=False)
+        userId= 1, notebookId= 1, title="Page 1", content= sample_content, trashed=False, created_at=datetime.now())
     second = Page(
-        userId= 1, notebookId= 1, title="Page 2", content=sample_content, trashed=False)
+        userId= 1, notebookId= 1, title="Page 2", content=sample_content, trashed=False, created_at=datetime.now())
     third = Page(
-        userId= 1, notebookId= 1, title="Page 3", content=sample_content, trashed=False)
+        userId= 1, notebookId= 1, title="Page 3", content=sample_content, trashed=False, created_at=datetime.now())
     trash1 = Page(
-        userId= 1, notebookId= 1, title="whoops", content=sample_content, trashed=True)
+        userId= 1, notebookId= 1, title="whoops", content=sample_content, trashed=True, created_at=datetime.now())
     trash2 = Page(
-        userId= 1, notebookId= 1, title="uh oh", content=sample_content, trashed=True)
+        userId= 1, notebookId= 1, title="uh oh", content=sample_content, trashed=True, created_at=datetime.now())
 
     db.session.add(first)
     db.session.add(second)
