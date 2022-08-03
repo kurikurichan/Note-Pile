@@ -6,11 +6,11 @@ sample_content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d
 # Adds a demo user, you can add other users here if you want
 def seed_pages():
     first = Page(
-        userId= 1, notebookId= 1, title="Page 1", content= sample_content)
+        userId= 1, notebookId= 1, title="Page 1", content= sample_content, trashed=False)
     second = Page(
-        userId= 1, notebookId= 1, title="Page 2", content=sample_content)
+        userId= 1, notebookId= 1, title="Page 2", content=sample_content, trashed=False)
     third = Page(
-        userId= 1, notebookId= 1, title="Page 3", content=sample_content)
+        userId= 1, notebookId= 1, title="Page 3", content=sample_content, trashed=False)
     trash1 = Page(
         userId= 1, notebookId= 1, title="whoops", content=sample_content, trashed=True)
     trash2 = Page(
