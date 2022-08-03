@@ -32,8 +32,8 @@ class Page(db.Model):
     title = Column(String(30), default="My Notebook" + str(id), nullable=False)
     content = Column(Text, nullable=True)
     trashed = Column(Boolean, default=False, nullable=False)
-    created_at = Column(DateTime(timezone=True), server_default= func.utcnow(), nullable=True)
-    updated_at = Column(DateTime(timezone=True), server_default= func.utcnow(), onupdate=func.now(), nullable=True)
+    created_at = Column(DateTime(timezone=True), nullable=True, server_default= func.utcnow())
+    updated_at = Column(DateTime(timezone=True), nullable=True, server_default= func.utcnow(), onupdate=func.now())
 
     # maybe get rid of userId relationship for pages?
     user = relationship("User", back_populates="pages")
