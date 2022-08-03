@@ -5,7 +5,8 @@ import notebooks from './notebooks';
 
 const rootReducer = combineReducers({
   session,
-  notebooks
+  notebooks,
+  pages
 });
 
 

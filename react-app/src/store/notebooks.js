@@ -89,7 +89,6 @@ const notebooks = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
       case GET_ALL_NOTEBOOKS:
-        allServers.allServers = {}
         action.notebooks.forEach((notebook) => {
           newState[notebook.id] = notebook;
         });
