@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from ..models.db import db
 from flask_login import login_required
 from app.models.db import Notebook
+from app.forms import NotebookForm
+from .auth_routes import validation_errors_to_error_messages
 
 notebook_routes = Blueprint('notebooks', __name__)
 
@@ -20,14 +22,25 @@ def notebooks():
 @login_required
 def new_notebook():
 
-    new_notebook = Notebook(
-        userId=request.json["userId"],
-        title=request.json["title"]
-    )
+    form = NotebookForm()
 
-    db.session.add(new_notebook)
-    db.session.commit()
-    return new_notebook.to_dict()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        new_notebook = Notebook(
+            userId=request.json["userId"],
+            title=request.json["title"]
+        )
+
+        db.session.add(new_notebook)
+        db.session.commit()
+        return new_notebook.to_dict()
+
+    errz = validation_errors_to_error_messages(form.errors)
+    print("----------------------", errz)
+    return {'errors': errz}, 400
+
 
 # PUT /api/notebooks/:notebookId - update a notebook title
 @notebook_routes.route('/<int:notebookId>', methods=["PUT"])

@@ -9,23 +9,48 @@ export default function Home() {
 
     // for notebooks dropdown selection
     const [noteDropdown, setNoteDropdown] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
+    // errors for notebook submit
+    const [errors, setErrors] = useState([]);
+    const [title, setTitle] = useState("");
 
-    const openDropdown = () => {
-        if (noteDropdown) return;
-        setNoteDropdown(true);
-      };
 
-      useEffect(() => {
-        if (!noteDropdown) return;
+    const handleNotebookSubmit = async (e) => {
 
-        const closeDropdown = () => {
-          setNoteDropdown(false);
+        e.preventDefault();
+
+        setErrors([]);
+
+        const data = {
+          userId: user.id,
+          title
         };
 
-        document.addEventListener('click', closeDropdown);
+        const postNotebook = await(dispatch(newNotebook(data)))
 
-        return () => document.removeEventListener("click", closeDropdown);
-      }, [noteDropdown]);
+        console.log("post notebook", postNotebook);
+
+        if (Array.isArray(postNotebook)) {
+            setErrors(postNotebook);
+        } else {
+            console.log("new notebook success")
+            getNotebooks();
+            setTitle("");
+        }
+
+    };
+
+    const handleDropDown = () => {
+        setNoteDropdown(!noteDropdown);
+        if (!noteDropdown) {
+            setShowEdit(false);
+            setErrors([]);
+        }
+    }
+
+    const handleShowEdit = () => {
+        setShowEdit(!showEdit);
+    }
 
     // test CRUDS!
     // notebooks
@@ -36,6 +61,7 @@ export default function Home() {
         await dispatch(getAllNotebooks());
     }
 
+
     useEffect(() => {
       getNotebooks();
     }, [dispatch])
@@ -43,17 +69,49 @@ export default function Home() {
     if (!notebooks || !user) return <p className="loading">Loading...</p>
   return (
     <div>
-        <span onClick={openDropdown}>
+        <span onClick={handleDropDown}>
             {!noteDropdown && <i className="fa-solid fa-caret-right"></i>}
             {noteDropdown && <i className="fa-solid fa-caret-down"></i>}
-            {` `}Notebooks
+            {` `}<i className="fa-solid fa-book"></i>{` `}Notebooks
         </span>
         { noteDropdown && (
             <ul className="notebook-dropdown">
                 {Object.values(notebooks).map(book =>
                 <li key={book.id}>{book.title}</li>)}
+
+                { showEdit && (
+                <div className="form-holder">
+                    <form className="notebook-form" onSubmit={handleNotebookSubmit}>
+                        <label className="notebook-label">
+                            <input
+                                className="notebook-input"
+                                type="text"
+                                placeholder="Untitled"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                            <button type="Submit">+</button>
+                        </label>
+                        <div className="errs">
+                            {errors && errors.map((error, ind) => (
+                            <div key={ind} className="error">{error}</div>
+                        ))}
+                        </div>
+                    </form>
+                </div>)}
+
+                { !showEdit && (
+                <li onClick={handleShowEdit}>
+                    <i className="fa-solid fa-book-medical"></i>
+                    {` `}New Notebook
+                </li>)
+                }
+
             </ul>
         )}
+
+
+
     </div>
   )
 }

@@ -52,11 +52,14 @@ export const newNotebook = (notebook) => async (dispatch) => {
       body: JSON.stringify(notebook),
     });
 
-    if (res.ok) {
-      const data = await res.json;
+    const data = await res.json();
 
+    if (res.ok) {
       dispatch(createNotebook(data));
       return data;
+    } else {
+        console.log("Data errors: ", data, data.errors)
+        return data.errors;
     }
 };
 
