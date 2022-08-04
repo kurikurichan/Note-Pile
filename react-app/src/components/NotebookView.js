@@ -48,6 +48,7 @@ export default function NotebookView() {
         } else {
             console.log("edited notebook success")
             getNotebooks();
+            setShowEditBox(false);
             setTitle("");
         }
     };

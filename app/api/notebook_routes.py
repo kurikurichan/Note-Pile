@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from ..models.db import db
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models.db import Notebook
 from app.forms import NotebookForm
 from .auth_routes import validation_errors_to_error_messages
@@ -26,6 +26,9 @@ def new_notebook():
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    if request.json["userId"] != current_user.id:
+        return {'errors': ["user: You don't own this account!"]}, 405
+
     if form.validate_on_submit():
 
         new_notebook = Notebook(
@@ -50,23 +53,20 @@ def update_notebook(notebookId):
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    notebook = Notebook.query.get(notebookId)
+
+    if notebook.userId != current_user.id:
+        return {'errors': ["user: You don't own this notebook!"]}, 400
+
     if form.validate_on_submit():
 
         print("Form was validated")
-
-        notebook = Notebook.query.get(notebookId)
-        print("--------", notebook)
-
-        # userId of person who submitted request
-        userId = request.json["userId"]
-        print("--------", userId, notebook.userId)
 
         notebook.title = request.json["title"]
         db.session.commit()
         return notebook.to_dict()
     else:
         errz = validation_errors_to_error_messages(form.errors)
-        print("----------------------", errz)
         return {'errors': errz}, 400
 
 # DELETE /api/notebooks/:userId/:notebookId - delete single notebook
