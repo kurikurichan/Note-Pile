@@ -11,10 +11,10 @@ notebook_routes = Blueprint('notebooks', __name__)
 # or can do it here, doesn't matter
 
 # GET /api/notebooks/ - read all notebooks
-@notebook_routes.route('/')
+@notebook_routes.route('/<int:userId>/')
 @login_required
-def notebooks():
-    notebooks = Notebook.query.all()
+def notebooks(userId):
+    notebooks = Notebook.query.filter(Notebook.userId == userId).all()
     return {'notebooks': [notebook.to_dict() for notebook in notebooks]}
 
 # POST /api/notebooks - make a new notebook
@@ -42,7 +42,7 @@ def new_notebook():
 
 
 # PUT /api/notebooks/:notebookId - update a notebook title
-@notebook_routes.route('/<int:notebookId>', methods=["PUT"])
+@notebook_routes.route('/<int:notebookId>/', methods=["PUT"])
 @login_required
 def update_notebook(notebookId):
 
@@ -52,15 +52,18 @@ def update_notebook(notebookId):
 
     if form.validate_on_submit():
 
+        print("Form was validated")
+
         notebook = Notebook.query.get(notebookId)
+        print("--------", notebook)
 
         # userId of person who submitted request
         userId = request.json["userId"]
+        print("--------", userId, notebook.userId)
 
-        if userId == notebook.userId and notebook:
-            notebook.title = request.json["title"]
-            db.session.commit()
-            return notebook.to_dict()
+        notebook.title = request.json["title"]
+        db.session.commit()
+        return notebook.to_dict()
     else:
         errz = validation_errors_to_error_messages(form.errors)
         print("----------------------", errz)

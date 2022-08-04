@@ -31,9 +31,9 @@ const delNotebook = (notebook) => {
     };
 };
 
-export const getAllNotebooks = () => async (dispatch) => {
+export const getAllNotebooks = (userId) => async (dispatch) => {
 
-    const res = await fetch(`/api/notebooks/`);
+    const res = await fetch(`/api/notebooks/${userId}/`);
 
     if (res.ok) {
 
@@ -65,6 +65,7 @@ export const newNotebook = (notebook) => async (dispatch) => {
 
 
 export const editNotebook = (title, notebookId) => async (dispatch) => {
+
     const res = await fetch(`/api/notebooks/${notebookId}/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -72,6 +73,7 @@ export const editNotebook = (title, notebookId) => async (dispatch) => {
     });
 
     const data = await res.json();
+    console.log("Data in edit thunk: ", data);
 
     if (res.ok) {
         dispatch(updateNotebook(data));

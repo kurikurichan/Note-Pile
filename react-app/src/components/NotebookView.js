@@ -63,7 +63,7 @@ export default function NotebookView() {
     }
 
     const getNotebooks = async () => {
-        await dispatch(getAllNotebooks());
+        await dispatch(getAllNotebooks(user.id));
     };
 
     useEffect(() => {
