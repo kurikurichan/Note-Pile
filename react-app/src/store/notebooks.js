@@ -72,7 +72,13 @@ export const editNotebook = (title, notebookId) => async (dispatch) => {
     });
 
     const data = await res.json();
-    dispatch(updateNotebook(data));
+
+    if (res.ok) {
+        dispatch(updateNotebook(data));
+        return data;
+    } else {
+        return data.errors;
+    }
 };
 
 export const deleteNotebook = (userId, notebookId) => async (dispatch) => {

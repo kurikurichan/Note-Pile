@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getAllNotebooks, newNotebook, editNotebook, deleteNotebook } from '../../store/notebooks';
+import { getAllNotebooks, newNotebook } from '../../store/notebooks';
 
 export default function Home() {
 
@@ -86,6 +86,7 @@ export default function Home() {
                 <div className="form-holder">
                     <form className="notebook-form" onSubmit={handleNotebookSubmit}>
                         <label className="notebook-label">
+                            <button onClick={(e) => setShowEdit(false)}>x</button>
                             <input
                                 className="notebook-input"
                                 type="text"

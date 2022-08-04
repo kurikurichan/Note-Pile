@@ -9,7 +9,7 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            Splash
           </NavLink>
         </li>
         <li>
@@ -25,6 +25,11 @@ const NavBar = () => {
         <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/home' exact={true} activeClassName='active'>
+            Home
           </NavLink>
         </li>
         <li>
