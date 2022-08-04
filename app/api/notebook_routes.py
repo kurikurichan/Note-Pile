@@ -11,10 +11,10 @@ notebook_routes = Blueprint('notebooks', __name__)
 # or can do it here, doesn't matter
 
 # GET /api/notebooks/ - read all notebooks
-@notebook_routes.route('/<int:userId>/')
+@notebook_routes.route('/')
 @login_required
-def notebooks(userId):
-    notebooks = Notebook.query.filter(Notebook.userId == userId).all()
+def notebooks():
+    notebooks = Notebook.query.filter(Notebook.userId == current_user.id).all()
     return {'notebooks': [notebook.to_dict() for notebook in notebooks]}
 
 # POST /api/notebooks - make a new notebook
@@ -69,16 +69,16 @@ def update_notebook(notebookId):
         errz = validation_errors_to_error_messages(form.errors)
         return {'errors': errz}, 400
 
-# DELETE /api/notebooks/:userId/:notebookId - delete single notebook
-@notebook_routes.route('/<int:userId>/<int:notebookId>', methods=["DELETE"])
+# DELETE /api/notebooks/:notebookId - delete single notebook
+@notebook_routes.route('/<int:notebookId>/', methods=["DELETE"])
 @login_required
-def delete_notebook(userId, notebookId):
+def delete_notebook(notebookId):
 
     notebook = Notebook.query.get(notebookId)
 
-    if userId == notebook.userId and notebook:
+    if notebook.userId == current_user.id:
         db.session.delete(notebook)
         db.session.commit()
         return jsonify(notebookId)
     else:
-        return jsonify({"error"})
+        return {'errors': ["user: You are unauthorized"]}, 405

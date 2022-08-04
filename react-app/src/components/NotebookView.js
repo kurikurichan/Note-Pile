@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { getAllNotebooks, editNotebook } from '../store/notebooks'
+import { getAllNotebooks, editNotebook, deleteNotebook } from '../store/notebooks'
 
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -54,8 +54,11 @@ export default function NotebookView() {
     };
 
     // for dispatching delete notebook
-    const handleNotebookDelete = (e) => {
-        //hmm
+    const handleNotebookDelete = async (e) => {
+        e.preventDefault(e);
+
+        await dispatch(deleteNotebook(notebookId));
+        getNotebooks();
     };
 
 
@@ -64,7 +67,7 @@ export default function NotebookView() {
     }
 
     const getNotebooks = async () => {
-        await dispatch(getAllNotebooks(user.id));
+        await dispatch(getAllNotebooks());
     };
 
     useEffect(() => {

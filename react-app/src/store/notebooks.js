@@ -31,9 +31,9 @@ const delNotebook = (notebook) => {
     };
 };
 
-export const getAllNotebooks = (userId) => async (dispatch) => {
+export const getAllNotebooks = () => async (dispatch) => {
 
-    const res = await fetch(`/api/notebooks/${userId}/`);
+    const res = await fetch(`/api/notebooks/`);
 
     if (res.ok) {
 
@@ -83,9 +83,9 @@ export const editNotebook = (title, notebookId) => async (dispatch) => {
     }
 };
 
-export const deleteNotebook = (userId, notebookId) => async (dispatch) => {
+export const deleteNotebook = (notebookId) => async (dispatch) => {
 
-    const res = await fetch(`/api/notebooks/${userId}/${notebookId}`, {
+    const res = await fetch(`/api/notebooks/${notebookId}/`, {
         method: "DELETE"
     });
 

@@ -59,7 +59,7 @@ export default function Home() {
     const dispatch = useDispatch();
 
     const getNotebooks = async () => {
-        await dispatch(getAllNotebooks(user.id));
+        await dispatch(getAllNotebooks());
     }
 
 
