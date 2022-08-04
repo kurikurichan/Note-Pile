@@ -8,7 +8,9 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import Home from './components/Home';
+import Home from './components/Home/Home';
+import Notebooks from './components/Notebooks';
+import NotebookView from './components/NotebookView';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +48,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/home' exact={true} >
           <Home />
+        </ProtectedRoute>
+        <ProtectedRoute path='/notebooks' exact={true} >
+          <Notebooks />
+        </ProtectedRoute>
+        <ProtectedRoute path='/:notebookId' exact={true} >
+          <NotebookView />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

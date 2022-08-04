@@ -38,7 +38,6 @@ def new_notebook():
         return new_notebook.to_dict()
 
     errz = validation_errors_to_error_messages(form.errors)
-    print("----------------------", errz)
     return {'errors': errz}, 400
 
 
@@ -47,17 +46,25 @@ def new_notebook():
 @login_required
 def update_notebook(notebookId):
 
-    notebook = Notebook.query.get(notebookId)
+    form = NotebookForm()
 
-    # userId of person who submitted request
-    userId = request.json["userId"]
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    if userId == notebook.userId and notebook:
-        notebook.title = request.json["title"]
-        db.session.commit()
-        return notebook.to_dict()
+    if form.validate_on_submit():
+
+        notebook = Notebook.query.get(notebookId)
+
+        # userId of person who submitted request
+        userId = request.json["userId"]
+
+        if userId == notebook.userId and notebook:
+            notebook.title = request.json["title"]
+            db.session.commit()
+            return notebook.to_dict()
     else:
-        return jsonify({"error"})
+        errz = validation_errors_to_error_messages(form.errors)
+        print("----------------------", errz)
+        return {'errors': errz}, 400
 
 # DELETE /api/notebooks/:userId/:notebookId - delete single notebook
 @notebook_routes.route('/<int:userId>/<int:notebookId>', methods=["DELETE"])

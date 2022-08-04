@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllNotebooks, newNotebook, editNotebook, deleteNotebook } from '../store/notebooks';
+import { Link } from 'react-router-dom';
+import { getAllNotebooks, newNotebook, editNotebook, deleteNotebook } from '../../store/notebooks';
 
 export default function Home() {
 
@@ -77,7 +78,9 @@ export default function Home() {
         { noteDropdown && (
             <ul className="notebook-dropdown">
                 {Object.values(notebooks).map(book =>
-                <li key={book.id}>{book.title}</li>)}
+                    <li key={book.id}>
+                        <Link to={`/${book.id}`}>{book.title}</Link>
+                    </li>)}
 
                 { showEdit && (
                 <div className="form-holder">
