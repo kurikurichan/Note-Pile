@@ -48,11 +48,29 @@ export default function Pages({ notebookId, userId, pageId }) {
             {/* Rich text stuff goes here eventually */}
         </div>
         <div className="page-view">
-            {currentPage.title}
-            {currentPage.content}
+            <div className="page-title">
+                {currentPage.title}
+            </div>
+            <div
+                className="page-contents"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                inputmode="text"
+                role="textbox"
+                contenteditable="true"
+                enterkeyhint="enter"
+                aria-placeholder="Start writing here"
+                aria-multiline="true"
+                aria-readonly="false"
+                aria-label="Page Content"
+                translate="no"
+                style={{padding:"12px 40px 0px"}}
+            >
+                {currentPage.content}
+            </div>
         </div>
         <div className="page-footer">
-            
+
         </div>
     </div>
   )
