@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getAllNotebooks, editNotebook, deleteNotebook } from '../store/notebooks'
 import { getAllPages, newPage } from '../store/pages';
 import Pages from './Pages';
@@ -9,6 +9,7 @@ export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const { notebookId } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
@@ -61,7 +62,7 @@ export default function NotebookView() {
         e.preventDefault(e);
 
         await dispatch(deleteNotebook(notebookId));
-        getNotebooks();
+        history.push("/home");
     };
 
     // single notebook based on notebookId
