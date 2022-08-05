@@ -43,9 +43,7 @@ def new_page(notebookId):
 
     new_page = Page(
         userId=request.json["userId"],
-        notebookId=notebookId,
-        title=request.json["title"],
-        content=request.json["content"]
+        notebookId=notebookId
     )
 
     db.session.add(new_page)

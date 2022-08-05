@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.schema import Column, ForeignKey
+from sqlalchemy.schema import Column, ForeignKey, Sequence
 from sqlalchemy.types import Integer, String, Text, Boolean, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -30,7 +30,7 @@ class Page(db.Model):
     id = Column(Integer, primary_key=True)
     userId = Column(Integer, ForeignKey("users.id"), nullable=False)
     notebookId = Column(Integer, ForeignKey("notebooks.id"), nullable=False)
-    title = Column(String(30), default="My Notebook" + str(id), nullable=False)
+    title = Column(String(30), default="New Page", nullable=True)
     content = Column(Text, nullable=True)
     trashed = Column(Boolean, default=False, nullable=False)
     created_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now())
@@ -41,6 +41,17 @@ class Page(db.Model):
     # maybe get rid of userId relationship for pages?
     user = relationship("User", back_populates="pages")
     notebook = relationship("Notebook", back_populates="pages")
+
+    # i = 0
+
+    # def __init__(self, **kwargs):
+    #     super(Page, self).__init__(**kwargs)
+    #     self.title = "Page " + str(self.id)
+
+    # def my_default():
+    #     global i
+    #     i += 1
+    #     return str(i)
 
     def to_dict(self):
         return {

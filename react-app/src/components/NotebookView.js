@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { getAllNotebooks, editNotebook, deleteNotebook } from '../store/notebooks'
-import { getAllPages } from '../store/pages';
+import { getAllPages, newPage } from '../store/pages';
 import Pages from './Pages';
 
 export default function NotebookView() {
@@ -83,6 +83,29 @@ export default function NotebookView() {
 
     // Pages stuff
 
+    const handleNewPage = async (e) => {
+
+        e.preventDefault();
+
+        const data = {
+            userId: user.id,
+            notebookId
+        }
+
+        const createPage = await(dispatch(newPage(data, notebookId)))
+
+        console.log("newest page", createPage);
+
+        if (createPage) {
+            console.log("new Page success")
+            getPages();
+            setSelectedPageId(createPage.id);
+        }
+
+
+
+    }
+
     const getPages = async () => {
         await dispatch(getAllPages(user.id, notebookId));
     };
@@ -108,7 +131,7 @@ export default function NotebookView() {
             </div>
             {showMenu &&
                 <div className="profile-dropdown">
-                    <div>New Page</div>
+                    <div onClick={handleNewPage}>New Page</div>
                     <div onClick={handleRenameNotebook}>Rename Notebook</div>
                     {showEditBox &&
                         <form className="notebook-form" onSubmit={handleNotebookEdit}>
