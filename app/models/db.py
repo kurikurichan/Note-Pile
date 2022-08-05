@@ -15,7 +15,7 @@ class Notebook(db.Model):
     title = Column(String(30), default="Untitled", nullable=False)
 
     user = relationship("User", back_populates="notebooks")
-    pages = relationship("Page", back_populates="notebook")
+    pages = relationship("Page", back_populates="notebook", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
