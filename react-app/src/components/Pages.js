@@ -29,8 +29,6 @@ export default function Pages({ notebookId, userId, pageId }) {
         }
     }, [pageId])
 
-    console.log("current page", currentPage);
-
     const dispatch = useDispatch();
 
     const getPages = async () => {
@@ -43,6 +41,7 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     // update view whenever pageId changes
 
+    if (!currentPage || !allPagesOfNotebook) return <p className="loading">Create or select a page</p>
   return (
     <div className="right-div">
         <div className="above-page">
@@ -51,6 +50,9 @@ export default function Pages({ notebookId, userId, pageId }) {
         <div className="page-view">
             {currentPage.title}
             {currentPage.content}
+        </div>
+        <div className="page-footer">
+            
         </div>
     </div>
   )
