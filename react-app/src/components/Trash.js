@@ -65,8 +65,12 @@ export default function Trash() {
 
         e.preventDefault();
         // loop thru trash and delete each page in it
-        for (let page in Object.values(allTrashedPages)) {
-            await dispatch(deletePage(user.id, page.id))
+        try {
+            for (let page of Object.values(allTrashedPages)) {
+                await dispatch(deletePage(user.id, page.id));
+            }
+        } catch(e) {
+            console.log(e);
         }
 
         getTheTrash();
