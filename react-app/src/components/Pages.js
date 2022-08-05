@@ -60,7 +60,7 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     }
 
-    const handleTrashPage = (e) => {
+    const sendPageToTrash = (e) => {
 
         e.preventDefault()
 
@@ -81,7 +81,7 @@ export default function Pages({ notebookId, userId, pageId }) {
     <div className="right-div">
         <div className="above-page">
             {/* Rich text stuff goes here eventually */}
-            <div className="trash" onClick={handleTrashPage}>
+            <div className="trash" onClick={sendPageToTrash}>
                 <i className="fa-solid fa-trash-can"></i>
             </div>
         </div>

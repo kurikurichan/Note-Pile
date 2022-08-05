@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, getState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { getAllNotebooks, editNotebook, deleteNotebook } from '../store/notebooks'
@@ -46,8 +46,6 @@ export default function NotebookView() {
 
         const editedNotebook = await(dispatch(editNotebook(data, notebookId)))
 
-        console.log("edit notebook", editedNotebook);
-
         if (Array.isArray(editedNotebook)) {
             setErrors(editedNotebook);
         } else {
@@ -94,10 +92,7 @@ export default function NotebookView() {
 
         const createPage = await(dispatch(newPage(data, notebookId)))
 
-        console.log("newest page", createPage);
-
         if (createPage) {
-            console.log("new Page success")
             getPages();
             setSelectedPageId(createPage.id);
         }
@@ -115,7 +110,7 @@ export default function NotebookView() {
     }, [dispatch])
 
 
-    if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading">Loading...</p>
+    if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
   return (
     <>
         <div className="left-div">

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
 import { getAllTrash, deletePage } from '../store/pages';
-import Pages from './Pages';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -10,6 +8,13 @@ export default function Trash() {
 
     const user = useSelector(state => state.session.user);
     const allTrashedPages = useSelector(state => state.pages)
+
+    // initial load trashed pages
+    useEffect(() => {
+        dispatch(getAllTrash(user.id));
+    }, [dispatch])
+
+    console.log("All trashed pages", allTrashedPages);
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -20,7 +25,7 @@ export default function Trash() {
     // single page to use in our dynamic page view
     let currentPage;
 
-    if (allTrashedPages && selectedPageId) {
+    if (allTrashedPages) {
         currentPage = Object.values(allTrashedPages).filter(page => page.id == selectedPageId)[0];
     }
 
@@ -36,9 +41,7 @@ export default function Trash() {
         await dispatch(getAllTrash(user.id));
     };
 
-    useEffect(() => {
-        dispatch(getAllTrash(user.id));
-    }, [dispatch])
+
 
     const handleEmptyTrash = async (e) => {
 
@@ -55,7 +58,7 @@ export default function Trash() {
     //TODO:
     // - add restore note button
 
-    if (!user || !allTrashedPages) return <p className="loading">Loading...</p>
+    if (!user || !allTrashedPages) return <p className="loading trash">Loading...</p>
   return (
     <>
         <div className="left-div">

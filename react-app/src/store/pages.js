@@ -56,6 +56,7 @@ export const getAllTrash = (userId) => async (dispatch) => {
     if (res.ok) {
 
       const data = await res.json();
+      console.log("Trash from getall Thunk: ", data);
       dispatch(getTrash(data));
       return data;
 
@@ -87,7 +88,7 @@ export const getAllPages = (userId, notebookId) => async (dispatch) => {
     if (res.ok) {
 
       const data = await res.json();
-      dispatch(getTrash(data));
+      dispatch(getPages(data));
       return data;
 
     }
@@ -102,7 +103,7 @@ export const newPage = (page, notebookId) => async (dispatch) => {
     });
 
     if (res.ok) {
-      const data = await res.json;
+      const data = await res.json();
 
       dispatch(createPage(data));
       return data;
@@ -137,28 +138,39 @@ export const deletePage = (userId, pageId) => async (dispatch) => {
 const pages = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
+
       case GET_ALL_TRASH:
-        action.trash.pages.forEach((page) => {
+        console.log("newState in getalltrash: ", newState)
+        console.log("action.trash", action.trash)
+        action.trash.trash.forEach((page) => {
             newState[page.id] = page;
         });
         return newState;
+
       case ADD_TO_TRASH:
         newState = { ...state, [action.trash.id]: action.trash };
+        return newState;
+
       case GET_ALL_PAGES:
+        console.log("newState in getallpages: ", newState)
         action.pages.pages.forEach((page) => {
           newState[page.id] = page;
         });
         return newState;
+
       case CREATE_PAGE:
         newState[action.page.id] = action.page;
         return newState;
+
       case UPDATE_PAGE:
         newState = { ...state, [action.page.id]: action.page };
         return newState;
+
       case DELETE_PAGE:
         newState = { ...state };
         delete newState[action.page];
         return newState;
+
       default:
         return state;
     }
