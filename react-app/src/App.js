@@ -9,8 +9,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/Home/Home';
-import Notebooks from './components/Notebooks';
 import NotebookView from './components/NotebookView';
+import Trash from './components/Trash';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,11 +49,11 @@ function App() {
         <ProtectedRoute path='/home' exact={true} >
           <Home />
         </ProtectedRoute>
-        <ProtectedRoute path='/notebooks' exact={true} >
-          <Notebooks />
-        </ProtectedRoute>
         <ProtectedRoute path='/:notebookId' exact={true} >
           <NotebookView />
+        </ProtectedRoute>
+        <ProtectedRoute path='/trash' exact={true} >
+          <Trash />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

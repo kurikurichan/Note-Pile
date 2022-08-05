@@ -77,17 +77,15 @@ def update_page(pageId):
         errz = validation_errors_to_error_messages(form.errors)
         return {'errors': errz}, 400
 
-# PUT /api/pages/trash/:pageId - put page in trash
+# PUT /api/pages/trash/:pageId - CHANGE trashed status
 @pages_routes.route('/trash/<int:pageId>/', methods=["PUT"])
 @login_required
 def trash_page(pageId):
 
     page = Page.query.get(pageId)
-    userId = request.json["userId"]
 
-
-    if userId == page.userId:
-        page.trashed = True
+    if current_user.id == page.userId:
+        page.trashed = request.json["trashed"]
 
         db.session.commit()
         return page.to_dict()

@@ -113,6 +113,10 @@ export default function Home() {
 
             </ul>
         )}
+        <span>
+            {` `}<Link to="/trash"><i className="fa-solid fa-trash"></i></Link>{` `}
+            Trash
+        </span>
 
 
 

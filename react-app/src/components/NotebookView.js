@@ -115,9 +115,6 @@ export default function NotebookView() {
     }, [dispatch])
 
 
-    // TODO:
-    // test update notebook title
-    // have drop down with: "add new note" "rename notebook (edit)" "delete notebook"
     if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading">Loading...</p>
   return (
     <>

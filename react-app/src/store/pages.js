@@ -56,15 +56,16 @@ export const getAllTrash = (userId) => async (dispatch) => {
     if (res.ok) {
 
       const data = await res.json();
-      dispatch(getPages(data));
+      dispatch(getTrash(data));
       return data;
 
     }
 }
 
 export const addToTrash = (trashedItem, pageId) => async (dispatch) => {
+     // note: this has been edited to now change trash statuses. can be false or true
 
-    const res = await fetch(`/api/pages/trash/${pageId}`, {
+    const res = await fetch(`/api/pages/trash/${pageId}/`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(trashedItem),
@@ -136,6 +137,13 @@ export const deletePage = (userId, pageId) => async (dispatch) => {
 const pages = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
+      case GET_ALL_TRASH:
+        action.trash.pages.forEach((page) => {
+            newState[page.id] = page;
+        });
+        return newState;
+      case ADD_TO_TRASH:
+        newState = { ...state, [action.trash.id]: action.trash };
       case GET_ALL_PAGES:
         action.pages.pages.forEach((page) => {
           newState[page.id] = page;
