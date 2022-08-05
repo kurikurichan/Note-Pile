@@ -1,8 +1,9 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, redirect, request
 from ..models.db import db
 from flask_login import login_required, current_user
 from app.models.db import Page
 from app.forms import PageForm
+from .auth_routes import validation_errors_to_error_messages
 
 
 pages_routes = Blueprint('pages', __name__)
@@ -15,20 +16,23 @@ pages_routes = Blueprint('pages', __name__)
 @login_required
 def pages(userId, notebookId):
 
-    print("------------entered pages")
-
     if userId != current_user.id:
         print("WHOOPSIE")
         return {'errors': ["user: You are unauthorized."]}, 405
 
     pages = Page.query.filter(Page.trashed == False, Page.notebookId == notebookId).all()
-    print("----------------------pages", pages)
     return {'pages': [page.to_dict() for page in pages]}
 
-# GET/api/pages/trash - get all pages in trash
-@pages_routes.route('/trash')
+# GET/api/pages/:userId/trash - get all pages in trash
+@pages_routes.route('/<int:userId>/trash/')
 @login_required
-def trash():
+def trash(userId):
+
+
+    if userId != current_user.id:
+        print("WHOOPSIE")
+        return {'errors': ["user: You are unauthorized."]}, 405
+
     trashed_pages = Page.query.filter(Page.trashed == True).all()
     return {'trash': [page.to_dict() for page in trashed_pages]}
 
@@ -53,18 +57,33 @@ def new_page(notebookId):
 @login_required
 def update_page(pageId):
 
+    print("---------------Entered update page")
+
+    form = PageForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     page = Page.query.get(pageId)
-    userId = request.json["userId"]
 
+    # try to redirect an unauthorized user
+    if page.userId != current_user.id:
+        print("---------------user ids don't match")
 
-    if userId == page.userId:
+        return redirect("https://note-pile.herokuapp.com/")
+
+    # for a normal user
+    if form.validate_on_submit():
+        print("---------------validated")
+
         page.title = request.json["title"]
         page.content = request.json["content"]
 
         db.session.commit()
         return page.to_dict()
     else:
-        return jsonify({"error"})
+        print("------------- entered error handling")
+        errz = validation_errors_to_error_messages(form.errors)
+        return {'errors': errz}, 400
 
 # PUT /api/pages/trash/:pageId - put page in trash
 @pages_routes.route('/trash/<int:pageId>/', methods=["PUT"])
