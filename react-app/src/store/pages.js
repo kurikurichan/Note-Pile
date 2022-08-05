@@ -51,6 +51,8 @@ const updateTrash = (trash) => {
 
 export const getAllTrash = (userId) => async (dispatch) => {
 
+    console.log("GET ALL TRASH THUNK");
+
     const res = await fetch(`/api/pages/${userId}/trash/`);
 
     if (res.ok) {
@@ -140,7 +142,6 @@ const pages = (state = {}, action) => {
     switch (action.type) {
 
       case GET_ALL_TRASH:
-        console.log("newState in getalltrash: ", newState)
         console.log("action.trash", action.trash)
         action.trash.trash.forEach((page) => {
             newState[page.id] = page;
@@ -152,7 +153,6 @@ const pages = (state = {}, action) => {
         return newState;
 
       case GET_ALL_PAGES:
-        console.log("newState in getallpages: ", newState)
         action.pages.pages.forEach((page) => {
           newState[page.id] = page;
         });

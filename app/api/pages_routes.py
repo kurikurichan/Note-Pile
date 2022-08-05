@@ -28,12 +28,15 @@ def pages(userId, notebookId):
 @login_required
 def trash(userId):
 
+    print("----------entered get trash")
 
     if userId != current_user.id:
+        print("----------------- ERROR in get trash")
         print("WHOOPSIE")
         return {'errors': ["user: You are unauthorized."]}, 405
 
     trashed_pages = Page.query.filter(Page.trashed == True).all()
+    print("--------------trashed pages", trashed_pages)
     return {'trash': [page.to_dict() for page in trashed_pages]}
 
 # POST /api/pages/:notebookId - create a new page
@@ -85,6 +88,7 @@ def trash_page(pageId):
     page = Page.query.get(pageId)
 
     if current_user.id == page.userId:
+        print("We entered the trash PUT validation")
         page.trashed = request.json["trashed"]
 
         db.session.commit()

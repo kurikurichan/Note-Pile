@@ -12,8 +12,7 @@ export default function Pages({ notebookId, userId, pageId }) {
     const [editContent, setEditContent] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
 
-
-
+    const dispatch = useDispatch();
     // if (allPagesOfNotebook) console.log("All pages: ", allPagesOfNotebook)
 
     // single page to use in our dynamic page view
@@ -21,7 +20,16 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     if (allPagesOfNotebook) {
         currentPage = Object.values(allPagesOfNotebook).filter(page => page.id == pageId)[0];
+
+        console.log("allPagesofNOtebook: ", allPagesOfNotebook);
+        console.log("currentPage: ", currentPage);
+
     }
+
+
+    useEffect(() => {
+        dispatch(getAllPages(userId, notebookId));
+    }, [dispatch])
 
     // load the fields we have with stuff we have already
 
@@ -32,7 +40,6 @@ export default function Pages({ notebookId, userId, pageId }) {
         }
     }, [pageId])
 
-    const dispatch = useDispatch();
 
     const handleBlur = async (e) => {
 
@@ -60,9 +67,21 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     }
 
-    const sendPageToTrash = (e) => {
+    const sendPageToTrash = async (e) => {
 
         e.preventDefault()
+
+        const data = {
+            userId,
+            trashed: true
+        }
+
+        const sentToTrash = await dispatch(addToTrash(data, pageId));
+
+        if (sentToTrash) {
+            console.log("Page has been trashed");
+            getPages();
+        }
 
     }
 
@@ -70,13 +89,11 @@ export default function Pages({ notebookId, userId, pageId }) {
         await dispatch(getAllPages(userId, notebookId));
     };
 
-    useEffect(() => {
-        dispatch(getAllPages(userId, notebookId));
-    }, [dispatch])
+
 
     // update view whenever pageId changes
 
-    if (!currentPage || !allPagesOfNotebook) return <p className="loading">Create or select a page</p>
+  if (!currentPage || !allPagesOfNotebook) return <p className="loading pages">Create or select a page</p>
   return (
     <div className="right-div">
         <div className="above-page">

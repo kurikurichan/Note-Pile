@@ -7,8 +7,11 @@ from wtforms.validators import ValidationError
 def title_input(form, field):
     # Checking if username is already in use
     title = field.data.strip()
-    if len(title) < 1:
-        raise ValidationError('Title cannot be empty nor whitespaces only')
+    if title:
+        if len(title) < 1:
+            raise ValidationError('Title cannot be empty nor whitespaces only')
+        if len(title) > 30:
+            raise ValidationError('Title cannot be more than 30 chars long')
 
 def content_length(form, field):
     # Checking if username is already in use

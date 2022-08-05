@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTrash, deletePage } from '../store/pages';
+import { getAllTrash, addToTrash, deletePage } from '../store/pages';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -10,6 +10,7 @@ export default function Trash() {
     const allTrashedPages = useSelector(state => state.pages)
 
     // initial load trashed pages
+
     useEffect(() => {
         dispatch(getAllTrash(user.id));
     }, [dispatch])
@@ -40,6 +41,23 @@ export default function Trash() {
     const getTheTrash = async () => {
         await dispatch(getAllTrash(user.id));
     };
+
+    const restorePage = async(e) => {
+
+        e.preventDefault()
+
+        const data = {
+            userId: user.id,
+            trashed: false
+        }
+
+        const restored = await dispatch(addToTrash(data, selectedPageId));
+
+        if (restored) {
+            console.log("Page has been restored");
+            getTheTrash();
+        }
+    }
 
 
 
@@ -74,7 +92,7 @@ export default function Trash() {
         </div>
         <div className="right-div">
             <div className="above-page">
-                <button>
+                <button onClick={restorePage}>
                     Restore Page
                 </button>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, getState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { getAllNotebooks, editNotebook, deleteNotebook } from '../store/notebooks'
@@ -96,8 +96,6 @@ export default function NotebookView() {
             getPages();
             setSelectedPageId(createPage.id);
         }
-
-
 
     }
 

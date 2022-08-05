@@ -43,17 +43,17 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>Splash</h1>
-        </ProtectedRoute>
         <ProtectedRoute path='/home' exact={true} >
           <Home />
+        </ProtectedRoute>
+        <ProtectedRoute path='/trash' exact={true} >
+          <Trash />
         </ProtectedRoute>
         <ProtectedRoute path='/:notebookId' exact={true} >
           <NotebookView />
         </ProtectedRoute>
-        <ProtectedRoute path='/trash' exact={true} >
-          <Trash />
+        <ProtectedRoute path='/' exact={true} >
+          <h1>Splash</h1>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
