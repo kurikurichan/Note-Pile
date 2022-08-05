@@ -69,7 +69,7 @@ export default function Home() {
 
     if (!notebooks || !user) return <p className="loading">Loading...</p>
   return (
-    <div>
+    <div className="notebook-dropdown-view">
         <span onClick={handleDropDown}>
             {!noteDropdown && <i className="fa-solid fa-caret-right"></i>}
             {noteDropdown && <i className="fa-solid fa-caret-down"></i>}

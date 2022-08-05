@@ -32,9 +32,9 @@ const delPage = (page) => {
     };
 };
 
-export const getAllPages = () => async (dispatch) => {
+export const getAllPages = (userId, notebookId) => async (dispatch) => {
 
-    const res = await fetch(`/api/pages/`);
+    const res = await fetch(`/api/pages/${userId}/${notebookId}/`);
 
     if (res.ok) {
 
@@ -45,9 +45,9 @@ export const getAllPages = () => async (dispatch) => {
     }
 }
 
-export const newPage = (page) => async (dispatch) => {
+export const newPage = (page, notebookId) => async (dispatch) => {
 
-    const res = await fetch("/api/pages/", {
+    const res = await fetch(`/api/pages/${notebookId}/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(page),
@@ -75,7 +75,7 @@ export const editPage = (pageData, pageId) => async (dispatch) => {
 
 export const deletePage = (userId, pageId) => async (dispatch) => {
 
-    const res = await fetch(`/api/pages/${userId}/${pageId}`, {
+    const res = await fetch(`/api/pages/${userId}/${pageId}/`, {
         method: "DELETE"
     });
 
@@ -90,7 +90,7 @@ const pages = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
       case GET_ALL_PAGES:
-        action.pages.forEach((page) => {
+        action.pages.pages.forEach((page) => {
           newState[page.id] = page;
         });
         return newState;
@@ -114,4 +114,4 @@ export default pages;
 
 //TODO:
 // add trash stuff to this file and test it
-// need trash seeder data 
+// need trash seeder data
