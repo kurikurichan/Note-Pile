@@ -6,14 +6,28 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     const allPagesOfNotebook = useSelector(state => state.pages)
 
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+
+
+
     // if (allPagesOfNotebook) console.log("All pages: ", allPagesOfNotebook)
 
-    // single notebook based on notebookId
+    // single page to use in our dynamic page view
     let currentPage;
 
     if (allPagesOfNotebook) {
         currentPage = Object.values(allPagesOfNotebook).filter(page => page.id == pageId)[0];
     }
+
+    // load the fields we have with stuff we have already
+
+    useEffect(() => {
+        if (currentPage) {
+            setTitle(currentPage.title);
+            setContent(currentPage.content);
+        }
+    }, [pageId])
 
     console.log("current page", currentPage);
 
@@ -30,11 +44,14 @@ export default function Pages({ notebookId, userId, pageId }) {
     // update view whenever pageId changes
 
   return (
-    <div className="pages-view">
-        {/* {Object.values(allPagesOfNotebook).map(page =>
-            <div key={page.id}>
-                {page.title}
-            </div>)} */}
+    <div className="right-div">
+        <div className="above-page">
+            {/* Rich text stuff goes here eventually */}
+        </div>
+        <div className="page-view">
+            {currentPage.title}
+            {currentPage.content}
+        </div>
     </div>
   )
 }
