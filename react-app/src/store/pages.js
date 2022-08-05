@@ -3,6 +3,9 @@ const DELETE_PAGE = "pages/DELETE_PAGE";
 const CREATE_PAGE = "pages/CREATE_PAGE";
 const UPDATE_PAGE = "pages/UPDATE_PAGE";
 
+const GET_ALL_TRASH = "pages/GET_ALL_TRASH";
+const ADD_TO_TRASH = "pages/ADD_TO_TRASH";
+
 
 const getPages = (pages) => {
     return {
@@ -32,6 +35,50 @@ const delPage = (page) => {
     };
 };
 
+const getTrash = (trash) => {
+    return {
+        type: GET_ALL_TRASH,
+        trash
+    }
+}
+
+const updateTrash = (trash) => {
+    return {
+        type: ADD_TO_TRASH,
+        trash
+    }
+}
+
+export const getAllTrash = (userId) => async (dispatch) => {
+
+    const res = await fetch(`/api/pages/${userId}/trash/`);
+
+    if (res.ok) {
+
+      const data = await res.json();
+      dispatch(getPages(data));
+      return data;
+
+    }
+}
+
+export const addToTrash = (trashedItem, pageId) => async (dispatch) => {
+
+    const res = await fetch(`/api/pages/trash/${pageId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(trashedItem),
+    });
+
+    if (res.ok) {
+
+      const data = await res.json();
+      dispatch(updateTrash(data));
+      return data;
+
+    }
+}
+
 export const getAllPages = (userId, notebookId) => async (dispatch) => {
 
     const res = await fetch(`/api/pages/${userId}/${notebookId}/`);
@@ -39,7 +86,7 @@ export const getAllPages = (userId, notebookId) => async (dispatch) => {
     if (res.ok) {
 
       const data = await res.json();
-      dispatch(getPages(data));
+      dispatch(getTrash(data));
       return data;
 
     }

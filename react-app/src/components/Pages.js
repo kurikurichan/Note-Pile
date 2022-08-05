@@ -60,6 +60,12 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     }
 
+    const handleTrashPage = (e) => {
+
+        e.preventDefault()
+        
+    }
+
     const getPages = async () => {
         await dispatch(getAllPages(userId, notebookId));
     };
@@ -75,6 +81,9 @@ export default function Pages({ notebookId, userId, pageId }) {
     <div className="right-div">
         <div className="above-page">
             {/* Rich text stuff goes here eventually */}
+            <div className="trash" onClick={handleTrashPage}>
+                <i className="fa-solid fa-trash-can"></i>
+            </div>
         </div>
         <div className="page-view">
             {!editTitle ?

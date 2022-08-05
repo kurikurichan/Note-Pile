@@ -55,8 +55,6 @@ def new_page(notebookId):
 @login_required
 def update_page(pageId):
 
-    print("---------------Entered update page")
-
     form = PageForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -65,13 +63,10 @@ def update_page(pageId):
 
     # try to redirect an unauthorized user
     if page.userId != current_user.id:
-        print("---------------user ids don't match")
-
         return redirect("https://note-pile.herokuapp.com/")
 
     # for a normal user
     if form.validate_on_submit():
-        print("---------------validated")
 
         page.title = request.json["title"]
         page.content = request.json["content"]
@@ -79,7 +74,6 @@ def update_page(pageId):
         db.session.commit()
         return page.to_dict()
     else:
-        print("------------- entered error handling")
         errz = validation_errors_to_error_messages(form.errors)
         return {'errors': errz}, 400
 
