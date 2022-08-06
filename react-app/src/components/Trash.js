@@ -80,7 +80,7 @@ export default function Trash() {
     //TODO:
     // - add restore note button
 
-    if (!user || !allTrashedPages) return <p className="loading trash">Loading...</p>
+    if (!user || !allTrashedPages) return <p className="loading right-div">Loading...</p>
   return (
     <div className="out-container">
         <div className="left-div">

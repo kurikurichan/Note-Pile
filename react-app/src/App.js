@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import Sidebar from './components/Home/Sidebar';
 import NotebookView from './components/MainPageView/NotebookView';
 import Trash from './components/Trash';
+import Home from './components/Home/Home';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,7 +45,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/home' exact={true} >
-          <h1>Home stuff here</h1>
+          <Home />
         </ProtectedRoute>
         <ProtectedRoute path='/trash' exact={true} >
           <Trash />
