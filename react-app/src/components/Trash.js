@@ -82,7 +82,7 @@ export default function Trash() {
 
     if (!user || !allTrashedPages) return <p className="loading trash">Loading...</p>
   return (
-    <>
+    <div className="out-container">
         <div className="left-div">
             <h1 className="title">
                 {` `}<i className="fa-solid fa-trash"></i>{` `}
@@ -112,8 +112,8 @@ export default function Trash() {
                 </div>
             </div>
             <div className="page-footer">
+            </div>
         </div>
     </div>
-    </>
   )
 }

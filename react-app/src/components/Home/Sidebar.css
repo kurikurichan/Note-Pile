@@ -1,11 +1,13 @@
 .sidebar {
-    width: 250px;
-    min-width: 240px;
+    width: 20vw;
+    min-width: 20vw;
     background-color: var(--sidebar-body);
     display: flex;
     flex-direction: column;
     color: var(--sidebar-font);
     height: 100vh;
+    position: fixed;
+    left: 0;
 }
 
 .notebook-dropdown {

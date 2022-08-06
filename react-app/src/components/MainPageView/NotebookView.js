@@ -5,6 +5,8 @@ import { getAllNotebooks, editNotebook, deleteNotebook } from '../../store/noteb
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
 
+import './MainPageView.css';
+
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const { notebookId } = useParams();
@@ -111,7 +113,7 @@ export default function NotebookView() {
 
     if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
   return (
-    <>
+    <div className="out-container">
         <div className="left-div">
             <h1 className="title">
                 {` `}<i className="fa-solid fa-book"></i>{` `}
@@ -151,6 +153,6 @@ export default function NotebookView() {
                 </div>)}
         </div>
         <Pages notebookId={notebookId} userId={user.id} pageId={selectedPageId} />
-    </>
+    </div>
   )
 }

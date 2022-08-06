@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllPages, editPage, addToTrash } from '../../store/pages';
 
+import './MainPageView.css';
+
 export default function Pages({ notebookId, userId, pageId }) {
 
     const allPagesOfNotebook = useSelector(state => state.pages)
