@@ -1,0 +1,35 @@
+.sidebar {
+    width: 250px;
+    min-width: 240px;
+    background-color: var(--sidebar-body);
+    display: flex;
+    flex-direction: column;
+    color: var(--sidebar-font);
+    height: 100vh;
+}
+
+.notebook-dropdown {
+    list-style: none;
+}
+
+.notebook-dropdown:hover {
+    list-style: none;
+}
+
+.notebook-li {
+    text-decoration: none;
+    color: var(--sidebar-font);
+    font-size: 14px;
+    line-height: 1.4em;
+    font-weight: bold;
+}
+
+#new-notebook {
+    color: var(--evernote-green);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#trash-link {
+    font-weight: bold;
+}

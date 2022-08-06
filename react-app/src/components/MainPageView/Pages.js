@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllPages, editPage, addToTrash } from '../store/pages';
+import { getAllPages, editPage, addToTrash } from '../../store/pages';
 
 export default function Pages({ notebookId, userId, pageId }) {
 

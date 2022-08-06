@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { getAllNotebooks, newNotebook } from '../../store/notebooks';
 
-export default function Home() {
+import './Sidebar.css';
+
+export default function Sidebar() {
 
     const user = useSelector(state => state.session.user);
     const notebooks = useSelector(state => state.notebooks);
@@ -69,8 +71,14 @@ export default function Home() {
 
     if (!notebooks || !user) return <p className="loading">Loading...</p>
   return (
-    <div className="notebook-dropdown-view">
-        <span onClick={handleDropDown}>
+    <div className="sidebar">
+        <span className="home-button">
+            <NavLink to="/home">
+            {` `}<i class="fa-solid fa-house"></i>{` `}
+            Home
+            </NavLink>
+        </span>
+        <span className="dropdown-button" onClick={handleDropDown}>
             {!noteDropdown && <i className="fa-solid fa-caret-right"></i>}
             {noteDropdown && <i className="fa-solid fa-caret-down"></i>}
             {` `}<i className="fa-solid fa-book"></i>{` `}Notebooks
@@ -79,7 +87,7 @@ export default function Home() {
             <ul className="notebook-dropdown">
                 {Object.values(notebooks).map(book =>
                     <li key={book.id}>
-                        <Link to={`/${book.id}`}>{book.title}</Link>
+                        <NavLink to={`/${book.id}`} className="notebook-li">{book.title}</NavLink>
                     </li>)}
 
                 { showEdit && (
@@ -105,7 +113,7 @@ export default function Home() {
                 </div>)}
 
                 { !showEdit && (
-                <li onClick={handleShowEdit}>
+                <li onClick={handleShowEdit} id="new-notebook">
                     <i className="fa-solid fa-book-medical"></i>
                     {` `}New Notebook
                 </li>)
@@ -114,7 +122,7 @@ export default function Home() {
             </ul>
         )}
         <span id="trash-link">
-            {` `}<Link to="/trash"><i className="fa-solid fa-trash"></i></Link>{` `}
+            {` `}<NavLink to="/trash"><i className="fa-solid fa-trash"></i></NavLink>{` `}
             Trash
         </span>
 

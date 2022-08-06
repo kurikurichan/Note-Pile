@@ -8,8 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import Home from './components/Home/Home';
-import NotebookView from './components/NotebookView';
+import Sidebar from './components/Home/Sidebar';
+import NotebookView from './components/MainPageView/NotebookView';
 import Trash from './components/Trash';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Sidebar />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -44,7 +44,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/home' exact={true} >
-          <Home />
+          <h1>Home stuff here</h1>
         </ProtectedRoute>
         <ProtectedRoute path='/trash' exact={true} >
           <Trash />

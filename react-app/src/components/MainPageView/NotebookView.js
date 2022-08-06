@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom';
-import { getAllNotebooks, editNotebook, deleteNotebook } from '../store/notebooks'
-import { getAllPages, newPage } from '../store/pages';
+import { getAllNotebooks, editNotebook, deleteNotebook } from '../../store/notebooks'
+import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
 
 export default function NotebookView() {
@@ -122,7 +122,7 @@ export default function NotebookView() {
             </div>
             {showMenu &&
                 <div className="profile-dropdown">
-                    <div onClick={handleNewPage}>New Page</div>
+                    <div onClick={handleNewPage}>Add a Page</div>
                     <div onClick={handleRenameNotebook}>Rename Notebook</div>
                     {showEditBox &&
                         <form className="notebook-form" onSubmit={handleNotebookEdit}>
