@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { getAllNotebooks, newNotebook } from '../../store/notebooks';
+import LogoutButton from '../auth/LogoutButton';
 
 import './Sidebar.css';
 
@@ -13,6 +14,7 @@ export default function Sidebar() {
     // for notebooks dropdown selection
     const [noteDropdown, setNoteDropdown] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    const [showUserMenu, setShowUserMenu] = useState(false);
     // errors for notebook submit
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState("");
@@ -55,6 +57,10 @@ export default function Sidebar() {
         setShowEdit(!showEdit);
     }
 
+    const handleUserMenu = () => {
+        setShowUserMenu(!showUserMenu);
+    }
+
     // test CRUDS!
     // notebooks
     // first test get notebooks
@@ -72,6 +78,11 @@ export default function Sidebar() {
     if (!notebooks || !user) return <p className="loading">Loading...</p>
   return (
     <div className="sidebar">
+        <div className="user-dropdown" onClick={handleUserMenu}>
+            {user.username}
+            {showUserMenu &&
+            <div id="logout"><LogoutButton /></div>}
+        </div>
         <span className="home-button">
             <NavLink to="/home">
             {` `}<i class="fa-solid fa-house"></i>{` `}
@@ -122,8 +133,7 @@ export default function Sidebar() {
             </ul>
         )}
         <span id="trash-link">
-            {` `}<NavLink to="/trash"><i className="fa-solid fa-trash"></i></NavLink>{` `}
-            Trash
+            {` `}<NavLink to="/trash"><i className="fa-solid fa-trash"></i>Trash</NavLink>{` `}
         </span>
 
     </div>
