@@ -1,6 +1,6 @@
 .sidebar {
-    width: 20vw;
-    min-width: 20vw;
+    width: 15vw;
+    min-width: 15vw;
     background-color: var(--sidebar-body);
     display: flex;
     flex-direction: column;
@@ -8,6 +8,10 @@
     height: 100vh;
     position: fixed;
     left: 0;
+}
+
+body {
+    overscroll-behavior-block: none;
 }
 
 .notebook-dropdown {

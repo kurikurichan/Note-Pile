@@ -2,7 +2,7 @@
 
 :root {
     --sidebar-body: black;
-    --background-secondary: #262626;
+    --background-secondary: #181818;
     --background-primary: #323232;
     --sidebar-font: #ccc;
     --default-font: #afafaf;
@@ -117,4 +117,8 @@ a, div, span, li, p, h1, h2, h3 {
     font-family: soleil, sans-serif;
     font-style: normal;
     font-weight: 300;
+}
+
+* {
+    margin: 0;
 }

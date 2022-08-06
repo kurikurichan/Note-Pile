@@ -6,12 +6,12 @@
     flex-direction: row;
     margin: 0px;
     position: fixed;
-    left: 20vw;
+    left: 15vw;
   }
 
 .left-div {
-    width: 20vw;
-    min-width: 20vw;
+    width: 27vw;
+    min-width: 27vw;
     background-color: var(--background-secondary);
     display: flex;
     flex-direction: column;
