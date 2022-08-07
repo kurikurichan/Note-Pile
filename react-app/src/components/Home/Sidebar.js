@@ -43,6 +43,8 @@ export default function Sidebar() {
             setTitle("");
         }
 
+        handleShowEdit();
+
     };
 
     const handleDropDown = () => {
@@ -72,7 +74,7 @@ export default function Sidebar() {
 
 
     useEffect(() => {
-      getNotebooks();
+        dispatch(getAllNotebooks());
     }, [dispatch])
 
     if (!notebooks || !user) return <p className="loading">Loading...</p>
@@ -85,7 +87,7 @@ export default function Sidebar() {
         </div>
         <span className="home-button">
             <NavLink to="/home">
-            {` `}<i class="fa-solid fa-house"></i>{` `}
+            {` `}<i className="fa-solid fa-house"></i>{` `}
             Home
             </NavLink>
         </span>

@@ -71,7 +71,7 @@ export default function NotebookView() {
     let currentNotebook;
 
     if (allNotebooks) {
-        currentNotebook = Object.values(allNotebooks).filter(book => book.id == notebookId)[0];
+        currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
     }
 
     const getNotebooks = async () => {

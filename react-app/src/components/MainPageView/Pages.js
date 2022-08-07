@@ -9,8 +9,10 @@ export default function Pages({ notebookId, userId, pageId }) {
     const allPagesOfNotebook = useSelector(state => state.pages)
 
     const [errors, setErrors] = useState([]);
+    // edit page title & content
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    //  toggle edit forms for page title & content
     const [editContent, setEditContent] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
 
@@ -21,10 +23,10 @@ export default function Pages({ notebookId, userId, pageId }) {
     let currentPage;
 
     if (allPagesOfNotebook) {
-        currentPage = Object.values(allPagesOfNotebook).filter(page => page.id == pageId)[0];
+        currentPage = Object.values(allPagesOfNotebook).filter(page => +page.id === +pageId)[0];
 
-        console.log("allPagesofNOtebook: ", allPagesOfNotebook);
-        console.log("currentPage: ", currentPage);
+        // console.log("allPagesofNOtebook: ", allPagesOfNotebook);
+        // console.log("currentPage: ", currentPage);
 
     }
 
@@ -45,8 +47,6 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     const handleBlur = async (e) => {
 
-        setErrors([]);
-
         setContent(e.target.value);
 
         const data = {
@@ -63,8 +63,8 @@ export default function Pages({ notebookId, userId, pageId }) {
             getPages();
         }
 
-        setEditContent(false);
         setEditTitle(false);
+        setEditContent(false);
 
 
     }
@@ -122,8 +122,7 @@ export default function Pages({ notebookId, userId, pageId }) {
                 className="page-contents"
                 value={content}
                 onClick={() => setEditContent(true)}
-                aria-placeholder="Start writing here"
-                aria-multiline="true"
+                placeholder="Start writing here"
                 style={{padding:"12px 40px 0px"}}
             >
                 {currentPage.content}
@@ -136,8 +135,7 @@ export default function Pages({ notebookId, userId, pageId }) {
                     onChange={(e) => setContent(e.target.value)}
                     onBlur={handleBlur}
                     enterKeyHint="enter"
-                    aria-placeholder="Start writing here"
-                    aria-multiline="true"
+                    placeholder="Start writing here"
                     translate="no"
                     style={{padding:"12px 40px 0px"}}
                 / >

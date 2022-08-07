@@ -27,7 +27,7 @@ export default function Trash() {
     let currentPage;
 
     if (allTrashedPages) {
-        currentPage = Object.values(allTrashedPages).filter(page => page.id == selectedPageId)[0];
+        currentPage = Object.values(allTrashedPages).filter(page => +page.id === +selectedPageId)[0];
     }
 
     useEffect(() => {
