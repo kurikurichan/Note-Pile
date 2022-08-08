@@ -52,15 +52,6 @@ body {
     cursor: pointer;
 }
 
-/* #account,
-.username,
-#logout {
-    padding: 10px;
-    color: var(--sidebar-font);
-    background-color: transparent;
-    font-weight: bold;
-} */
-
 #main-username {
     margin-right: 7px;
 }
@@ -111,6 +102,7 @@ body {
 
 .notebook-dropdown {
     list-style: none;
+    margin-bottom: 10px;
 }
 
 .notebook-dropdown:hover {

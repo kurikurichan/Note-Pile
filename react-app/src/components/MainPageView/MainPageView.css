@@ -11,7 +11,6 @@
 
 .left-div {
     width: 27vw;
-    min-width: 27vw;
     background-color: var(--background-secondary);
     display: flex;
     flex-direction: column;
@@ -49,6 +48,17 @@
 
 .pages:last-child {
     border-bottom: 1px solid var(--sidebar-highlight);
+}
+
+.title-view {
+    padding: 15px;
+}
+
+.title {
+    color: var(--lighter-alabaster);
+    font-family: soleil, sans-serif;
+    font-size: 20px;
+    font-weight: 310;
 }
 
 /* .page-active {

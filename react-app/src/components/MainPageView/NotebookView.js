@@ -107,6 +107,17 @@ export default function NotebookView() {
         await dispatch(getAllPages(user.id, notebookId));
     };
 
+    // count dem pages for display
+    const getPageCount = () => {
+        let numPages = 0;
+        if (allPagesOfNotebook) {
+            numPages = Object.values(allPagesOfNotebook).length;
+        }
+        // get proper ending based on length
+        if (numPages === 1) return `${numPages} page`;
+        else return `${numPages} pages`;
+    }
+
     useEffect(() => {
         dispatch(getAllPages(user.id, notebookId));
     }, [dispatch])
@@ -116,12 +127,15 @@ export default function NotebookView() {
   return (
     <div className="out-container">
         <div className="left-div">
-            <h1 className="title">
-                {` `}<i className="fa-solid fa-book"></i>{` `}
-                {currentNotebook.title}
-            </h1>
-            <div className="notebook-options-dropdown" onClick={openMenu}>
-                <i className="fa-solid fa-ellipsis"></i>
+            <div className="title-view">
+                <h1 className="title">
+                    {` `}<i className="fa-solid fa-book"></i>{` `}
+                    {currentNotebook.title}
+                </h1>
+                <p className="page-count">{getPageCount()}</p>
+                <div className="notebook-options-dropdown" onClick={openMenu}>
+                    <i className="fa-solid fa-ellipsis"></i>
+                </div>
             </div>
             {showMenu &&
                 <div className="profile-dropdown">
