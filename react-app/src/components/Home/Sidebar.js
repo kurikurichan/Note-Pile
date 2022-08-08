@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { getAllNotebooks, newNotebook } from '../../store/notebooks';
 import LogoutButton from '../auth/LogoutButton';
 
+import default_user from './default_user.jpeg';
+
 import './Sidebar.css';
 
 export default function Sidebar() {
@@ -91,21 +93,28 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
         <div className="user-dropdown" onClick={handleUserMenu}>
-            <p id="main-username">{user.username}</p>
-            {showUserMenu &&
-            <div id="logout-div">
-                <div className="username-block">
-                    <p id="account">ACCOUNT</p>
-                    <p className="username">{user.username}</p>
-                    <p className='username'>{user.email}</p>
-                </div>
-                <LogoutButton />
-            </div>}
+                <img src={default_user} id="user-image"/>
+                <p id="main-username">{user.username}</p>
+                <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
         </div>
+        {showUserMenu &&
+        <div id="logout-div">
+            <p id="account">ACCOUNT</p>
+            <div className="username-block">
+                <i className="fa-solid fa-check" style={{color: 'skyblue'}}></i>
+                <img src={default_user} className="user-image"/>
+                <div id="user-info">
+                    <p className="user-name">{user.username}</p>
+                    <p className='user-email'>{user.email}</p>
+                </div>
+            </div>
+            <LogoutButton />
+        </div>}
+
         <span className="home-button">
-            <NavLink to="/home" activeClassName='sb-active'>
-            {` `}<i className="fa-solid fa-house"></i>{` `}
-            Home
+            <NavLink to="/home" className="navlink" activeClassName='sb-active'>
+            <i className="fa-solid fa-house"></i>
+            {` `}Home
             </NavLink>
         </span>
         <span className="dropdown-button" onClick={handleDropDown}>
@@ -153,7 +162,7 @@ export default function Sidebar() {
             </ul>
         )}
         <span id="trash-link">
-            {` `}<NavLink to="/trash" activeClassName='sb-active'><i className="fa-solid fa-trash"></i>Trash</NavLink>{` `}
+            <NavLink to="/trash" className="navlink" activeClassName='sb-active'><i className="fa-solid fa-trash"></i>{` `}Trash</NavLink>
         </span>
         <div id="sidebar-padding">
 

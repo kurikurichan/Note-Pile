@@ -3,7 +3,6 @@ from sqlalchemy.schema import Column, ForeignKey, Sequence
 from sqlalchemy.types import Integer, String, Text, Boolean, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -31,27 +30,16 @@ class Page(db.Model):
     userId = Column(Integer, ForeignKey("users.id"), nullable=False)
     notebookId = Column(Integer, ForeignKey("notebooks.id"), nullable=False)
     title = Column(String(30), default="New Page", nullable=True)
-    content = Column(Text, nullable=True)
+    content = Column(Text, default="", nullable=True)
     trashed = Column(Boolean, default=False, nullable=False)
     created_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now())
     updated_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now(), onupdate=func.now())
     # created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     # updated_at = db.Column(db.DateTime, nullable=True, default=datetime.now(), onupdate=datetime.now)
 
-    # maybe get rid of userId relationship for pages?
     user = relationship("User", back_populates="pages")
     notebook = relationship("Notebook", back_populates="pages")
 
-    # i = 0
-
-    # def __init__(self, **kwargs):
-    #     super(Page, self).__init__(**kwargs)
-    #     self.title = "Page " + str(self.id)
-
-    # def my_default():
-    #     global i
-    #     i += 1
-    #     return str(i)
 
     def to_dict(self):
         return {

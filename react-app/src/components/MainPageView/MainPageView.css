@@ -44,6 +44,11 @@
     background-color: transparent;
     color: var(--sidebar-font);
     border: 0;
+    border-top: 1px solid var(--sidebar-highlight);
+}
+
+.pages:last-child {
+    border-bottom: 1px solid var(--sidebar-highlight);
 }
 
 /* .page-active {

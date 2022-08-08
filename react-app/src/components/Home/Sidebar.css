@@ -8,6 +8,7 @@
     height: 100vh;
     position: fixed;
     left: 0;
+    font-family: soleil, sans-serif;
 }
 
 body {
@@ -16,9 +17,10 @@ body {
 
 .user-dropdown {
     font-weight: bold;
+    display: flex;
+    align-items: center;
     padding: 10px;
-    padding-bottom: 20px;
-    line-height: 1em;
+    cursor: pointer;
 }
 
 .logout-div {
@@ -26,26 +28,28 @@ body {
     flex-direction: column;
     align-items: space-between;
     padding: 10px;
+    border-bottom: 1px solid var(--sidebar-font);
+    margin-bottom: 10px;
 }
 
 .sb-active {
     background-color: var(--sidebar-highlight);
-    text-decoration: none;
 }
 
 #account {
     font-size: 12px;
     font-weight: bold;
     padding-bottom: 10px;
+    font-family: soleil, sans-serif;
 }
 
 .home-button {
     padding: 10px;
-    text-decoration: none;
 }
 
 .dropdown-button {
     padding: 10px;
+    cursor: pointer;
 }
 
 /* #account,
@@ -58,7 +62,7 @@ body {
 } */
 
 #main-username {
-    padding: 10px;
+    margin-right: 7px;
 }
 
 #logout {
@@ -67,23 +71,41 @@ body {
     border: 0;
     background-color: transparent;
     color: white;
-    padding: 10px;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
 
 }
 
 #logout-div {
     background-color: var(--sidebar-highlight);
+    border-radius: 3px;
+    padding: 5px;
 }
 
-.username {
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: .8em;
+.user-name {
+    font-size: 17px;
+}
+
+.user-email {
+    font-size: 12px;
+}
+
+.user-name,
+.user-email {
+    line-height: 1em;
+    font-family: soleil, sans-serif;
 }
 
 .username-block {
     line-height: .5em;
-    color: var(--sidebar-font)
+    color: var(--sidebar-font);
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    border-bottom: 1px solid rgba(204, 204, 204, .3);
 }
 
 
@@ -113,4 +135,24 @@ body {
     font-weight: bold;
     padding: 10px;
     text-decoration: none;
+}
+
+.navlink {
+    color: var(--sidebar-font)
+}
+
+.user-image,
+#user-image {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+}
+
+.user-image {
+    margin-left: 5%;
+    margin-right: 2.5%;
+}
+
+#user-image {
+    margin-right: 2.5%;
 }
