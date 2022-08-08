@@ -76,15 +76,6 @@ export default function Sidebar() {
         await dispatch(getAllNotebooks());
     }
 
-    const getFirstPage = (notebookId)  =>  {
-        const nbToCheck = Object.values(notebooks).filter(book => book.id === +notebookId)[0];
-
-        // const theNumber = setFirstPageNum(Object.values(nbToCheck.pages)[0].id)
-        console.log("notebook to check:", nbToCheck);
-
-    }
-
-
     useEffect(() => {
         dispatch(getAllNotebooks());
     }, [dispatch])
@@ -126,7 +117,6 @@ export default function Sidebar() {
             <ul className="notebook-dropdown">
                 {Object.values(notebooks).map(book =>
                     <li key={book.id}>
-                        {/* {getFirstPage(book.id)} */}
                         <NavLink to={`/${book.id}`} className="notebook-li" activeClassName='sb-active'>{book.title}</NavLink>
                     </li>)}
 
