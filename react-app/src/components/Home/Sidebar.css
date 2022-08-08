@@ -14,6 +14,79 @@ body {
     overscroll-behavior-block: none;
 }
 
+.user-dropdown {
+    font-weight: bold;
+    padding: 10px;
+    padding-bottom: 20px;
+    line-height: 1em;
+}
+
+.logout-div {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    padding: 10px;
+}
+
+.sb-active {
+    background-color: var(--sidebar-highlight);
+    text-decoration: none;
+}
+
+#account {
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.home-button {
+    padding: 10px;
+    text-decoration: none;
+}
+
+.dropdown-button {
+    padding: 10px;
+}
+
+/* #account,
+.username,
+#logout {
+    padding: 10px;
+    color: var(--sidebar-font);
+    background-color: transparent;
+    font-weight: bold;
+} */
+
+#main-username {
+    padding: 10px;
+}
+
+#logout {
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+
+}
+
+#logout-div {
+    background-color: var(--sidebar-highlight);
+}
+
+.username {
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: .8em;
+}
+
+.username-block {
+    line-height: .5em;
+    color: var(--sidebar-font)
+}
+
+
 .notebook-dropdown {
     list-style: none;
 }
@@ -38,4 +111,6 @@ body {
 
 #trash-link {
     font-weight: bold;
+    padding: 10px;
+    text-decoration: none;
 }

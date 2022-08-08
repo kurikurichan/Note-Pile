@@ -11,6 +11,7 @@ import Sidebar from './components/Home/Sidebar';
 import NotebookView from './components/MainPageView/NotebookView';
 import Trash from './components/Trash';
 import Home from './components/Home/Home';
+import Pages from './components/MainPageView/Pages';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

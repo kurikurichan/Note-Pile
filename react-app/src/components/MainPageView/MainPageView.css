@@ -32,3 +32,20 @@
     box-sizing: content-box;
 
 }
+
+.trash {
+    color: red;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.pages {
+    padding: 30px;
+    background-color: transparent;
+    color: var(--sidebar-font);
+    border: 0;
+}
+
+/* .page-active {
+    border: 2px solid var(--sidebar-font);
+} */

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, NavLink } from 'react-router-dom';
 import { getAllNotebooks, editNotebook, deleteNotebook } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
@@ -10,6 +10,7 @@ import './MainPageView.css';
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const { notebookId } = useParams();
+    // console.log("notebookID: ", notebookId, "pageId: ", pageId);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -148,9 +149,9 @@ export default function NotebookView() {
                     <div onClick={handleNotebookDelete}>Delete Notebook</div>
                 </div>}
             {Object.values(allPagesOfNotebook).map(page =>
-                <div key={page.id} onClick={() => setSelectedPageId(page.id)}>
+                <NavLink to={`/${notebookId}/`} key={page.id} className="pages" activeClassName="page-active"  onClick={() => setSelectedPageId(page.id)}>
                     {page.title}
-                </div>)}
+                </NavLink>)}
         </div>
         <Pages notebookId={notebookId} userId={user.id} pageId={selectedPageId} />
     </div>

@@ -77,6 +77,8 @@ export default function Trash() {
 
     }
 
+    const noTrashedNotes = allTrashedPages && Object.values(allTrashedPages).length === 0;
+
     //TODO:
     // - add restore note button
 
@@ -88,17 +90,28 @@ export default function Trash() {
                 {` `}<i className="fa-solid fa-trash"></i>{` `}
                 Trash
             </h1>
-            <button onClick={handleEmptyTrash}>Empty Trash</button>
-            {Object.values(allTrashedPages).map(page =>
-                <div key={page.id} onClick={() => setSelectedPageId(page.id)}>
-                    {page.title}
-                </div>)}
+                {!noTrashedNotes &&
+                    <button onClick={handleEmptyTrash}>Empty Trash</button>}
+
+                    {Object.values(allTrashedPages).map(page =>
+                        <div key={page.id} onClick={() => setSelectedPageId(page.id)}>
+                            {page.title}
+                        </div>)}
+
+                {noTrashedNotes &&
+
+                <div className="no-trashed-pages">
+                    <i id="big-trash" className="fa-solid fa-trash"></i>
+                    <h3 id="trash-empty">Your trash is empty</h3>
+                    <p>When you have pages in the trash, click ‘Restore Page’ to restore or delete them.</p>
+                </div>}
         </div>
         <div className="right-div">
             <div className="above-page">
+                {!noTrashedNotes &&
                 <button onClick={restorePage}>
                     Restore Page
-                </button>
+                </button>}
             </div>
             <div className="page-view">
                 <div className="page-title">

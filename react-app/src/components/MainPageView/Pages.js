@@ -39,8 +39,8 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     useEffect(() => {
         if (currentPage) {
-            setTitle(currentPage.title);
-            setContent(currentPage.content);
+            setTitle(currentPage.title || "Untitled");
+            setContent(currentPage.content || " ");
         }
     }, [pageId])
 
@@ -107,7 +107,7 @@ export default function Pages({ notebookId, userId, pageId }) {
         <div className="page-view">
             {!editTitle ?
             <div className="page-title" onClick={() => setEditTitle(true)}>
-                {currentPage.title}
+                <h1>{currentPage.title}</h1>
             </div> :
             <div className="page-title">
                 <input
@@ -122,10 +122,9 @@ export default function Pages({ notebookId, userId, pageId }) {
                 className="page-contents"
                 value={content}
                 onClick={() => setEditContent(true)}
-                placeholder="Start writing here"
                 style={{padding:"12px 40px 0px"}}
             >
-                {currentPage.content}
+                {currentPage.content ? currentPage.content : "Start writing here!"}
             </div>}
             {editContent &&
             <div className='page-contents'>

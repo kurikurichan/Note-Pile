@@ -15,6 +15,8 @@ export default function Sidebar() {
     const [noteDropdown, setNoteDropdown] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
+    // for notebook page url
+    const [firstPageNum, setFirstPageNum] = useState("");
     // errors for notebook submit
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState("");
@@ -72,6 +74,14 @@ export default function Sidebar() {
         await dispatch(getAllNotebooks());
     }
 
+    const getFirstPage = (notebookId)  =>  {
+        const nbToCheck = Object.values(notebooks).filter(book => book.id === +notebookId)[0];
+
+        // const theNumber = setFirstPageNum(Object.values(nbToCheck.pages)[0].id)
+        console.log("notebook to check:", nbToCheck);
+
+    }
+
 
     useEffect(() => {
         dispatch(getAllNotebooks());
@@ -81,12 +91,19 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
         <div className="user-dropdown" onClick={handleUserMenu}>
-            {user.username}
+            <p id="main-username">{user.username}</p>
             {showUserMenu &&
-            <div id="logout"><LogoutButton /></div>}
+            <div id="logout-div">
+                <div className="username-block">
+                    <p id="account">ACCOUNT</p>
+                    <p className="username">{user.username}</p>
+                    <p className='username'>{user.email}</p>
+                </div>
+                <LogoutButton />
+            </div>}
         </div>
         <span className="home-button">
-            <NavLink to="/home">
+            <NavLink to="/home" activeClassName='sb-active'>
             {` `}<i className="fa-solid fa-house"></i>{` `}
             Home
             </NavLink>
@@ -100,7 +117,8 @@ export default function Sidebar() {
             <ul className="notebook-dropdown">
                 {Object.values(notebooks).map(book =>
                     <li key={book.id}>
-                        <NavLink to={`/${book.id}`} className="notebook-li">{book.title}</NavLink>
+                        {/* {getFirstPage(book.id)} */}
+                        <NavLink to={`/${book.id}`} className="notebook-li" activeClassName='sb-active'>{book.title}</NavLink>
                     </li>)}
 
                 { showEdit && (
@@ -135,7 +153,7 @@ export default function Sidebar() {
             </ul>
         )}
         <span id="trash-link">
-            {` `}<NavLink to="/trash"><i className="fa-solid fa-trash"></i>Trash</NavLink>{` `}
+            {` `}<NavLink to="/trash" activeClassName='sb-active'><i className="fa-solid fa-trash"></i>Trash</NavLink>{` `}
         </span>
         <div id="sidebar-padding">
 
