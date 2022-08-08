@@ -118,6 +118,11 @@ export default function NotebookView() {
         else return `${numPages} pages`;
     }
 
+    const formatDate = (date) => {
+        const splitted = date.split(' ');
+        return `${splitted[2]} ${splitted[1]}`
+    }
+
     useEffect(() => {
         dispatch(getAllPages(user.id, notebookId));
     }, [dispatch])
@@ -132,9 +137,11 @@ export default function NotebookView() {
                     {` `}<i className="fa-solid fa-book"></i>{` `}
                     {currentNotebook.title}
                 </h1>
-                <p className="page-count">{getPageCount()}</p>
-                <div className="notebook-options-dropdown" onClick={openMenu}>
-                    <i className="fa-solid fa-ellipsis"></i>
+                <div className="notebook-dongles">
+                    <p className="page-count">{getPageCount()}</p>
+                    <div className="notebook-options-dropdown" onClick={openMenu}>
+                        <i className="fa-solid fa-ellipsis"></i>
+                    </div>
                 </div>
             </div>
             {showMenu &&
@@ -163,9 +170,12 @@ export default function NotebookView() {
                     <div onClick={handleNotebookDelete}>Delete Notebook</div>
                 </div>}
             {Object.values(allPagesOfNotebook).map(page =>
-                <NavLink to={`/${notebookId}/`} key={page.id} className="pages" activeClassName="page-active"  onClick={() => setSelectedPageId(page.id)}>
-                    {page.title}
-                </NavLink>)}
+                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
+                    <div className="page-title-content">
+                        <p className="page-title">{page.title}</p>
+                    </div>
+                    <p className="page-date">{formatDate(page.updated_at)}</p>
+                </div>)}
         </div>
         <Pages notebookId={notebookId} userId={user.id} pageId={selectedPageId} />
     </div>

@@ -18,6 +18,7 @@
     height: 100vh;
     overflow: hidden;
     box-sizing: content-box;
+    border-right: 1px black solid;
 }
 
 .right-div {
@@ -44,6 +45,11 @@
     color: var(--sidebar-font);
     border: 0;
     border-top: 1px solid var(--sidebar-highlight);
+
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    justify-content: space-evenly;
 }
 
 .pages:last-child {
@@ -52,6 +58,8 @@
 
 .title-view {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -61,6 +69,35 @@
     font-weight: 310;
 }
 
-/* .page-active {
+.notebook-dongles {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.page-active {
     border: 2px solid var(--sidebar-font);
-} */
+    background-color:rgba(58, 58, 58, .3);
+}
+
+.page-active:last-child {
+    border-bottom: 2px solid var(--sidebar-font);
+}
+
+.profile-dropdown {
+    width: 40%;
+    background-color: var(--sidebar-highlight);
+    border-radius: 3px;
+}
+
+.page-title {
+    font-weight: bold;
+    font-family: soleil, sans-serif;
+    font-size: 14px;
+}
+
+.page-date {
+    font-family: soleil, sans-serif;
+    font-size: 12px;
+}

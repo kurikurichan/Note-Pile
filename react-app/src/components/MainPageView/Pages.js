@@ -95,7 +95,7 @@ export default function Pages({ notebookId, userId, pageId }) {
 
     // update view whenever pageId changes
 
-  if (!currentPage || !allPagesOfNotebook) return <p className="loading pages right-div">Create or select a page</p>
+  if (!currentPage || !allPagesOfNotebook) return <p className="loading right-div">Create or select a page</p>
   return (
     <div className="right-div">
         <div className="above-page">
