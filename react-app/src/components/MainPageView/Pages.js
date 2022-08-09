@@ -39,15 +39,15 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
     useEffect(() => {
         if (currentPage) {
-            setTitle(currentPage.title || "Untitled");
-            setContent(currentPage.content || " ");
+            setTitle(currentPage.title);
+            setContent(currentPage.content);
         }
     }, [pageId])
 
 
     const handleBlur = async (e) => {
 
-        setContent(e.target.value);
+        e.preventDefault();
 
         const data = {
           title,
@@ -67,7 +67,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         setEditContent(false);
 
 
-    }
+    };
 
     const sendPageToTrash = async (e) => {
 
@@ -153,7 +153,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                     onChange={(e) => setContent(e.target.value)}
                     onBlur={handleBlur}
                     enterKeyHint="enter"
-                    placeholder="Start writing here"
+                    placeholder="Start writing here!"
                     translate="no"
                     style={{padding:"12px 40px 0px"}}
                 / >
