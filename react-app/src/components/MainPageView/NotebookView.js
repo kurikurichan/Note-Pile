@@ -138,7 +138,7 @@ export default function NotebookView() {
 
     useEffect(() => {
         dispatch(getAllPages(user.id, notebookId));
-    }, [dispatch])
+    }, [dispatch, notebookId])
 
 
     if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
