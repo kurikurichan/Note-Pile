@@ -118,27 +118,28 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             </div>
             <div className="rich-text-stuff">
                 {editTitle ?
-                "Rich text stuff goes here":
+                "  Rich text stuff goes here":
                 <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
             </div>
         </div>
         <div className="page-view">
             {!editTitle ?
-            <div className="page-title" onClick={() => setEditTitle(true)}>
-                <h1>{currentPage.title}</h1>
+            <div className={`main-page-title ${currentPage.title ? 'white' : 'grey'}`} onClick={() => setEditTitle(true)} >
+                <h1>{currentPage.title || "Title"}</h1>
             </div> :
-            <div className="page-title">
+            <div className="main-page-title">
                 <input
-                    className="page-title"
+                    className={`page-title ${currentPage.title ? 'white' : 'grey'}`}
                     value={title}
+                    placeholder="Title"
                     onChange={(e) => setTitle(e.target.value)}
                     onBlur={handleBlur}
                 />
             </div>}
             {!editContent &&
             <div
-                className="page-contents"
-                value={content}
+                className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
+                value={currentPage.content}
                 onClick={() => setEditContent(true)}
                 style={{padding:"12px 40px 0px"}}
             >
@@ -147,7 +148,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             {editContent &&
             <div className='page-contents'>
                 <textarea
-                    className="page-contents"
+                    className="page-contents white"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     onBlur={handleBlur}

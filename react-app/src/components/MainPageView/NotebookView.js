@@ -190,7 +190,7 @@ export default function NotebookView() {
             {Object.values(allPagesOfNotebook).map(page =>
                 <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
                     <div className="page-title-content">
-                        <p className="page-title">{page.title}</p>
+                        <p className="page-small-title">{page.title || "Untitled"}</p>
                         <p className="preview">{getContentSnippet(page.content)}</p>
                     </div>
                     <p className="page-date">{formatDate(page.updated_at)}</p>
