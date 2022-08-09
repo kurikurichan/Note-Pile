@@ -191,12 +191,10 @@
     border: 0;
     font-family: Source Sans Pro,-apple-system,system-ui,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 650;
     line-height: 40px;
     outline: none;
-    padding-bottom: 4px;
     width: 100%;
-    margin-left: 12px;
 }
 
 .page-title::placeholder {
@@ -210,9 +208,9 @@
     font-weight: 600;
     line-height: 40px;
     outline: none;
-    padding-bottom: 4px;
+    /* padding-bottom: 4px; */
     width: 100%;
-    margin-left: 15px;
+    margin-left: 35px;
 }
 
 .grey {
