@@ -125,7 +125,7 @@ export default function NotebookView() {
 
     const getContentSnippet = (content) => {
         const snippet = [];
-        content = content.split('');
+        content = content.split('') || "";
         let snipLength = 0;
         if (content.length > 90) snipLength = 90;
         else snipLength = content.length;
