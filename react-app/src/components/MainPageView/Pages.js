@@ -106,19 +106,21 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
   if (!currentPage || !allPagesOfNotebook) return <p className="loading right-div">Create or select a page</p>
   return (
     <div className="right-div">
-        <div className="above-page">
-            <div className="left-icons">
-                <i className="fa-solid fa-book nb-title"></i>{` `}
-                <p className="nb-title"> {currentNb.title} </p>
+        <div className="contain-the-top-shiz">
+            <div className="above-page">
+                <div className="left-icons">
+                    <i className="fa-solid fa-book nb-title-book"></i>{` `}
+                    <p className="nb-title"> {currentNb.title} </p>
+                </div>
+                <button className="trash page-icon" onClick={sendPageToTrash}>
+                    <i className="fa-solid fa-trash-can"></i>
+                </button>
             </div>
-            <button className="trash page-icon" onClick={sendPageToTrash}>
-                <i className="fa-solid fa-trash-can"></i>
-            </button>
-        </div>
-        <div className="rich-text-stuff">
-            {editTitle ?
-             "Rich text stuff goes here":
-             <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
+            <div className="rich-text-stuff">
+                {editTitle ?
+                "Rich text stuff goes here":
+                <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
+            </div>
         </div>
         <div className="page-view">
             {!editTitle ?
