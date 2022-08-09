@@ -228,7 +228,7 @@
     border: 0;
     resize: none;
     border: none;
-    overflow: auto;
+    overflow: visible;
     outline: none;
 
     -webkit-box-shadow: none;

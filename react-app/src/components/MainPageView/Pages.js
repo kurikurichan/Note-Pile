@@ -149,7 +149,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             <div className='page-contents'>
                 <textarea
                     className="page-contents white"
-                    value={content}
+                    value={<pre>content</pre>}
                     onChange={(e) => setContent(e.target.value)}
                     onBlur={handleBlur}
                     enterKeyHint="enter"
