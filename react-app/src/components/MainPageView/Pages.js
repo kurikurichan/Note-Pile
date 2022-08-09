@@ -16,6 +16,10 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     const [editContent, setEditContent] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
 
+    // for resizing text area
+    const [textAreaHeight, setTextAreaHeight] = useState(1);
+
+
     const dispatch = useDispatch();
     // if (allPagesOfNotebook) console.log("All pages: ", allPagesOfNotebook)
 
@@ -99,6 +103,19 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         });
     };
 
+    const contentAutoGrow = (e) => {
+
+        // auto grow text area as user types
+        // also handle saving the info in local state here
+        setContent(e.target.value);
+
+        if (e.target.scrollHeight > e.target.clientHeight) {
+
+            setTextAreaHeight(e.target.scrollHeight);
+        }
+
+    };
+
 
 
     // update view whenever pageId changes
@@ -139,19 +156,21 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             {!editContent &&
             <div
                 className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
-                value={currentPage.content}
+                value={<pre>currentPage.content</pre>}
                 onClick={() => setEditContent(true)}
                 style={{padding:"12px 40px 0px"}}
             >
                 {currentPage.content ? currentPage.content : "Start writing here!"}
             </div>}
             {editContent &&
-            <div className='page-contents'>
+            <div className='page-contents editing-page'>
                 <textarea
                     className="page-contents white"
-                    value={<pre>content</pre>}
-                    onChange={(e) => setContent(e.target.value)}
+                    value={content}
+                    onChange={(e) => contentAutoGrow(e)}
+                    onFocus={(e) => contentAutoGrow(e)}
                     onBlur={handleBlur}
+                    rows={textAreaHeight}
                     enterKeyHint="enter"
                     placeholder="Start writing here!"
                     translate="no"

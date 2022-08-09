@@ -228,8 +228,9 @@
     border: 0;
     resize: none;
     border: none;
-    overflow: visible;
+    overflow: hidden;
     outline: none;
+    white-space: pre-line;
 
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -240,4 +241,8 @@
     width: 80%;
     height: auto;
 
+}
+
+.editing-page {
+    max-height: 100%;
 }
