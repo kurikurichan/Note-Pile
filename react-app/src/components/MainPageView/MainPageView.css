@@ -6,7 +6,7 @@
     flex-direction: row;
     margin: 0px;
     position: fixed;
-    left: 15vw;
+    left: 12vw;
   }
 
 .left-div {
@@ -40,11 +40,13 @@
 }
 
 .pages {
-    height: 100px;
+    height: 120px;
     width: 100%;
     background-color: transparent;
     color: var(--sidebar-font);
     border-top: 1px solid var(--sidebar-highlight);
+
+    box-sizing: border-box;
 
     padding: 15px;
     display: flex;
@@ -86,25 +88,53 @@
     box-sizing: border-box;
     border: 2px solid var(--sidebar-font);
     background-color:rgba(58, 58, 58, .3);
+    padding: 15px;
 }
 
 .page-active:last-child {
     border-bottom: 2px solid var(--sidebar-font);
 }
 
+.notebook-options-dropdown {
+    position: relative;
+}
+
 .profile-dropdown {
-    width: 40%;
+    width: 9em;
     background-color: var(--sidebar-highlight);
     border-radius: 3px;
+    padding: 12px;
+
+    right: 1em;
+
+    position: absolute;
+
+    line-height: 2em;
+    font-family: soleil, sans-serif;
+    font-size: 14px;
+    color: white;
+}
+
+.profile-dropdown > *:hover {
+    background-color: var(--dropdown-highlight);
 }
 
 .page-title {
     font-weight: bold;
     font-family: soleil, sans-serif;
     font-size: 14px;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.preview {
+    font-family: soleil, sans-serif;
+    font-size: 14px;
+    color: var(--sidebar-font);
 }
 
 .page-date {
     font-family: soleil, sans-serif;
     font-size: 12px;
+    color: var(--sidebar-font);
 }

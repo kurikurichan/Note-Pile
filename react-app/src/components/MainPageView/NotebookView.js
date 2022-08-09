@@ -123,6 +123,19 @@ export default function NotebookView() {
         return `${splitted[2]} ${splitted[1]}`
     }
 
+    const getContentSnippet = (content) => {
+        const snippet = [];
+        content = content.split('');
+        let snipLength = 0;
+        if (content.length > 90) snipLength = 90;
+        else snipLength = content.length;
+        for (let i = 0; i < snipLength; i++) {
+            snippet.push(content[i]);
+        }
+
+        return snippet.join('');
+    }
+
     useEffect(() => {
         dispatch(getAllPages(user.id, notebookId));
     }, [dispatch])
@@ -141,38 +154,44 @@ export default function NotebookView() {
                     <p className="page-count">{getPageCount()}</p>
                     <div className="notebook-options-dropdown" onClick={openMenu}>
                         <i className="fa-solid fa-ellipsis"></i>
+
+                        {showMenu &&
+                        <div className="profile-dropdown">
+                            <div onClick={handleNewPage}>Add a Page</div>
+                            <div onClick={handleRenameNotebook}>Rename Notebook</div>
+                            {showEditBox &&
+                                <form className="notebook-form" onSubmit={handleNotebookEdit}>
+                                    <label className="notebook-label">
+                                        <button onClick={(e) => setShowEditBox(false)}>x</button>
+                                        <input
+                                            className="notebook-input"
+                                            type="text"
+                                            placeholder="Untitled"
+                                            value={title}
+                                            onChange={(e) => setTitle(e.target.value)}
+                                        />
+                                        <button type="Submit">+</button>
+                                    </label>
+                                    <div className="errs">
+                                        {errors && errors.map((error, ind) => (
+                                        <div key={ind} className="error">{error}</div>
+                                    ))}
+                                    </div>
+                                </form> }
+                            <div onClick={handleNotebookDelete}>Delete Notebook</div>
+                        </div>}
+
+
                     </div>
                 </div>
+
+
             </div>
-            {showMenu &&
-                <div className="profile-dropdown">
-                    <div onClick={handleNewPage}>Add a Page</div>
-                    <div onClick={handleRenameNotebook}>Rename Notebook</div>
-                    {showEditBox &&
-                        <form className="notebook-form" onSubmit={handleNotebookEdit}>
-                            <label className="notebook-label">
-                                <button onClick={(e) => setShowEditBox(false)}>x</button>
-                                <input
-                                    className="notebook-input"
-                                    type="text"
-                                    placeholder="Untitled"
-                                    value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
-                                />
-                                <button type="Submit">+</button>
-                            </label>
-                            <div className="errs">
-                                {errors && errors.map((error, ind) => (
-                                <div key={ind} className="error">{error}</div>
-                            ))}
-                            </div>
-                        </form> }
-                    <div onClick={handleNotebookDelete}>Delete Notebook</div>
-                </div>}
             {Object.values(allPagesOfNotebook).map(page =>
                 <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
                     <div className="page-title-content">
                         <p className="page-title">{page.title}</p>
+                        <p className="preview">{getContentSnippet(page.content)}</p>
                     </div>
                     <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}

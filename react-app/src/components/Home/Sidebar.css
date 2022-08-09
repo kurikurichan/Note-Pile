@@ -1,6 +1,5 @@
 .sidebar {
-    width: 15vw;
-    min-width: 15vw;
+    width: 12vw;
     background-color: var(--sidebar-body);
     display: flex;
     flex-direction: column;
