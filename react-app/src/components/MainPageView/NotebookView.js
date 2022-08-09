@@ -196,7 +196,7 @@ export default function NotebookView() {
                     <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}
         </div>
-        <Pages notebookId={notebookId} userId={user.id} pageId={selectedPageId} />
+        <Pages notebookId={notebookId} userId={user.id} pageId={selectedPageId} currentNb={currentNotebook} />
     </div>
   )
 }

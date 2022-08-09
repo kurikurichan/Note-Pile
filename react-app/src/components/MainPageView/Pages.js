@@ -4,7 +4,7 @@ import { getAllPages, editPage, addToTrash } from '../../store/pages';
 
 import './MainPageView.css';
 
-export default function Pages({ notebookId, userId, pageId }) {
+export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
     const allPagesOfNotebook = useSelector(state => state.pages)
 
@@ -91,6 +91,14 @@ export default function Pages({ notebookId, userId, pageId }) {
         await dispatch(getAllPages(userId, notebookId));
     };
 
+    //  get and format updated date
+    const getFormattedDate = (date) => {
+        const theDate = new Date(date);
+        return "Last edited on " + theDate.toLocaleDateString('en-CA', {
+            dateStyle: "medium"
+        });
+    };
+
 
 
     // update view whenever pageId changes
@@ -99,10 +107,18 @@ export default function Pages({ notebookId, userId, pageId }) {
   return (
     <div className="right-div">
         <div className="above-page">
-            {/* Rich text stuff goes here eventually */}
-            <div className="trash" onClick={sendPageToTrash}>
-                <i className="fa-solid fa-trash-can"></i>
+            <div className="left-icons">
+                <i className="fa-solid fa-book nb-title"></i>{` `}
+                <p className="nb-title"> {currentNb.title} </p>
             </div>
+            <button className="trash page-icon" onClick={sendPageToTrash}>
+                <i className="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+        <div className="rich-text-stuff">
+            {editTitle ?
+             "Rich text stuff goes here":
+             <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
         </div>
         <div className="page-view">
             {!editTitle ?
