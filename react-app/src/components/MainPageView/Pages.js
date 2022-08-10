@@ -4,14 +4,14 @@ import { getAllPages, editPage, addToTrash } from '../../store/pages';
 
 import './MainPageView.css';
 
-export default function Pages({ notebookId, userId, pageId, currentNb }) {
+export default function Pages({ notebookId, userId, pageId, currentNb, content, setContent, title, setTitle }) {
 
     const allPagesOfNotebook = useSelector(state => state.pages)
 
     const [errors, setErrors] = useState([]);
     // edit page title & content
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    // const [title, setTitle] = useState("");
+    // const [content, setContent] = useState("");
     //  toggle edit forms for page title & content
     const [editContent, setEditContent] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
@@ -45,6 +45,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         if (currentPage) {
             setTitle(currentPage.title);
             setContent(currentPage.content);
+            console.log("title/content set", currentPage.id)
         }
     }, [pageId])
 
@@ -117,6 +118,14 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     };
 
 
+    // Auto select a notebook page when we change notebooks???
+    // useEffect(() => {
+    //     if (allPagesOfNotebook) {
+    //         findFirstPage(allPagesOfNotebook);
+    //     }
+    // }, [notebookId]);
+
+
 
     // update view whenever pageId changes
 
@@ -156,7 +165,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             {!editContent &&
             <div
                 className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
-                value={<pre>currentPage.content</pre>}
+                value={currentPage.content}
                 onClick={() => setEditContent(true)}
                 style={{padding:"12px 40px 0px"}}
             >

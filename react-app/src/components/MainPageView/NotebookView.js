@@ -22,7 +22,12 @@ export default function NotebookView() {
     const [showMenu, setShowMenu] = useState(false);
     const [showEditBox, setShowEditBox] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [nbTitle, setNbTitle] = useState("");
+
+
+    // pages
     const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
     const [selectedPageId, setSelectedPageId] = useState("")
 
@@ -45,7 +50,7 @@ export default function NotebookView() {
 
         const data = {
           userId: user.id,
-          title
+          nbTitle
         };
 
         const editedNotebook = await(dispatch(editNotebook(data, notebookId)))
@@ -56,7 +61,7 @@ export default function NotebookView() {
             console.log("edited notebook success")
             getNotebooks();
             setShowEditBox(false);
-            setTitle("");
+            setNbTitle("");
         }
     };
 
@@ -136,9 +141,32 @@ export default function NotebookView() {
         return snippet.join('');
     }
 
+    // make an auto select page function here. run inside of useEffect when notebookId changes
+    const findFirstPage = (allPages) => {
+        // we already have notebook
+        // we already have its pages
+        // go thru and return the first page if it exists
+        let pagesArr = Object.values(allPages);
+        if (pagesArr[0]) {
+            console.log("pagesArr[0] in findFirstPage", pagesArr[0])
+            console.log("pagesNotebook in findFirstPage", pagesArr[0].id)
+            setSelectedPageId(pagesArr[0].id);
+        }
+    };
+
+
     useEffect(() => {
         dispatch(getAllPages(user.id, notebookId));
+        if (allPagesOfNotebook) {
+            findFirstPage(allPagesOfNotebook);
+            console.log("selectedPageId in NBView useeffect", selectedPageId);
+        }
     }, [dispatch, notebookId])
+
+
+    useEffect(() => {
+        console.log('pageId change nbView', selectedPageId);
+    }, [selectedPageId])
 
 
     if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
@@ -167,8 +195,8 @@ export default function NotebookView() {
                                             className="notebook-input"
                                             type="text"
                                             placeholder="Untitled"
-                                            value={title}
-                                            onChange={(e) => setTitle(e.target.value)}
+                                            value={nbTitle}
+                                            onChange={(e) => setNbTitle(e.target.value)}
                                         />
                                         <button type="Submit">+</button>
                                     </label>
@@ -196,7 +224,16 @@ export default function NotebookView() {
                     <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}
         </div>
-        <Pages notebookId={notebookId} userId={user.id} pageId={selectedPageId} currentNb={currentNotebook} />
+        <Pages
+            notebookId={notebookId}
+            userId={user.id}
+            pageId={selectedPageId}
+            currentNb={currentNotebook}
+            content={content}
+            setContent={setContent}
+            title={title}
+            setTitle={setTitle}
+         />
     </div>
   )
 }

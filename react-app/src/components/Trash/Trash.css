@@ -1,0 +1,25 @@
+.no-trashed-pages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 90%;
+    font-family: soleil, sans-serif;
+}
+
+.no-trashed-pages > p {
+    text-align: center;
+    line-height: 1.5em;
+}
+
+#trash-empty {
+    margin-bottom: 4%;
+    color: white;
+}
+
+#big-trash {
+    font-size: 80px;
+    margin-bottom: 10%;
+    color: rgba(204, 204, 204, .3);
+}
