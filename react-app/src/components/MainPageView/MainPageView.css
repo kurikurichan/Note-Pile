@@ -44,7 +44,7 @@
     width: 100%;
     background-color: transparent;
     color: var(--sidebar-font);
-    border-top: 1px solid var(--sidebar-highlight);
+    border-bottom: 1px solid var(--sidebar-highlight);
 
     box-sizing: border-box;
 
@@ -57,19 +57,20 @@
     cursor: pointer;
 }
 
+.pages:hover {
+    background-color:rgba(58, 58, 58, .3);
+}
+
 .page-count {
     font-family: soleil, sans-serif;
     font-size: 12px;
-}
-
-.pages:last-child {
-    border-bottom: 1px solid var(--sidebar-highlight);
 }
 
 .title-view {
     padding: 15px;
     display: flex;
     flex-direction: column;
+    border-bottom: 1px solid var(--sidebar-highlight);
 }
 
 .title {

@@ -19,19 +19,13 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     // for resizing text area
     const [textAreaHeight, setTextAreaHeight] = useState(1);
 
-
     const dispatch = useDispatch();
-    // if (allPagesOfNotebook) console.log("All pages: ", allPagesOfNotebook)
 
     // single page to use in our dynamic page view
     let currentPage;
 
     if (allPagesOfNotebook) {
         currentPage = Object.values(allPagesOfNotebook).filter(page => +page.id === +pageId)[0];
-
-        // console.log("allPagesofNOtebook: ", allPagesOfNotebook);
-        // console.log("currentPage: ", currentPage);
-
     }
 
 
@@ -40,7 +34,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     }, [dispatch])
 
     // load the fields we have with stuff we have already
-
     useEffect(() => {
         if (currentPage) {
             setTitle(currentPage.title);
@@ -117,9 +110,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     };
 
 
-
-    // update view whenever pageId changes
-
   if (!currentPage || !allPagesOfNotebook) return <p className="loading right-div">Create or select a page</p>
   return (
     <div className="right-div">
@@ -156,7 +146,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             {!editContent &&
             <div
                 className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
-                value={<pre>currentPage.content</pre>}
+                value={currentPage.content}
                 onClick={() => setEditContent(true)}
                 style={{padding:"12px 40px 0px"}}
             >

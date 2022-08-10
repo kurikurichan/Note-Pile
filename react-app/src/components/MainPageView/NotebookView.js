@@ -10,7 +10,6 @@ import './MainPageView.css';
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const { notebookId } = useParams();
-    // console.log("notebookID: ", notebookId, "pageId: ", pageId);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -18,12 +17,11 @@ export default function NotebookView() {
     const allNotebooks = useSelector(state => state.notebooks)
     const allPagesOfNotebook = useSelector(state => state.pages)
 
-
     const [showMenu, setShowMenu] = useState(false);
     const [showEditBox, setShowEditBox] = useState(false);
     const [errors, setErrors] = useState([]);
-    const [title, setTitle] = useState("");
-
+    const [nbTitle, setNbTitle] = useState("");
+    // pages
     const [selectedPageId, setSelectedPageId] = useState("")
 
     // This is all for the notebooks drop down menu (for edit & delete)
@@ -45,7 +43,7 @@ export default function NotebookView() {
 
         const data = {
           userId: user.id,
-          title
+          nbTitle
         };
 
         const editedNotebook = await(dispatch(editNotebook(data, notebookId)))
@@ -56,7 +54,7 @@ export default function NotebookView() {
             console.log("edited notebook success")
             getNotebooks();
             setShowEditBox(false);
-            setTitle("");
+            setNbTitle("");
         }
     };
 
@@ -74,6 +72,7 @@ export default function NotebookView() {
     if (allNotebooks) {
         currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
     }
+
 
     const getNotebooks = async () => {
         await dispatch(getAllNotebooks());
@@ -136,10 +135,25 @@ export default function NotebookView() {
         return snippet.join('');
     }
 
-    useEffect(() => {
-        dispatch(getAllPages(user.id, notebookId));
-    }, [dispatch, notebookId])
+    // make an auto select page function here. run inside of useEffect when notebookId changes
+    const findFirstPage = () => {
+        const firstPage = Object.values(allPagesOfNotebook)[0];
+        if (firstPage) {
+            setSelectedPageId(firstPage.id);
+        }
+    };
 
+
+    // load pages with each notebookId change
+    useEffect(() => {
+        getPages();
+        console.log("ran get pages")
+    }, [notebookId])
+
+    // when notebook changes grab the 1st page to auto select it
+    useEffect(() => {
+        findFirstPage();
+    }, [allPagesOfNotebook]);
 
     if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
   return (
@@ -167,8 +181,8 @@ export default function NotebookView() {
                                             className="notebook-input"
                                             type="text"
                                             placeholder="Untitled"
-                                            value={title}
-                                            onChange={(e) => setTitle(e.target.value)}
+                                            value={nbTitle}
+                                            onChange={(e) => setNbTitle(e.target.value)}
                                         />
                                         <button type="Submit">+</button>
                                     </label>
@@ -196,7 +210,12 @@ export default function NotebookView() {
                     <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}
         </div>
-        <Pages notebookId={notebookId} userId={user.id} pageId={selectedPageId} currentNb={currentNotebook} />
+        <Pages
+            notebookId={notebookId}
+            userId={user.id}
+            pageId={selectedPageId}
+            currentNb={currentNotebook}
+         />
     </div>
   )
 }
