@@ -78,7 +78,6 @@ export default function Trash() {
 
     }
 
-
     // count dem pages for display
     const getPageCount = () => {
         let numPages = 0;
@@ -128,7 +127,7 @@ export default function Trash() {
                         <button onClick={handleEmptyTrash}>Empty Trash</button>}
                 </div>
             </div>
-
+            
             {Object.values(allTrashedPages).map(page =>
                 <div key={page.id} onClick={() => setSelectedPageId(page.id)}>
                     {page.title}

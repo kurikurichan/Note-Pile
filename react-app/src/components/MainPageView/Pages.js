@@ -4,14 +4,14 @@ import { getAllPages, editPage, addToTrash } from '../../store/pages';
 
 import './MainPageView.css';
 
-export default function Pages({ notebookId, userId, pageId, currentNb, content, setContent, title, setTitle }) {
+export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
     const allPagesOfNotebook = useSelector(state => state.pages)
 
     const [errors, setErrors] = useState([]);
     // edit page title & content
-    // const [title, setTitle] = useState("");
-    // const [content, setContent] = useState("");
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
     //  toggle edit forms for page title & content
     const [editContent, setEditContent] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
@@ -19,19 +19,13 @@ export default function Pages({ notebookId, userId, pageId, currentNb, content, 
     // for resizing text area
     const [textAreaHeight, setTextAreaHeight] = useState(1);
 
-
     const dispatch = useDispatch();
-    // if (allPagesOfNotebook) console.log("All pages: ", allPagesOfNotebook)
 
     // single page to use in our dynamic page view
     let currentPage;
 
     if (allPagesOfNotebook) {
         currentPage = Object.values(allPagesOfNotebook).filter(page => +page.id === +pageId)[0];
-
-        // console.log("allPagesofNOtebook: ", allPagesOfNotebook);
-        // console.log("currentPage: ", currentPage);
-
     }
 
 
@@ -40,12 +34,10 @@ export default function Pages({ notebookId, userId, pageId, currentNb, content, 
     }, [dispatch])
 
     // load the fields we have with stuff we have already
-
     useEffect(() => {
         if (currentPage) {
             setTitle(currentPage.title);
             setContent(currentPage.content);
-            console.log("title/content set", currentPage.id)
         }
     }, [pageId])
 
@@ -117,17 +109,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb, content, 
 
     };
 
-
-    // Auto select a notebook page when we change notebooks???
-    // useEffect(() => {
-    //     if (allPagesOfNotebook) {
-    //         findFirstPage(allPagesOfNotebook);
-    //     }
-    // }, [notebookId]);
-
-
-
-    // update view whenever pageId changes
 
   if (!currentPage || !allPagesOfNotebook) return <p className="loading right-div">Create or select a page</p>
   return (
