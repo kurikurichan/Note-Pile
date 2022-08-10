@@ -5,22 +5,26 @@ import evernote_logo from './evernote_logo.png';
 import evernote_screen from './evernote_screen.png';
 import quote from './homepage-quote.svg';
 
+import './Splash.css';
+
 export default function Splash() {
   return (
     <div className="splash-wrapper">
 
-        <header>
+        <header className="splash-header">
 
             <div className="splash-logo">
-                <span>Note Pile</span>
-                    <img src={evernote_logo} id="logo" alt="Evernote logo" />
+                <img src={evernote_logo} id="logo" alt="Evernote logo" />
+                <span id="logo-text">Note Pile</span>
             </div>
 
-            <div>
-                <button className="login-button">Login</button>
-            </div>
-            <div>
-                <button className="demo">Demo User</button>
+            <div id="contain-buttons">
+                <div>
+                    <button className="login-button">Login</button>
+                </div>
+                <div>
+                    <button className="demo">Demo User</button>
+                </div>
             </div>
 
         </header>
@@ -33,11 +37,11 @@ export default function Splash() {
                 Keep your notes, tasks, and schedule all in one place.
             </h2>
 
-            <button className="green-button">Sign up for free</button>
+            <button className="green-button sign-up">Sign up for free</button>
             <p>Already have an account? Log-in</p>
 
-            <div>
-                <img src={evernote_screen} alt="wow the functionality" />
+            <div className="cool-work-section">
+                <img src={evernote_screen} id="evernote_screen" alt="wow the functionality" />
                 <div id="right-of-display">
                     <h3>WORK ANYWHERE</h3>
                     <p>

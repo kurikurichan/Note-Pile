@@ -12,6 +12,18 @@ pages_routes = Blueprint('pages', __name__)
 # or can do it here, doesn't matter
 
 # GET /api/pages/:userId/:notebookId - read all pages of a notebook (not trash ones)
+@pages_routes.route('/<int:userId>/')
+@login_required
+def all_pages(userId):
+
+    if userId != current_user.id:
+        print("WHOOPSIE")
+        return {'errors': ["user: You are unauthorized."]}, 405
+
+    pages = Page.query.filter(Page.trashed == False).all()
+    return {'all_pages': [page.to_dict() for page in pages]}
+
+# GET /api/pages/:userId/:notebookId - read all pages of a notebook (not trash ones)
 @pages_routes.route('/<int:userId>/<int:notebookId>/')
 @login_required
 def pages(userId, notebookId):
