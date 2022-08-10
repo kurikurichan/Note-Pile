@@ -159,7 +159,7 @@ export default function Trash() {
             <>
                 <div className="above-trash">
 
-                    <div>
+                    <div className="separate-trash">
                         <div className="note-in-trash">Note in Trash</div>
                         <p className="page-title-date"> {currentPage && getFormattedDate(currentPage.updated_at)} </p>
                     </div>

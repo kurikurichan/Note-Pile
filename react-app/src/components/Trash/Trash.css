@@ -59,3 +59,10 @@
     font-weight: 500;
     line-height: 24px;
 }
+
+.separate-trash {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-left: 2.5%;
+}
