@@ -83,24 +83,26 @@ export default function Sidebar() {
     if (!notebooks || !user) return <p className="loading">Loading...</p>
   return (
     <div className="sidebar">
-        <div className="user-dropdown" onClick={handleUserMenu}>
+        <div id="drop-container">
+            <div className="user-dropdown" onClick={handleUserMenu}>
                 <img src={default_user} id="user-image"/>
                 <p id="main-username">{user.username}</p>
                 <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
-        </div>
-        {showUserMenu &&
-        <div id="logout-div">
-            <p id="account">ACCOUNT</p>
-            <div className="username-block">
-                <i className="fa-solid fa-check" style={{color: 'skyblue'}}></i>
-                <img src={default_user} className="user-image"/>
-                <div id="user-info">
-                    <p className="user-name">{user.username}</p>
-                    <p className='user-email'>{user.email}</p>
-                </div>
             </div>
-            <LogoutButton />
-        </div>}
+            {showUserMenu &&
+            <div id="logout-div">
+                <p id="account">ACCOUNT</p>
+                <div className="username-block">
+                    <i className="fa-solid fa-check" style={{color: 'skyblue'}}></i>
+                    <img src={default_user} className="user-image"/>
+                    <div id="user-info">
+                        <p className="user-name">{user.username}</p>
+                        <p className='user-email'>{user.email}</p>
+                    </div>
+                </div>
+                <LogoutButton />
+            </div>}
+        </div>
 
         <span className="home-button">
             <NavLink to="/home" className="navlink" activeClassName='sb-active'>

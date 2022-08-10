@@ -21,7 +21,7 @@ export default function Trash() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    const [selectedPageId, setSelectedPageId] = useState("")
+    const [selectedPageId, setSelectedPageId] = useState("");
 
 
     // single page to use in our dynamic page view
@@ -94,6 +94,14 @@ export default function Trash() {
         return `${splitted[2]} ${splitted[1]}`
     }
 
+    //  get and format updated date
+    const getFormattedDate = (date) => {
+        const theDate = new Date(date);
+        return "Last edited on " + theDate.toLocaleDateString('en-CA', {
+            dateStyle: "medium"
+        });
+    };
+
     const getContentSnippet = (content) => {
         const snippet = [];
         content = content.split('') || "";
@@ -124,13 +132,17 @@ export default function Trash() {
                 <div className="notebook-dongles">
                     <p className="page-count">{getPageCount()}</p>
                     {!noTrashedNotes &&
-                        <button onClick={handleEmptyTrash}>Empty Trash</button>}
+                        <button className="green-button" onClick={handleEmptyTrash}>Empty Trash</button>}
                 </div>
             </div>
-            
+
             {Object.values(allTrashedPages).map(page =>
-                <div key={page.id} onClick={() => setSelectedPageId(page.id)}>
-                    {page.title}
+                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
+                    <div className="page-title-content">
+                        <p className="page-small-title">{page.title || "Untitled"}</p>
+                        <p className="preview">{getContentSnippet(page.content)}</p>
+                    </div>
+                    <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}
 
             {noTrashedNotes &&
@@ -143,25 +155,39 @@ export default function Trash() {
 
         </div>
         <div className="right-div">
-            <div className="above-page">
-                {!noTrashedNotes &&
-                <button onClick={restorePage}>
-                    Restore Page
-                </button>}
-            </div>
-            <div className="page-view">
-                <div className="page-title">
-                    {currentPage && title}
+            {currentPage &&
+            <>
+                <div className="above-trash">
+
+                    <div>
+                        <div className="note-in-trash">Note in Trash</div>
+                        <p className="page-title-date"> {currentPage && getFormattedDate(currentPage.updated_at)} </p>
+                    </div>
+
+                    <button className="green-button restore" onClick={restorePage}>
+                        Restore Page
+                    </button>
+
                 </div>
-                <div
-                    className="page-contents"
-                    style={{padding:"12px 40px 0px"}}
-                >
-                    {currentPage && content}
+
+                <div className="page-view">
+
+                    <div className="main-page-title white">
+                        <h1>{currentPage ? currentPage.title : "Untitled"}</h1>
+                    </div>
+
+                    <div
+                        className="page-contents white"
+                        value={currentPage ? currentPage.content : content}
+                        style={{padding:"12px 40px 0px"}}
+                    >
+                    </div>
+
                 </div>
-            </div>
-            <div className="page-footer">
-            </div>
+                <div className="page-footer">
+
+                </div>
+            </>}
         </div>
     </div>
   )

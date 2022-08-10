@@ -22,13 +22,18 @@ body {
     cursor: pointer;
 }
 
+#drop-container {
+    position: relative;
+}
+
 .logout-div {
     display: flex;
     flex-direction: column;
     align-items: space-between;
     padding: 10px;
     border-bottom: 1px solid var(--sidebar-font);
-    margin-bottom: 10px;
+
+    position: absolute;
 }
 
 .sb-active {
