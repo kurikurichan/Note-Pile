@@ -110,70 +110,73 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     };
 
 
-  if (!currentPage || !allPagesOfNotebook) return <p className="loading right-div">Create or select a page</p>
+  if (!allPagesOfNotebook) return <p className="loading right-div">Loading...</p>
   return (
     <div className="right-div">
-        <div className="contain-the-top-shiz">
-            <div className="above-page">
-                <div className="left-icons">
-                    <i className="fa-solid fa-book nb-title-book"></i>{` `}
-                    <p className="nb-title"> {currentNb.title} </p>
+        {currentPage &&
+        <>
+            <div className="contain-the-top-shiz">
+                <div className="above-page">
+                    <div className="left-icons">
+                        <i className="fa-solid fa-book nb-title-book"></i>{` `}
+                        <p className="nb-title"> {currentNb.title} </p>
+                    </div>
+                    <button className="trash page-icon" onClick={sendPageToTrash}>
+                        <i className="fa-solid fa-trash-can"></i>
+                    </button>
                 </div>
-                <button className="trash page-icon" onClick={sendPageToTrash}>
-                    <i className="fa-solid fa-trash-can"></i>
-                </button>
+                <div className="rich-text-stuff">
+                    {editTitle ?
+                    "  Rich text stuff goes here":
+                    <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
+                </div>
             </div>
-            <div className="rich-text-stuff">
-                {editTitle ?
-                "  Rich text stuff goes here":
-                <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
-            </div>
-        </div>
-        <div className="page-view">
-            {!editTitle ?
-            <div className={`main-page-title ${currentPage.title ? 'white' : 'grey'}`} onClick={() => setEditTitle(true)} >
-                <h1>{currentPage.title || "Title"}</h1>
-            </div> :
-            <div className="main-page-title">
-                <input
-                    className={`page-title ${currentPage.title ? 'white' : 'grey'}`}
-                    value={title}
-                    placeholder="Title"
-                    onChange={(e) => setTitle(e.target.value)}
-                    onBlur={handleBlur}
-                />
-            </div>}
-            {!editContent &&
-            <div
-                className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
-                value={currentPage.content}
-                onClick={() => setEditContent(true)}
-                style={{padding:"12px 40px 0px"}}
-            >
-                {currentPage.content ? currentPage.content : "Start writing here!"}
-            </div>}
-            {editContent &&
-            <div className='page-contents editing-page'>
-                <textarea
-                    className="page-contents white"
-                    value={content}
-                    onChange={(e) => contentAutoGrow(e)}
-                    onFocus={(e) => contentAutoGrow(e)}
-                    onBlur={handleBlur}
-                    rows={textAreaHeight}
-                    enterKeyHint="enter"
-                    placeholder="Start writing here!"
-                    translate="no"
+            <div className="page-view">
+                {!editTitle ?
+                <div className={`main-page-title ${currentPage.title ? 'white' : 'grey'}`} onClick={() => setEditTitle(true)} >
+                    <h1>{currentPage.title || "Title"}</h1>
+                </div> :
+                <div className="main-page-title">
+                    <input
+                        className={`page-title ${currentPage.title ? 'white' : 'grey'}`}
+                        value={title}
+                        placeholder="Title"
+                        onChange={(e) => setTitle(e.target.value)}
+                        onBlur={handleBlur}
+                    />
+                </div>}
+                {!editContent &&
+                <div
+                    className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
+                    value={currentPage.content}
+                    onClick={() => setEditContent(true)}
                     style={{padding:"12px 40px 0px"}}
-                / >
+                >
+                    {currentPage.content ? currentPage.content : "Start writing here!"}
+                </div>}
+                {editContent &&
+                <div className='page-contents editing-page'>
+                    <textarea
+                        className="page-contents white"
+                        value={content}
+                        onChange={(e) => contentAutoGrow(e)}
+                        onFocus={(e) => contentAutoGrow(e)}
+                        onBlur={handleBlur}
+                        rows={textAreaHeight}
+                        enterKeyHint="enter"
+                        placeholder="Start writing here!"
+                        translate="no"
+                        style={{padding:"12px 40px 0px"}}
+                    / >
+                </div>
+
+
+                }
             </div>
+            <div className="page-footer">
 
-
-            }
-        </div>
-        <div className="page-footer">
-
-        </div>
+            </div>
+        </>}
     </div>
   )
 }
