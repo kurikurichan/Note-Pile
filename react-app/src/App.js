@@ -11,7 +11,7 @@ import Sidebar from './components/Home/Sidebar';
 import NotebookView from './components/MainPageView/NotebookView';
 import Trash from './components/Trash/Trash';
 import Home from './components/Home/Home';
-import Pages from './components/MainPageView/Pages';
+import Splash from './components/Splash/Splash';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,7 +30,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Sidebar />
+      <Switch>
+        <Route path='/' exact={true} >
+          <Splash />
+        </Route>
+        <Sidebar />
+      </Switch>
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -53,9 +58,7 @@ function App() {
         <ProtectedRoute path='/:notebookId' exact={true} >
           <NotebookView />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>Splash</h1>
-        </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );
