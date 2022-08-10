@@ -231,6 +231,7 @@
     overflow: hidden;
     outline: none;
     white-space: pre-line;
+    overflow-wrap: break-word;
 
     -webkit-box-shadow: none;
     -moz-box-shadow: none;

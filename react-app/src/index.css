@@ -11,20 +11,24 @@
     --lighter-alabaster: #fafafa;
     --focus-common-med-gray-2: #ababab;
 
+    --dark-green: #0e753d;
+    --evernote-green-light: #26b54c;
+    --evernote-green: #00a82d;
+    --evernote-green-dark: #008f26;
+    --evernote-green-darker: #007620;
 
+
+    /* note these are from evernote's color catalogue for reference
+    since dis is a pixel perfect ish clone */
 
     --gray97: #f8f8f8;
     --gray95: #f2f2f2;
     --gallery: #ededed;
     --gray90: #e6e6e6;
-    --mischka: #dadde3;
     --gray85: #d9d9d9;
-    --gainsboro: #ddd;
     --silver: #c3c3c3;
     --gray80: #ccc;
     --bombay: #b5b8be;
-    --gray-chateau: #9ea8b1;
-    --grey30alpha: #b3b3b3;
     --dark-gray: #afafaf;
     --nobel: #b4b4b4;
     --grey40alpha: #999;
@@ -47,70 +51,6 @@
     --zambezi: #5f5f5f;
     --gray71: #b5b5b5;
     --gray10: #1a1a1a;
-    --black-transparent: rgba(0,0,0,0.14902);
-    --white-transparent: hsla(0,0%,100%,0);
-    --transparent: transparent;
-    --special-transparent: hsla(0,0%,65%,0.2);
-    --dark-green: #0e753d;
-    --evernote-green-light: #26b54c;
-    --evernote-green: #00a82d;
-    --evernote-green-dark: #008f26;
-    --evernote-green-darker: #007620;
-    --med-green: #b2e4c1;
-    --dark-fun-green: #007620;
-    --darker-green: #2e3e34;
-    --slightly-dark-green: #658873;
-    --normal-green: #e9fdf1;
-    --link-water: #e7f2f8;
-    --ocean-boat-blue: #0081c2;
-    --ocean-boat-blue-light: #66b3da;
-    --ocean-boat-blue-lighter: #b2d9ec;
-    --ocean-boat-blue-lightest: #e5f2f8;
-    --ocean-boat-blue-dark: #026fac;
-    --ocean-boat-blue-darker: #02588e;
-    --ocean-boat-blue-darkest: #003f66;
-    --boston-blue: #3480ba;
-    --splindle: #b2d9ec;
-    --skyship-blue: #00a3f4;
-    --clear-blue: #e6f9fc;
-    --dark-blue: #2b3b3d;
-    --darker-blue: #5f8186;
-    --kournikova: #ffea6a;
-    --golden-rod: #ffd274;
-    --my-sin: #ffad17;
-    --gamboge: #f0a00d;
-    --honey-lightest: #fff4ba;
-    --honey-light: #ffeb82;
-    --selective-yellow: #fcb100;
-    --honey-dark: #f5cc05;
-    --apricot: #fcb100;
-    --ronchi: #e9d143;
-    --apricot-dark: #f0a00d;
-    --apricot-darker: #db8f00;
-    --pizza: #be8713;
-    --rio-grande: #bbcd00;
-    --dijon: #26251c;
-    --dijon-dark: #36352d;
-    --honey-darkest: #fbe67b;
-    --dijon-darkest: #7d7445;
-    --light-violet: #f6ebf8;
-    --raisin-light: #b95ccc;
-    --raisin-dark: #863097;
-    --dark-violet: #a73cbd;
-    --red-error: #ff7070;
-    --red-light: #ffecf1;
-    --red-lighter: #f9c8ca;
-    --tomato-lighter: #ed8682;
-    --tomato-light: #e86357;
-    --tomato: #e54e40;
-    --tomato-dark: #cc4033;
-    --tomato-darker: #972f28;
-    --upgrade-dark-red: #ad372f;
-    --red-dark: #3f3034;
-    --red-darker: #8b6a72;
-    --focus-common-med-gray-2: #ababab;
-    --table-header-font: #bcbcbc;
-    --onboarding-tooltip: #0081c2;
 
 
 }

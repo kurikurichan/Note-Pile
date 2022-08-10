@@ -147,7 +147,6 @@ export default function NotebookView() {
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
-        console.log("ran get pages")
     }, [notebookId])
 
     // when notebook changes grab the 1st page to auto select it
