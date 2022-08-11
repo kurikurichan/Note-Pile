@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTrash, addToTrash, deletePage } from '../../store/pages';
+import { getAllTrash, addToTrash } from '../../store/pages';
 import EmptyTrash from './EmptyTrashModal';
 import './Trash.css';
 
@@ -98,8 +98,6 @@ export default function Trash() {
 
     const noTrashedNotes = allTrashedPages && Object.values(allTrashedPages).length === 0;
 
-    //TODO:
-    // - add restore note button
 
     if (!user || !allTrashedPages) return <p className="loading right-div">Loading...</p>
   return (

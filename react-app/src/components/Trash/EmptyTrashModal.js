@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { Modal } from '../../context/Modal';
-import { getAllTrash, addToTrash, deletePage } from '../../store/pages';
+import { deletePage } from '../../store/pages';
 import { useHistory } from 'react-router-dom';
 
 import '../MainPageView/NBModalStyle.css';
