@@ -1,6 +1,8 @@
 import React from 'react'
-import LoginForm from '../auth/LoginForm';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
+import { login } from "../../store/session";
 import evernote_logo from './evernote_logo.png';
 import evernote_screen from './evernote_screen.png';
 import quote from './homepage-quote.svg';
@@ -8,28 +10,39 @@ import quote from './homepage-quote.svg';
 import './Splash.css';
 
 export default function Splash() {
+
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const handleDemo = async () => {
+        await dispatch(login("demo@aa.io", "password"));
+        history.push('/home');
+    }
+
   return (
     <div className="splash-wrapper">
 
         <header className="splash-header">
 
-            <div className="splash-logo">
-                <img src={evernote_logo} id="logo" alt="Evernote logo" />
-                <span id="logo-text">Note Pile</span>
-            </div>
+            <Link to="home" style={{color: "black"}}>
+                <div className="splash-logo">
+                    <img src={evernote_logo} id="logo" alt="Evernote logo" />
+                    <span id="logo-text">Note Pile</span>
+                </div>
+            </Link>
 
             <div id="contain-buttons">
                 <div>
-                    <button className="login-button">Login</button>
+                <Link to="/login"><button className="login-button">Login</button></Link>
                 </div>
                 <div>
-                    <button className="demo">Demo User</button>
+                    <button className="demo" onClick={handleDemo}>Demo User</button>
                 </div>
             </div>
 
         </header>
 
-        <body>
+        <div className="body">
             <h1>Tame your work, organize your life</h1>
             <h2>
                 Remember everything and accomplish anything with the best notes app for tackling projects.
@@ -62,7 +75,7 @@ export default function Splash() {
                 </div>
             </div>
 
-        </body>
+        </div>
 
 
 {/*
