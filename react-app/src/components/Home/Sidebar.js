@@ -37,12 +37,9 @@ export default function Sidebar() {
 
         const postNotebook = await(dispatch(newNotebook(data)))
 
-        console.log("post notebook", postNotebook);
-
         if (Array.isArray(postNotebook)) {
             setErrors(postNotebook);
         } else {
-            console.log("new notebook success")
             getNotebooks();
             setTitle("");
         }

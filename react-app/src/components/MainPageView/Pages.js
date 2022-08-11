@@ -56,7 +56,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         if (Array.isArray(edited)) {
             setErrors(edited);
         } else {
-            console.log("edited page success")
             getPages();
         }
 
@@ -78,7 +77,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         const sentToTrash = await dispatch(addToTrash(data, pageId));
 
         if (sentToTrash) {
-            console.log("Page has been trashed");
             getPages();
         }
 

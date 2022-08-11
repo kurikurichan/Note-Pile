@@ -1,3 +1,4 @@
+const GET_EVERY_PAGE = "pages/GET_EVERY_PAGE";
 const GET_ALL_PAGES = "pages/GET_ALL_PAGES";
 const DELETE_PAGE = "pages/DELETE_PAGE";
 const CREATE_PAGE = "pages/CREATE_PAGE";
@@ -6,6 +7,13 @@ const UPDATE_PAGE = "pages/UPDATE_PAGE";
 const GET_ALL_TRASH = "pages/GET_ALL_TRASH";
 const ADD_TO_TRASH = "pages/ADD_TO_TRASH";
 
+// get like EVERY PAGE regardless of notebook. for search functions
+const getEveryPage = (pages) => {
+  return {
+    type: GET_EVERY_PAGE,
+    pages
+  }
+}
 
 const getPages = (pages) => {
     return {
@@ -51,14 +59,11 @@ const updateTrash = (trash) => {
 
 export const getAllTrash = (userId) => async (dispatch) => {
 
-    console.log("GET ALL TRASH THUNK");
-
     const res = await fetch(`/api/pages/${userId}/trash/`);
 
     if (res.ok) {
 
       const data = await res.json();
-      console.log("Trash from getall Thunk: ", data);
       dispatch(getTrash(data));
       return data;
 
@@ -82,6 +87,20 @@ export const addToTrash = (trashedItem, pageId) => async (dispatch) => {
 
     }
 }
+
+export const getEverySinglePage = (userId) => async (dispatch) => {
+
+  const res = await fetch(`/api/pages/${userId}/`);
+
+  if (res.ok) {
+
+    const data = await res.json();
+    dispatch(getEveryPage(data));
+    return data;
+
+  }
+}
+
 
 export const getAllPages = (userId, notebookId) => async (dispatch) => {
 
@@ -141,8 +160,13 @@ const pages = (state = {}, action) => {
     let newState = {};
     switch (action.type) {
 
+      case GET_EVERY_PAGE:
+        action.pages.all_pages.forEach((page) => {
+          newState[page.id] = page;
+        });
+        return newState;
+
       case GET_ALL_TRASH:
-        console.log("action.trash", action.trash)
         action.trash.trash.forEach((page) => {
             newState[page.id] = page;
         });

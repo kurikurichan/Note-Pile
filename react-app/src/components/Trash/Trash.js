@@ -16,8 +16,6 @@ export default function Trash() {
         dispatch(getAllTrash(user.id));
     }, [dispatch])
 
-    console.log("All trashed pages", allTrashedPages);
-
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
@@ -55,7 +53,6 @@ export default function Trash() {
         const restored = await dispatch(addToTrash(data, selectedPageId));
 
         if (restored) {
-            console.log("Page has been restored");
             getTheTrash();
         }
     }

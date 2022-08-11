@@ -8,10 +8,7 @@ from .auth_routes import validation_errors_to_error_messages
 
 pages_routes = Blueprint('pages', __name__)
 
-# note - am gonna need the stuff in trash later but can prob just load that from the front end or w/e
-# or can do it here, doesn't matter
-
-# GET /api/pages/:userId/:notebookId - read all pages of a notebook (not trash ones)
+# GET /api/pages/:userId/ - read all pages of a user (not trash ones)
 @pages_routes.route('/<int:userId>/')
 @login_required
 def all_pages(userId):

@@ -58,7 +58,6 @@ export const newNotebook = (notebook) => async (dispatch) => {
       dispatch(createNotebook(data));
       return data;
     } else {
-        console.log("Data errors: ", data, data.errors)
         return data.errors;
     }
 };
@@ -73,7 +72,6 @@ export const editNotebook = (title, notebookId) => async (dispatch) => {
     });
 
     const data = await res.json();
-    console.log("Data in edit thunk: ", data);
 
     if (res.ok) {
         dispatch(updateNotebook(data));

@@ -51,7 +51,6 @@ export default function NotebookView() {
         if (Array.isArray(editedNotebook)) {
             setErrors(editedNotebook);
         } else {
-            console.log("edited notebook success")
             getNotebooks();
             setShowEditBox(false);
             setNbTitle("");
