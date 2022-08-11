@@ -17,12 +17,18 @@
     margin-left: 5%;
 }
 
+.splash-logo {
+    display: flex;
+    align-items: center;
+}
+
 #logo {
     width: 50px;
     height: 50px;
 }
 
 #logo-text {
+    margin-left: 5px;
     font-size: 35px;
     font-weight: 600;
 }

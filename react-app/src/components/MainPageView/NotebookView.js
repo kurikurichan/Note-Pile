@@ -24,6 +24,16 @@ export default function NotebookView() {
     // pages
     const [selectedPageId, setSelectedPageId] = useState("")
 
+    // reset pages view  when switching notebooks
+    // useEffect(() => {
+    //     if (allPagesOfNotebook) {
+    //         console.log("new pages thing: ", Object.values(allPagesOfNotebook)[0]);
+
+    //     }
+    //     // const newPageId = Object.values(allPagesOfNotebook)[0].id || "";
+    //     // setSelectedPageId(newPageId);
+    // }, [notebookId]);
+
     // This is all for the notebooks drop down menu (for edit & delete)
     const openMenu = () => {
       setShowMenu(!showMenu)
