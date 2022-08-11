@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, NavLink } from 'react-router-dom';
-import { getAllNotebooks, editNotebook, deleteNotebook } from '../../store/notebooks'
+import { useParams, useHistory } from 'react-router-dom';
+import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
+import EditNBModal from './EditNBModal';
 
 import './MainPageView.css';
+import DeleteNBModal from './DeleteNBModal';
 
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -18,62 +20,14 @@ export default function NotebookView() {
     const allPagesOfNotebook = useSelector(state => state.pages)
 
     const [showMenu, setShowMenu] = useState(false);
-    const [showEditBox, setShowEditBox] = useState(false);
-    const [errors, setErrors] = useState([]);
-    const [nbTitle, setNbTitle] = useState("");
     // pages
     const [selectedPageId, setSelectedPageId] = useState("")
-
-    // reset pages view  when switching notebooks
-    // useEffect(() => {
-    //     if (allPagesOfNotebook) {
-    //         console.log("new pages thing: ", Object.values(allPagesOfNotebook)[0]);
-
-    //     }
-    //     // const newPageId = Object.values(allPagesOfNotebook)[0].id || "";
-    //     // setSelectedPageId(newPageId);
-    // }, [notebookId]);
 
     // This is all for the notebooks drop down menu (for edit & delete)
     const openMenu = () => {
       setShowMenu(!showMenu)
     };
 
-    // For dropdown menu, editing notebooks
-    const handleRenameNotebook = () => {
-        setShowEditBox(!showEditBox)
-    };
-
-    // dispatch edit notebooks
-    const handleNotebookEdit = async (e) => {
-
-        e.preventDefault();
-
-        setErrors([]);
-
-        const data = {
-          userId: user.id,
-          nbTitle
-        };
-
-        const editedNotebook = await(dispatch(editNotebook(data, notebookId)))
-
-        if (Array.isArray(editedNotebook)) {
-            setErrors(editedNotebook);
-        } else {
-            getNotebooks();
-            setShowEditBox(false);
-            setNbTitle("");
-        }
-    };
-
-    // for dispatching delete notebook
-    const handleNotebookDelete = async (e) => {
-        e.preventDefault(e);
-
-        await dispatch(deleteNotebook(notebookId));
-        history.push("/home");
-    };
 
     // single notebook based on notebookId
     let currentNotebook;
@@ -81,11 +35,6 @@ export default function NotebookView() {
     if (allNotebooks) {
         currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
     }
-
-
-    const getNotebooks = async () => {
-        await dispatch(getAllNotebooks());
-    };
 
     useEffect(() => {
         dispatch(getAllNotebooks());
@@ -174,33 +123,14 @@ export default function NotebookView() {
                 </h1>
                 <div className="notebook-dongles">
                     <p className="page-count">{getPageCount()}</p>
-                    <div className="notebook-options-dropdown" onClick={openMenu}>
-                        <i className="fa-solid fa-ellipsis"></i>
+                    <div className="notebook-options-dropdown">
+                        <i className="fa-solid fa-ellipsis" onClick={openMenu}></i>
 
                         {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
-                            <div onClick={handleRenameNotebook}>Rename Notebook</div>
-                            {showEditBox &&
-                                <form className="notebook-form" onSubmit={handleNotebookEdit}>
-                                    <label className="notebook-label">
-                                        <button onClick={(e) => setShowEditBox(false)}>x</button>
-                                        <input
-                                            className="notebook-input"
-                                            type="text"
-                                            placeholder="Untitled"
-                                            value={nbTitle}
-                                            onChange={(e) => setNbTitle(e.target.value)}
-                                        />
-                                        <button type="Submit">+</button>
-                                    </label>
-                                    <div className="errs">
-                                        {errors && errors.map((error, ind) => (
-                                        <div key={ind} className="error">{error}</div>
-                                    ))}
-                                    </div>
-                                </form> }
-                            <div onClick={handleNotebookDelete}>Delete Notebook</div>
+                            <EditNBModal user={user} notebookId={notebookId} />
+                            <DeleteNBModal notebookId={notebookId} />
                         </div>}
 
 

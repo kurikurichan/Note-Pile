@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect } from 'react-router-dom';
-import { getAllNotebooks, newNotebook } from '../../store/notebooks';
+import { NavLink } from 'react-router-dom';
+import { getAllNotebooks } from '../../store/notebooks';
 import LogoutButton from '../auth/LogoutButton';
+import CreateNBModal from './CreateNBModal';
 
 import default_user from './default_user.jpeg';
 
@@ -21,32 +22,10 @@ export default function Sidebar() {
     const [firstPageNum, setFirstPageNum] = useState("");
     // errors for notebook submit
     const [errors, setErrors] = useState([]);
-    const [title, setTitle] = useState("");
 
 
-    const handleNotebookSubmit = async (e) => {
 
-        e.preventDefault();
 
-        setErrors([]);
-
-        const data = {
-          userId: user.id,
-          title
-        };
-
-        const postNotebook = await(dispatch(newNotebook(data)))
-
-        if (Array.isArray(postNotebook)) {
-            setErrors(postNotebook);
-        } else {
-            getNotebooks();
-            setTitle("");
-        }
-
-        handleShowEdit();
-
-    };
 
     const handleDropDown = () => {
         setNoteDropdown(!noteDropdown);
@@ -68,10 +47,6 @@ export default function Sidebar() {
     // notebooks
     // first test get notebooks
     const dispatch = useDispatch();
-
-    const getNotebooks = async () => {
-        await dispatch(getAllNotebooks());
-    }
 
     useEffect(() => {
         dispatch(getAllNotebooks());
@@ -119,34 +94,8 @@ export default function Sidebar() {
                         <NavLink to={`/${book.id}`} className="notebook-li" activeClassName='sb-active'>{book.title}</NavLink>
                     </li>)}
 
-                { showEdit && (
-                <div className="form-holder">
-                    <form className="notebook-form" onSubmit={handleNotebookSubmit}>
-                        <label className="notebook-label">
-                            <button onClick={(e) => setShowEdit(false)}>x</button>
-                            <input
-                                className="notebook-input"
-                                type="text"
-                                placeholder="Untitled"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                            <button type="Submit">+</button>
-                        </label>
-                        <div className="errs">
-                            {errors && errors.map((error, ind) => (
-                            <div key={ind} className="error">{error}</div>
-                        ))}
-                        </div>
-                    </form>
-                </div>)}
 
-                { !showEdit && (
-                <li onClick={handleShowEdit} id="new-notebook">
-                    <i className="fa-solid fa-book-medical"></i>
-                    {` `}New Notebook
-                </li>)
-                }
+                <CreateNBModal user={user} />
 
             </ul>
         )}
