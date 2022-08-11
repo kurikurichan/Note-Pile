@@ -9,7 +9,7 @@ import coffee from './coffee.jpeg';
 export default function Home() {
 
   const user = useSelector(state => state.session.user);
-  const allPages = useSelector(state => state.all_pages);
+  const allPages = useSelector(state => state.pages);
 
   const dispatch = useDispatch();
 
@@ -18,7 +18,6 @@ export default function Home() {
     dispatch(getEverySinglePage(user.id));
   }, [dispatch])
 
-  if (allPages) console.log("ALL PAGES!", allPages);
 
     //  get and format long date
     const getToday = () => {
@@ -60,13 +59,11 @@ export default function Home() {
   // get some pages to display up in herrr
   const getPagesToDisplay = () => {
     if (allPages) {
-      const allPagesArr = Object.values(allPages);
-      let numToShow = 4;
-      let result = [];
-      for (let i = 0; i < numToShow; i++) {
-        result.push(allPagesArr[i]);
-      }
-      return result;
+      const allPagesArr = Object.values(allPages).sort((p1, p2) => p2.updated_at - p1.updated_at);
+      // const allPagesArr = Object.values(allPages);
+      let sliced = allPagesArr.slice(0, 4);
+      console.log("SLICED :", sliced)
+      return allPagesArr.slice(0, 4);
     }
   }
 
@@ -75,7 +72,9 @@ export default function Home() {
 
   // useEffect to grab those page snippets when pages load
   useEffect(() => {
-    displayPages = getPagesToDisplay();
+    let fourPages = getPagesToDisplay();
+    displayPages = Object.values(fourPages);
+    console.log("ALL of the pages!:", displayPages);
   }, [allPages]);
 
   return (
@@ -100,12 +99,13 @@ export default function Home() {
                   <p>RECENT NOTES<i className="fa-solid fa-angle-right"></i></p>
                 </div>
                 <div className="notes-preview-bottom">
-                  {allPages &&
+                  {displayPages &&
                     displayPages.map(pg =>
                       <div key={pg.id} className="inner-notes">
-                        <p>{pg.title}</p>
+                        <p>A NOTE WAS REGISTEREED!</p>
+                        {/* <p>{pg.title}</p>
                         <p>{getShortSnippet(pg.content)}></p>
-                        <p>{formatDate(pg.updated_at)}</p>
+                        <p>{formatDate(pg.updated_at)}</p> */}
                       </div>)
                   }
                 </div>

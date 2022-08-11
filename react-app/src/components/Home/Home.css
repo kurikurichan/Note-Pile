@@ -102,11 +102,11 @@
     height: 100%;
     width: 100%;
     z-index: 2;
-    background-color: pink;
 }
 
 .inner-notes {
     height: 100%;
-    width: 20%;
+    width: 100%;
     background-color: blue;
+    z-index: 3;
 }
