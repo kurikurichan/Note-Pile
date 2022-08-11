@@ -9,8 +9,12 @@
     justify-content: space-between;
     align-items: center;
 
+    width: 80%;
+    height: 80px;
+
     margin-top: 1%;
     margin-bottom: 4%;
+    margin-left: 5%;
 }
 
 #logo {
@@ -79,7 +83,7 @@
 }
 
 #evernote_screen {
-    width: 60%;
+    width: 65%;
 }
 
 body {
@@ -124,7 +128,10 @@ body > p {
     padding-left: 5%;
     padding-right: 5%;
 
-    font-size: 20px;
+    letter-spacing: 1px;
+
+    font-weight: lighter;
+    font-size: 18px;
     margin-bottom: 1.5%;
 }
 

@@ -38,7 +38,7 @@ export default function Splash() {
             </h2>
 
             <button className="green-button sign-up">Sign up for free</button>
-            <p>Already have an account? Log-in</p>
+            <p>Already have an account? Log in</p>
 
             <div className="cool-work-section">
                 <img src={evernote_screen} id="evernote_screen" alt="wow the functionality" />
