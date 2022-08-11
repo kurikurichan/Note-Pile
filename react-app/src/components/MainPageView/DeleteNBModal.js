@@ -21,7 +21,7 @@ export default function DeleteNBModal({ notebookId }) {
         let deleted = await dispatch(deleteNotebook(notebookId));
 
         if (deleted) {
-            history.push(`/${notebookId}`);
+            history.push(`/home`);
         }
     };
 
@@ -33,11 +33,9 @@ export default function DeleteNBModal({ notebookId }) {
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
 
-                    <div className="modal-body">
-                        <div className="fields">
-                            <h2>Delete notebook?</h2>
-                            <p>Any notes in the notebook will be permanently deleted. This cannot be undone.</p>
-                        </div>
+                    <div className="modal-body delete">
+                        <h2>Delete notebook?</h2>
+                        <p>Any notes in the notebook will be permanently deleted. This cannot be undone.</p>
                         <div className="modal-buttons">
                             <button className="cancel-but" onClick={() => setShowModal(false)}>Cancel</button>
                             <button className="delete-but" onClick={handleNotebookDelete}>Delete</button>

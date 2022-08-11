@@ -94,3 +94,35 @@
     color: var(--evernote-green-darker);
     font-size: 13px;
 }
+
+.delete-but {
+    cursor: pointer;
+
+    background-color: #e54e40;
+    padding: 8px 16px;
+    height: 32px;
+
+    border-radius: 4px;
+    border: 1px solid transparent;
+
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+
+    transition: background-color 150ms linear 0s;
+}
+
+.delete-but:hover {
+    background-color: #ed8682;
+}
+
+.delete {
+    min-height: 200px;
+}
