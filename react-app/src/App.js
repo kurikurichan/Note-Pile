@@ -58,11 +58,8 @@ function App() {
         <ProtectedRoute path='/:notebookId' exact={true} >
           <NotebookView />
         </ProtectedRoute>
-        <Route>
-          <h1>Page Not Found</h1>
-        </Route>
-
       </Switch>
+
     </BrowserRouter>
   );
 }

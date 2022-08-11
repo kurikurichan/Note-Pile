@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { getAllNotebooks, newNotebook } from '../../store/notebooks';
 import LogoutButton from '../auth/LogoutButton';
 

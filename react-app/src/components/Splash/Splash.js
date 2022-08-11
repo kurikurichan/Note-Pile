@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
 import { login } from "../../store/session";
@@ -10,6 +10,8 @@ import quote from './homepage-quote.svg';
 import './Splash.css';
 
 export default function Splash() {
+
+    const user = useSelector(state => state.session.user);
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -23,13 +25,17 @@ export default function Splash() {
     <div className="splash-wrapper">
 
         <header className="splash-header">
-
+            {user ?
             <Link to="home" style={{color: "black"}}>
                 <div className="splash-logo">
                     <img src={evernote_logo} id="logo" alt="Evernote logo" />
                     <span id="logo-text">Note Pile</span>
                 </div>
-            </Link>
+            </Link> :
+            <div className="splash-logo">
+                <img src={evernote_logo} id="logo" alt="Evernote logo" />
+                <span id="logo-text">Note Pile</span>
+            </div>}
 
             <div id="contain-buttons">
                 <div>
@@ -51,7 +57,7 @@ export default function Splash() {
             </h2>
 
             <button className="green-button sign-up">Sign up for free</button>
-            <p>Already have an account? Log in</p>
+            <Link to="/login"><p>Already have an account? Log in</p></Link>
 
             <div className="cool-work-section">
                 <img src={evernote_screen} id="evernote_screen" alt="wow the functionality" />
