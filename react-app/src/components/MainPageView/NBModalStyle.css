@@ -123,6 +123,7 @@
     background-color: #ed8682;
 }
 
-.delete {
+.delete,
+.update {
     min-height: 200px;
 }

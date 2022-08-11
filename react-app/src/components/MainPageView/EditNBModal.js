@@ -15,9 +15,6 @@ export default function EditNBModal({user, notebookId }) {
 
     const dispatch = useDispatch();
 
-
-
-
      // dispatch edit notebooks
      const handleNotebookEdit = async (e) => {
 
@@ -46,7 +43,7 @@ export default function EditNBModal({user, notebookId }) {
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
 
-                <form className="modal-body" onSubmit={handleNotebookEdit}>
+                <form className="modal-body update" onSubmit={handleNotebookEdit}>
 
                     <h3>Rename notebook</h3>
                     <div className="fields">
