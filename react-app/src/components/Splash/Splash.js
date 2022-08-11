@@ -56,7 +56,7 @@ export default function Splash() {
                 Keep your notes, tasks, and schedule all in one place.
             </h2>
 
-            <button className="green-button sign-up">Sign up for free</button>
+            <Link to="/signup"><button className="green-button sign-up">Sign up for free</button></Link>
             <Link to="/login"><p>Already have an account? Log in</p></Link>
 
             <div className="cool-work-section">
