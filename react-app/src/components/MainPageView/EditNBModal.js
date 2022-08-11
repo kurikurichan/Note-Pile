@@ -6,7 +6,7 @@ import { getAllNotebooks, editNotebook } from '../../store/notebooks'
 import './NBModalStyle.css';
 
 
-export default function EditNBModal({user, notebookId}) {
+export default function EditNBModal({user, notebookId }) {
 
     const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState([]);
@@ -49,7 +49,8 @@ export default function EditNBModal({user, notebookId}) {
                 <form className="modal-body" onSubmit={handleNotebookEdit}>
 
                     <h3>Rename notebook</h3>
-                    <label>Name</label>
+                    <div className="fields">
+                        <label>Name</label>
                         <input
                             className="notebook-input"
                             type="text"
@@ -57,6 +58,7 @@ export default function EditNBModal({user, notebookId}) {
                             value={nbTitle}
                             onChange={(e) => setNbTitle(e.target.value)}
                         />
+                    </div>
                     <div className="errs">
                         {errors && errors.map((error, ind) => (
                         <div key={ind} className="error">{error}</div>
