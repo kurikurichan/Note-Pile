@@ -4,6 +4,7 @@ import { useParams, useHistory, NavLink } from 'react-router-dom';
 import { getAllNotebooks, editNotebook, deleteNotebook } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
+import EditNBModal from './EditNBModal';
 
 import './MainPageView.css';
 
@@ -19,8 +20,6 @@ export default function NotebookView() {
 
     const [showMenu, setShowMenu] = useState(false);
     const [showEditBox, setShowEditBox] = useState(false);
-    const [errors, setErrors] = useState([]);
-    const [nbTitle, setNbTitle] = useState("");
     // pages
     const [selectedPageId, setSelectedPageId] = useState("")
 
@@ -44,28 +43,7 @@ export default function NotebookView() {
         setShowEditBox(!showEditBox)
     };
 
-    // dispatch edit notebooks
-    const handleNotebookEdit = async (e) => {
 
-        e.preventDefault();
-
-        setErrors([]);
-
-        const data = {
-          userId: user.id,
-          nbTitle
-        };
-
-        const editedNotebook = await(dispatch(editNotebook(data, notebookId)))
-
-        if (Array.isArray(editedNotebook)) {
-            setErrors(editedNotebook);
-        } else {
-            getNotebooks();
-            setShowEditBox(false);
-            setNbTitle("");
-        }
-    };
 
     // for dispatching delete notebook
     const handleNotebookDelete = async (e) => {
@@ -180,26 +158,7 @@ export default function NotebookView() {
                         {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
-                            <div onClick={handleRenameNotebook}>Rename Notebook</div>
-                            {showEditBox &&
-                                <form className="notebook-form" onSubmit={handleNotebookEdit}>
-                                    <label className="notebook-label">
-                                        <button onClick={(e) => setShowEditBox(false)}>x</button>
-                                        <input
-                                            className="notebook-input"
-                                            type="text"
-                                            placeholder="Untitled"
-                                            value={nbTitle}
-                                            onChange={(e) => setNbTitle(e.target.value)}
-                                        />
-                                        <button type="Submit">+</button>
-                                    </label>
-                                    <div className="errs">
-                                        {errors && errors.map((error, ind) => (
-                                        <div key={ind} className="error">{error}</div>
-                                    ))}
-                                    </div>
-                                </form> }
+                            <EditNBModal user={user} notebookId={notebookId} />
                             <div onClick={handleNotebookDelete}>Delete Notebook</div>
                         </div>}
 
