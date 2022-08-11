@@ -104,7 +104,7 @@ export default function Home() {
                     displayPages.map(pg =>
                       <div key={pg.id} className="inner-notes">
                         <p>{pg.title}</p>
-                        <p>{getShortSnippet(pg.content)}></p>
+                        <p>{getShortSnippet(pg.content)}</p>
                         <p>{formatDate(pg.updated_at)}</p>
                       </div>)
                   }
