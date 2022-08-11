@@ -23,16 +23,6 @@ export default function NotebookView() {
     // pages
     const [selectedPageId, setSelectedPageId] = useState("")
 
-    // reset pages view  when switching notebooks
-    // useEffect(() => {
-    //     if (allPagesOfNotebook) {
-    //         console.log("new pages thing: ", Object.values(allPagesOfNotebook)[0]);
-
-    //     }
-    //     // const newPageId = Object.values(allPagesOfNotebook)[0].id || "";
-    //     // setSelectedPageId(newPageId);
-    // }, [notebookId]);
-
     // This is all for the notebooks drop down menu (for edit & delete)
     const openMenu = () => {
       setShowMenu(!showMenu)
@@ -45,8 +35,6 @@ export default function NotebookView() {
     if (allNotebooks) {
         currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
     }
-
-
 
     useEffect(() => {
         dispatch(getAllNotebooks());
@@ -135,14 +123,15 @@ export default function NotebookView() {
                 </h1>
                 <div className="notebook-dongles">
                     <p className="page-count">{getPageCount()}</p>
-                    <div className="notebook-options-dropdown" onClick={openMenu}>
-                        <i className="fa-solid fa-ellipsis"></i>
+                    <div className="notebook-options-dropdown">
+                        <i className="fa-solid fa-ellipsis" onClick={openMenu}></i>
 
+                        {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
                             <EditNBModal user={user} notebookId={notebookId} />
                             <DeleteNBModal notebookId={notebookId} />
-                        </div>
+                        </div>}
 
 
                     </div>
