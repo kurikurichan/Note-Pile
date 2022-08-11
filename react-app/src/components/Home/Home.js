@@ -18,7 +18,7 @@ export default function Home() {
     dispatch(getEverySinglePage(user.id));
   }, [dispatch])
 
-  if (allPages) console.log(allPages);
+  if (allPages) console.log("ALL PAGES!", allPages);
 
     //  get and format long date
     const getToday = () => {
@@ -83,30 +83,26 @@ export default function Home() {
       <div className="scrollable">
           <div className="above-home">
 
-            <div className="underlying-photo">
-                <img src={coffee} id="coffee" alt="blurred cup in background" />
+              <img src={coffee} id="coffee" alt="blurred cup in background" />
+
+              <div className="above-home-text">
+                <h3>Welcome, {user.username}!</h3>
+                <p id="today">{getToday()}</p>
               </div>
-
-            <div className="above-home-text">
-              <h3>Welcome, {user.username}!</h3>
-              <p id="today">{getToday()}</p>
-            </div>
-
-
 
           </div>
 
-          <div style={{ backgroundColor: "rgba(171, 171, 171, .1)", padding: '15%', zIndex: "-1"}}></div>
+          {/* <div style={{ backgroundColor: "rgba(171, 171, 171, .1)", padding: '15%', zIndex: "-1"}}></div> */}
           <div className="contain-widgets">
 
               <div className="notes-preview">
                 <div className="notes-preview-top">
                   <p>RECENT NOTES<i className="fa-solid fa-angle-right"></i></p>
                 </div>
-                <div className="notes-preview-display">
+                <div className="notes-preview-bottom">
                   {allPages &&
                     displayPages.map(pg =>
-                      <div key={pg.id}>
+                      <div key={pg.id} className="inner-notes">
                         <p>{pg.title}</p>
                         <p>{getShortSnippet(pg.content)}></p>
                         <p>{formatDate(pg.updated_at)}</p>
