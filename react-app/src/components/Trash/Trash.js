@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTrash, addToTrash, deletePage } from '../../store/pages';
+import EmptyTrash from './EmptyTrashModal';
 import './Trash.css';
 
 export default function Trash() {
@@ -58,23 +59,6 @@ export default function Trash() {
     }
 
 
-
-    const handleEmptyTrash = async (e) => {
-
-        e.preventDefault();
-        // loop thru trash and delete each page in it
-        try {
-            for (let page of Object.values(allTrashedPages)) {
-                await dispatch(deletePage(user.id, page.id));
-            }
-        } catch(e) {
-            console.log(e);
-        }
-
-        getTheTrash();
-
-    }
-
     // count dem pages for display
     const getPageCount = () => {
         let numPages = 0;
@@ -129,7 +113,7 @@ export default function Trash() {
                 <div className="notebook-dongles">
                     <p className="page-count">{getPageCount()}</p>
                     {!noTrashedNotes &&
-                        <button className="green-button" onClick={handleEmptyTrash}>Empty Trash</button>}
+                        <EmptyTrash user={user} allTrashedPages={allTrashedPages} getTheTrash={getTheTrash} />}
                 </div>
             </div>
 
