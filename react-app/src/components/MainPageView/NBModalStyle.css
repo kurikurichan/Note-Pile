@@ -45,3 +45,30 @@
 
     outline: none;
 }
+
+.cancel-but {
+
+    background-color: transparent;
+    color: var(--gray65);
+
+    cursor: pointer;
+
+    user-select: none;
+
+    border: 1px solid var(--gray45);
+    border-radius: 4px;
+
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 400;
+
+    justify-content: center;
+    align-items: center;
+
+    letter-spacing: 0;
+
+    line-height: 1;
+    margin: 0;
+    padding: 10px 15px;
+    text-align: center;
+}
