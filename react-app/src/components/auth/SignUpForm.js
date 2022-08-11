@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
+
+import bg from './jungle-bg.jpeg';
+import evernote_logo from './evernote_logo.png';
+import './Login.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,51 +47,61 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    <div className="form-wrapper">
+      <form className="form login" onSubmit={onSignUp}>
+        <div className="form-logo">
+                      <img src={evernote_logo} id="logo" alt="Evernote logo" />
+                      <span id="logo-text">Note Pile</span>
+                      <p>Remember everything important.</p>
+        </div>
+        <div className="signup-dongles">
+          {/* <label>User Name</label> */}
+          <input
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+            placeholder="User Name"
+          ></input>
+          {/* <label>Email</label> */}
+          <input
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            placeholder="Email"
+          ></input>
+          {/* <label>Password</label> */}
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            placeholder="Password"
+          ></input>
+          {/* <label>Repeat Password</label> */}
+          <input
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            placeholder="Repeat Password"
+          ></input>
+          <button type='submit' className="green-button signup-but">Sign Up</button>
+        </div>
+        <div className="form-errors">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className="dont-have-account">
+          <p>Already have an account?</p>
+          <Link to="/login">Sign in</Link>
+        </div>
+      </form>
+      <img src={bg} className="bg" alt="bg"/>
+    </div>
   );
 };
 

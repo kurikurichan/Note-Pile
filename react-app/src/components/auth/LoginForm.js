@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { login } from '../../../store/session';
+import { login } from '../../store/session';
 
 import bg from './jungle-bg.jpeg';
 import evernote_logo from './evernote_logo.png';
@@ -63,7 +63,7 @@ const LoginForm = () => {
               value={password}
               onChange={updatePassword}
             />
-            <button type='submit' className="green-button login-signup">Login</button>
+            <button type='submit' className="green-button login-but">Login</button>
         </div>
         <div className="form-errors">
           {errors.map((error, ind) => (
@@ -74,8 +74,8 @@ const LoginForm = () => {
           <p>Don't have an account?</p>
           <Link to="/sign-up">Create account</Link>
         </div>
-        <img src={bg} className="bg" alt="bg"/>
       </form>
+      <img src={bg} className="bg" alt="bg"/>
     </div>
   );
 };
