@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import LoginForm from './components/auth/Login/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -11,7 +12,6 @@ import NotebookView from './components/MainPageView/NotebookView';
 import Trash from './components/Trash/Trash';
 import Home from './components/Home/Home';
 import Splash from './components/Splash/Splash';
-import LoginPage from './components/auth/Login/LoginPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,15 +34,15 @@ function App() {
         <Route path='/' exact={true} >
           <Splash />
         </Route>
-        <Sidebar />
-      </Switch>
-      <Switch>
         <Route path='/login' exact={true}>
-          <LoginPage />
+          <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Sidebar />
+      </Switch>
+      <Switch>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
@@ -58,6 +58,9 @@ function App() {
         <ProtectedRoute path='/:notebookId' exact={true} >
           <NotebookView />
         </ProtectedRoute>
+        <Route>
+          <h1>Page Not Found</h1>
+        </Route>
 
       </Switch>
     </BrowserRouter>

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../../store/session';
+
+import bg from './jungle-bg.jpeg';
+import evernote_logo from './evernote_logo.png';
+import './Login.css';
+
+
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -28,44 +34,48 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const handleDemo = (e) => {
-    setEmail("demo@aa.io");
-    setPassword("password");
-  }
-
   if (user) {
     return <Redirect to='/' />;
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className="form-wrapper">
+      <form className="form login" onSubmit={onLogin}>
+      <div className="form-logo">
+                    <img src={evernote_logo} id="logo" alt="Evernote logo" />
+                    <span id="logo-text">Note Pile</span>
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+        <div className="form-dongles">
+            {/* <label htmlFor='email'>Email</label> */}
+            <input
+              name='email'
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+            {/* <label htmlFor='password'>Password</label> */}
+            <input
+              name='password'
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={updatePassword}
+            />
+            <button type='submit' className="green-button login-signup">Login</button>
+        </div>
+        <div className="form-errors">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className="dont-have-account">
+          <p>Don't have an account?</p>
+          <Link to="/sign-up">Create account</Link>
+        </div>
+        <img src={bg} className="bg" alt="bg"/>
+      </form>
+    </div>
   );
 };
 
