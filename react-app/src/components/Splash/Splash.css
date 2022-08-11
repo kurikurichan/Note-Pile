@@ -180,7 +180,9 @@
 
 .splash-footer {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
     padding-top: 3%;
     padding-bottom: 3%;
     border-top: 1px solid rgb(179, 174, 174);
@@ -189,8 +191,26 @@
 .splash-footer > p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
-    /* font-weight: 100; */
-    margin-right: 3%;
+    margin-bottom: 12px;
 
     color: rgb(179, 174, 174);
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 8%;
+}
+
+.links > a {
+    color: rgb(179, 174, 174);
+}
+
+.links > a:hover {
+    color: rgb(135, 131, 131);
+}
+
+.links > a > i {
+    font-size: 25px;
 }
