@@ -61,10 +61,11 @@ export default function Splash() {
                     </p>
                 </div>
             </div>
+
         </body>
 
 
-
+{/*
         <div className="logo-carousel ">
 
           <div className="top-image">
@@ -122,19 +123,12 @@ export default function Splash() {
           </ul>
 
   </div>
-
-
-
-
-
-
-
-
-
+ */}
+        <footer className="splash-footer">
+            <p>Clone of Evernote by Krista Strucke</p>
+        </footer>
 
     </div>
-
-
 
   )
 }

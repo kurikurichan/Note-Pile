@@ -38,6 +38,8 @@
     color: #00a82d;
     text-decoration: none;
 
+    cursor: pointer;
+
     display: inline-block;
     text-align: center;
     height: 40px;
@@ -50,7 +52,6 @@
 
     padding: 0 10px;
     transition: .3s border ease-in-out,.3s color ease-in-out;
-    -webkit-font-smoothing: antialiased;
 
 }
 
@@ -65,6 +66,8 @@
     font-family: soleil, sans-serif;
     border: 0;
     min-width: 100px;
+
+    cursor: pointer;
 
     margin-left: 1%;
     font-size: 16px;
@@ -159,4 +162,21 @@ body > p {
     font-family: "Soleil",Helvetica,Arial,sans-serif;
 
     margin-bottom: 5%;
+}
+
+.splash-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    border-top: 1px solid rgb(179, 174, 174);
+}
+
+.splash-footer > p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    /* font-weight: 100; */
+    margin-right: 3%;
+
+    color: rgb(179, 174, 174);
 }
