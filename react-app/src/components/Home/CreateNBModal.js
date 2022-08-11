@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { Modal } from '../../context/Modal';
 import { getAllNotebooks, newNotebook } from '../../store/notebooks'
 
+import '../MainPageView/NBModalStyle.css';
+
 export default function CreateNBModal({ user }) {
 
     const [showModal, setShowModal] = useState(false);
@@ -48,7 +50,8 @@ export default function CreateNBModal({ user }) {
 
                     <h3>Create new notebook</h3>
                     <p>Notebooks are useful for grouping notes around a common topic.</p>
-                    <label className="notebook-label">Name</label>
+                    <div className="fields">
+                        <label>Name</label>
                         <input
                             className="notebook-input"
                             type="text"
@@ -56,12 +59,13 @@ export default function CreateNBModal({ user }) {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
-                        <button type="Submit">+</button>
+                    </div>
+                    {errors &&
                     <div className="errs">
                         {errors && errors.map((error, ind) => (
                         <div key={ind} className="error">{error}</div>
                     ))}
-                    </div>
+                    </div>}
                     <div className="modal-buttons">
                         <button className="cancel-but" onClick={() => setShowModal(false)}>Cancel</button>
                         <button type="Submit" className="green-button" onClick={handleNotebookSubmit}>Create</button>

@@ -4,6 +4,7 @@ import { Modal } from '../../context/Modal';
 import { deleteNotebook } from '../../store/notebooks';
 import { useHistory } from 'react-router-dom';
 
+import './NBModalStyle.css';
 
 export default function DeleteNBModal({ notebookId }) {
 
@@ -33,7 +34,7 @@ export default function DeleteNBModal({ notebookId }) {
                 <Modal onClose={() => setShowModal(false)}>
 
                     <div className="modal-body">
-                        <div>
+                        <div className="fields">
                             <h2>Delete notebook?</h2>
                             <p>Any notes in the notebook will be permanently deleted. This cannot be undone.</p>
                         </div>

@@ -12,7 +12,7 @@
     justify-content: space-around;
 
     max-width: 990px;
-    min-height: 200px;
+    min-height: 300px;
     min-width: 465px;
 
     outline: none;
@@ -26,6 +26,10 @@
 
 .modal-body > h3 {
     color: white;
+}
+
+.modal-body > p {
+    font-size: 14px;
 }
 
 .fields > label {
@@ -53,6 +57,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    padding-top: 20px;
+    border-top: 1px solid rgba(204, 204, 204, .1);
 }
 
 .cancel-but {
@@ -81,4 +88,9 @@
     padding: 10px 15px;
     text-align: center;
     margin-right: 8px;
+}
+
+.errs {
+    color: var(--evernote-green-darker);
+    font-size: 13px;
 }
