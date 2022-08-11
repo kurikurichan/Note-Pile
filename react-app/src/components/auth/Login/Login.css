@@ -53,6 +53,15 @@
     align-items: center;
 }
 
+.form-logo > p {
+
+    color: #333333;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
 .form-dongles {
 
     height: 30%;

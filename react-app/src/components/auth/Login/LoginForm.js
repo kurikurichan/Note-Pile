@@ -44,6 +44,7 @@ const LoginForm = () => {
       <div className="form-logo">
                     <img src={evernote_logo} id="logo" alt="Evernote logo" />
                     <span id="logo-text">Note Pile</span>
+                    <p>Remember everything important.</p>
       </div>
         <div className="form-dongles">
             {/* <label htmlFor='email'>Email</label> */}
