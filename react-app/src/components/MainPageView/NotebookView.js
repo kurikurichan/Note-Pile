@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, NavLink } from 'react-router-dom';
-import { getAllNotebooks, editNotebook, deleteNotebook } from '../../store/notebooks'
+import { useParams, useHistory } from 'react-router-dom';
+import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
 import EditNBModal from './EditNBModal';
 
 import './MainPageView.css';
+import DeleteNBModal from './DeleteNBModal';
 
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -19,7 +20,6 @@ export default function NotebookView() {
     const allPagesOfNotebook = useSelector(state => state.pages)
 
     const [showMenu, setShowMenu] = useState(false);
-    const [showEditBox, setShowEditBox] = useState(false);
     // pages
     const [selectedPageId, setSelectedPageId] = useState("")
 
@@ -38,20 +38,6 @@ export default function NotebookView() {
       setShowMenu(!showMenu)
     };
 
-    // For dropdown menu, editing notebooks
-    const handleRenameNotebook = () => {
-        setShowEditBox(!showEditBox)
-    };
-
-
-
-    // for dispatching delete notebook
-    const handleNotebookDelete = async (e) => {
-        e.preventDefault(e);
-
-        await dispatch(deleteNotebook(notebookId));
-        history.push("/home");
-    };
 
     // single notebook based on notebookId
     let currentNotebook;
@@ -61,9 +47,6 @@ export default function NotebookView() {
     }
 
 
-    const getNotebooks = async () => {
-        await dispatch(getAllNotebooks());
-    };
 
     useEffect(() => {
         dispatch(getAllNotebooks());
@@ -155,12 +138,11 @@ export default function NotebookView() {
                     <div className="notebook-options-dropdown" onClick={openMenu}>
                         <i className="fa-solid fa-ellipsis"></i>
 
-                        {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
                             <EditNBModal user={user} notebookId={notebookId} />
-                            <div onClick={handleNotebookDelete}>Delete Notebook</div>
-                        </div>}
+                            <DeleteNBModal notebookId={notebookId} />
+                        </div>
 
 
                     </div>

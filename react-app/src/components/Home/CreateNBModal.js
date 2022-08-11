@@ -44,24 +44,30 @@ export default function CreateNBModal({ user }) {
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
 
-        <div className="form-holder">
-            <form className="notebook-form" onSubmit={handleNotebookSubmit}>
-                <label className="notebook-label">Name</label>
-                    <input
-                        className="notebook-input"
-                        type="text"
-                        placeholder="Untitled"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <button type="Submit">+</button>
-                <div className="errs">
-                    {errors && errors.map((error, ind) => (
-                    <div key={ind} className="error">{error}</div>
-                ))}
-                </div>
-            </form>
-        </div>
+                <form className="modal-body" onSubmit={handleNotebookSubmit}>
+
+                    <h3>Create new notebook</h3>
+                    <p>Notebooks are useful for grouping notes around a common topic.</p>
+                    <label className="notebook-label">Name</label>
+                        <input
+                            className="notebook-input"
+                            type="text"
+                            placeholder="Notebook name"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        <button type="Submit">+</button>
+                    <div className="errs">
+                        {errors && errors.map((error, ind) => (
+                        <div key={ind} className="error">{error}</div>
+                    ))}
+                    </div>
+                    <div className="modal-buttons">
+                        <button className="cancel-but" onClick={() => setShowModal(false)}>Cancel</button>
+                        <button type="Submit" className="green-button" onClick={handleNotebookSubmit}>Create</button>
+                    </div>
+
+                </form>
 
             </Modal>
         )}

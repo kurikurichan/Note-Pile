@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { Modal } from '../../context/Modal';
 import { getAllNotebooks, editNotebook } from '../../store/notebooks'
 
+import './NBModalStyle.css';
+
 
 export default function EditNBModal({user, notebookId}) {
 
@@ -44,8 +46,10 @@ export default function EditNBModal({user, notebookId}) {
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
 
-                <form className="notebook-form" onSubmit={handleNotebookEdit}>
-                    <label className="notebook-label">Name</label>
+                <form className="modal-body" onSubmit={handleNotebookEdit}>
+
+                    <h3>Rename notebook</h3>
+                    <label>Name</label>
                         <input
                             className="notebook-input"
                             type="text"
@@ -53,12 +57,16 @@ export default function EditNBModal({user, notebookId}) {
                             value={nbTitle}
                             onChange={(e) => setNbTitle(e.target.value)}
                         />
-                        <button type="Submit">+</button>
                     <div className="errs">
                         {errors && errors.map((error, ind) => (
                         <div key={ind} className="error">{error}</div>
                     ))}
                     </div>
+                    <div className="modal-buttons">
+                        <button className="cancel-but" onClick={() => setShowModal(false)}>Cancel</button>
+                        <button type="Submit" className="green-button" onClick={handleNotebookEdit}>Continue</button>
+                    </div>
+
                 </form>
 
             </Modal>
