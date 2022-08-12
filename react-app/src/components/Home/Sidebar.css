@@ -4,7 +4,6 @@
     position: absolute;
     left: 0;
     background-color: var(--sidebar-body);
-    overflow: visible;
 }
 
 .sidebar {
@@ -16,7 +15,6 @@
 
     color: var(--sidebar-font);
     font-family: soleil, sans-serif;
-    overflow: visible;
 }
 
 .sidebar > * {
@@ -36,7 +34,6 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     position: relative;
-    overflow: visible;
 }
 
 
@@ -44,21 +41,22 @@ body {
     display: flex;
     flex-direction: column;
     align-items: space-between;
-    padding: 10px;
 
-    background-color: #333;
+    background-color: var(--sidebar-highlight);
     box-shadow: 0px 5px 5px rgb(28, 28, 28);
 
-    width: 150px;
+    width: 12vw;
     position: absolute;
-    margin-left: 4vw;
-    margin-top: 2vh;
+    margin-top: 3vh;
     z-index: 955;
 
-    overflow: visible;
+    /* overflow: visible; */
 
     transition-duration: .1s;
     transition-timing-function: ease-in-out;
+
+    border-radius: 3px;
+    padding: 8px 10px 8px 10px;
 }
 
 #account {
@@ -89,14 +87,9 @@ body {
 
 }
 
-#logout-div {
-    background-color: var(--sidebar-highlight);
-    border-radius: 3px;
-    padding: 5px;
-}
-
 .user-name {
     font-size: 17px;
+    overflow-wrap: break-word;
 }
 
 .user-email {
