@@ -125,7 +125,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 </div>
                 <div className="rich-text-stuff">
                     {editTitle ?
-                    "  Rich text stuff goes here":
+                    "":
                     <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
                 </div>
             </div>
