@@ -31,6 +31,7 @@ export default function CreateNBModal({ user }) {
             setErrors(postNotebook);
         } else {
             await dispatch(getAllNotebooks());
+            setShowModal(false);
             setTitle("");
         }
 

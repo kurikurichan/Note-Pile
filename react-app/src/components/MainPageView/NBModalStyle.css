@@ -127,3 +127,8 @@
 .update {
     min-height: 200px;
 }
+
+
+#new-notebook {
+    cursor: pointer;
+}

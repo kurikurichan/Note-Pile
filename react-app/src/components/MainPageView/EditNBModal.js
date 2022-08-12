@@ -33,6 +33,7 @@ export default function EditNBModal({user, notebookId, openMenu, pageId, allNbs,
             setErrors(editedNotebook);
         } else {
             await dispatch(getAllNotebooks());
+            setShowModal(false);
             setNbTitle("");
         }
     };
