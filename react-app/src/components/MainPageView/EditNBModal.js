@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
 import { Modal } from '../../context/Modal';
 import { getAllNotebooks, editNotebook } from '../../store/notebooks'
@@ -6,7 +6,7 @@ import { getAllNotebooks, editNotebook } from '../../store/notebooks'
 import './NBModalStyle.css';
 
 
-export default function EditNBModal({user, notebookId }) {
+export default function EditNBModal({user, notebookId, openMenu, pageId, allPages }) {
 
     const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState([]);
@@ -37,11 +37,24 @@ export default function EditNBModal({user, notebookId }) {
         }
     };
 
+    const getPageDeets = () => {
+            const desiredPage = Object.values(allPages).filter(p => +p.id === +pageId)[0]
+            setNbTitle(desiredPage.title);
+    }
+
+    // set the NB title or w/e so it shows up preloaded
+    useEffect(() => {
+        getPageDeets();
+    }, [allPages])
+
     return (
         <>
-        <div onClick={() => setShowModal(true)}>Rename Notebook</div>
+        <div onClick={() => setShowModal(true) }>Rename Notebook</div>
         {showModal && (
-            <Modal onClose={() => setShowModal(false)}>
+            <Modal onClose={() => {
+                setShowModal(false)
+                openMenu()
+            }}>
 
                 <form className="modal-body update" onSubmit={handleNotebookEdit}>
 
@@ -62,7 +75,9 @@ export default function EditNBModal({user, notebookId }) {
                     ))}
                     </div>
                     <div className="modal-buttons">
-                        <button className="cancel-but" onClick={() => setShowModal(false)}>Cancel</button>
+                        <button className="cancel-but" onClick={() => {
+                        openMenu()
+                        setShowModal(false)}}>Cancel</button>
                         <button type="Submit" className="green-button" onClick={handleNotebookEdit}>Continue</button>
                     </div>
 

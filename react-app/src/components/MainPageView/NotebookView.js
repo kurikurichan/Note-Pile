@@ -56,6 +56,7 @@ export default function NotebookView() {
         if (createPage) {
             getPages();
             setSelectedPageId(createPage.id);
+            setShowMenu(false);
         }
 
     }
@@ -105,6 +106,8 @@ export default function NotebookView() {
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
+        // also omg close the dumb menu lol
+        setShowMenu(false);
     }, [notebookId])
 
     // when notebook changes grab the 1st page to auto select it
@@ -129,8 +132,8 @@ export default function NotebookView() {
                         {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
-                            <EditNBModal user={user} notebookId={notebookId} />
-                            <DeleteNBModal notebookId={notebookId} />
+                            <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} pageId={selectedPageId} allPages={allPagesOfNotebook} />
+                            <DeleteNBModal notebookId={notebookId} openMenu={openMenu} />
                         </div>}
 
 
