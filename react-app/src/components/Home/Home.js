@@ -97,7 +97,7 @@ export default function Home() {
                   <p>RECENT CONTENT<i className="fa-solid fa-angle-right"></i></p>
                 </div>
                 <div className="notes-preview-bottom">
-                  {displayPages &&
+                  {displayPages.length ?
                     displayPages.map(pg =>
                       <div key={pg.id} className="inner-notes">
                         <div>
@@ -105,7 +105,8 @@ export default function Home() {
                           <p id="pg-snippet">{getShortSnippet(pg.content)}</p>
                         </div>
                           <p id="pg-date">{formatDate(pg.updated_at)}</p>
-                      </div>)}
+                      </div>):
+                      <p id="no-notes">You have no notes yet, create your first note in a notebook to see them here!</p>}
                 </div>
               </div>
 
