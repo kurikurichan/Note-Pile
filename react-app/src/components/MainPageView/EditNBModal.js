@@ -6,7 +6,7 @@ import { getAllNotebooks, editNotebook } from '../../store/notebooks'
 import './NBModalStyle.css';
 
 
-export default function EditNBModal({user, notebookId, openMenu, pageId, allPages }) {
+export default function EditNBModal({user, notebookId, openMenu, pageId, allNbs, setPageId }) {
 
     const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState([]);
@@ -37,15 +37,15 @@ export default function EditNBModal({user, notebookId, openMenu, pageId, allPage
         }
     };
 
-    const getPageDeets = () => {
-            const desiredPage = Object.values(allPages).filter(p => +p.id === +pageId)[0]
-            setNbTitle(desiredPage.title);
+    const getNotebookDeets = () => {
+            const desiredBook = Object.values(allNbs).filter(n => +n.id === +notebookId)[0]
+            setNbTitle(desiredBook.title);
     }
 
     // set the NB title or w/e so it shows up preloaded
     useEffect(() => {
-        getPageDeets();
-    }, [allPages])
+        getNotebookDeets();
+    }, [allNbs])
 
     return (
         <>

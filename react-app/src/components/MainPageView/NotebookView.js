@@ -132,7 +132,7 @@ export default function NotebookView() {
                         {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
-                            <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} pageId={selectedPageId} allPages={allPagesOfNotebook} />
+                            <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} pageId={selectedPageId} allNbs={allNotebooks} setPageId={setSelectedPageId}/>
                             <DeleteNBModal notebookId={notebookId} openMenu={openMenu} />
                         </div>}
 
