@@ -100,7 +100,7 @@
 
 .notes-preview-bottom {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     height: 280px;
     width: 100%;
     z-index: 2;
@@ -116,6 +116,9 @@
 }
 
 .inner-notes {
+
+    margin-left: 2.5%;
+    margin-right: 2.5%;
     width: 21%;
     background-color: #333;
     z-index: 3;
