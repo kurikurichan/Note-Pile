@@ -151,7 +151,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                     {currentPage.content ? currentPage.content : "Start writing here!"}
                 </div>}
                 {editContent &&
-                <div className='page-contents editing-page'>
+                <div className='editing-page'>
                     <textarea
                         className="page-contents white"
                         value={content}
