@@ -29,9 +29,11 @@ body {
 .user-dropdown {
     font-weight: bold;
     display: flex;
+    justify-content: flex-start;
     cursor: pointer;
 
-    height: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     position: relative;
 }
 
