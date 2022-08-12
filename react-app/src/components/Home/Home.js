@@ -72,7 +72,6 @@ export default function Home() {
   // useEffect to grab those page snippets when pages load
   useEffect(() => {
     setDisplayPages(getPagesToDisplay());
-    console.log("display pages: ", displayPages);
   }, [allPages]);
 
   return (

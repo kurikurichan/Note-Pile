@@ -223,7 +223,8 @@
     color: white;
 }
 
-.page-contents {
+.page-contents,
+.ql-editor {
     background-color: #333;
     border: 0;
     resize: none;
@@ -240,7 +241,7 @@
     font-size: 16px;
 
     width: 80%;
-    height: auto;
+    height: 100%;
 
 }
 

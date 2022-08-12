@@ -76,21 +76,21 @@ export default function NotebookView() {
     }
 
     const formatDate = (date) => {
-        const splitted = date.split(' ');
-        return `${splitted[2]} ${splitted[1]}`
+        // const splitted = date.split(' ');
+        // return `${splitted[2]} ${splitted[1]}`
     }
 
     const getContentSnippet = (content) => {
         const snippet = [];
-        content = content.split('') || "";
-        let snipLength = 0;
-        if (content.length > 90) snipLength = 90;
-        else snipLength = content.length;
-        for (let i = 0; i < snipLength; i++) {
-            snippet.push(content[i]);
-        }
+        // content = content.split('') || "";
+        // let snipLength = 0;
+        // if (content.length > 90) snipLength = 90;
+        // else snipLength = content.length;
+        // for (let i = 0; i < snipLength; i++) {
+        //     snippet.push(content[i]);
+        // }
 
-        return snippet.join('');
+        // return snippet.join('');
     }
 
     // make an auto select page function here. run inside of useEffect when notebookId changes

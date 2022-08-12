@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllPages, editPage, addToTrash } from '../../store/pages';
 
 import './MainPageView.css';
+import RichTextEditor from './RichTextEditor';
 
 export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
@@ -125,7 +126,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 </div>
                 <div className="rich-text-stuff">
                     {editTitle ?
-                    "  Rich text stuff goes here":
+                    " ":
                     <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>}
                 </div>
             </div>
@@ -154,7 +155,12 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 </div>}
                 {editContent &&
                 <div className='page-contents editing-page'>
-                    <textarea
+                    <RichTextEditor
+                        content={content}
+                        setContent={setContent}
+                        style={{padding:"12px 40px 0px"}}
+                    />
+                    {/* <textarea
                         className="page-contents white"
                         value={content}
                         onChange={(e) => contentAutoGrow(e)}
@@ -165,7 +171,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         placeholder="Start writing here!"
                         translate="no"
                         style={{padding:"12px 40px 0px"}}
-                    / >
+                    / > */}
                 </div>
 
 
