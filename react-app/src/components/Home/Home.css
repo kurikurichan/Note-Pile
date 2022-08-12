@@ -118,11 +118,15 @@
     flex-direction: column;
     justify-content: space-between;
 
+    box-shadow: 0px 1px 2px 5px rgba(0, 0, 0, 0.15);
+
+
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .inner-notes:hover {
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+
 }
 
 #pg-title,
