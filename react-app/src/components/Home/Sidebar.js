@@ -73,28 +73,29 @@ export default function Sidebar() {
             </div>}
         </div>
 
-        <span className="home-button">
-            <NavLink to="/home" className="navlink" activeClassName='sb-active'>
-            <i className="fa-solid fa-house"></i>
-            {` `}Home
-            </NavLink>
-        </span>
+        <NavLink to="/home" className="navlink" activeClassName='sb-active'>
+            <span className="home-button">
+                <i className="fa-solid fa-house"></i>
+                {` `}Home
+            </span>
+        </NavLink>
         <span className="dropdown-button" onClick={handleDropDown}>
             {!noteDropdown && <i className="fa-solid fa-caret-right"></i>}
             {noteDropdown && <i className="fa-solid fa-caret-down"></i>}
             {` `}<i className="fa-solid fa-book"></i>{` `}Notebooks
         </span>
         { noteDropdown && (
-            <ul className="notebook-dropdown">
+            <div className="notebook-dropdown">
                 {Object.values(notebooks).map(book =>
-                    <li key={book.id}>
-                        <NavLink to={`/${book.id}`} className="notebook-li" activeClassName='sb-active'>{book.title}</NavLink>
-                    </li>)}
+                    <NavLink to={`/${book.id}`} key={book.id} className="notebook-li" activeClassName='sb-active'>
+                            {book.title}
+                    </NavLink>
+                    )}
 
 
                 <CreateNBModal user={user} />
 
-            </ul>
+            </div>
         )}
         <span id="trash-link">
             <NavLink to="/trash" className="navlink" activeClassName='sb-active'><i className="fa-solid fa-trash"></i>{` `}Trash</NavLink>

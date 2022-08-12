@@ -17,7 +17,7 @@ def all_pages(userId):
         print("WHOOPSIE")
         return {'errors': ["user: You are unauthorized."]}, 405
 
-    pages = Page.query.filter(Page.trashed == False).all()
+    pages = Page.query.filter(Page.trashed == False, Page.userId == userId).all()
     return {'all_pages': [page.to_dict() for page in pages]}
 
 # GET /api/pages/:userId/:notebookId - read all pages of a notebook (not trash ones)
@@ -42,7 +42,7 @@ def trash(userId):
         print("WHOOPSIE")
         return {'errors': ["user: You are unauthorized."]}, 405
 
-    trashed_pages = Page.query.filter(Page.trashed == True).all()
+    trashed_pages = Page.query.filter(Page.trashed == True, Page.userId == userId).all()
     return {'trash': [page.to_dict() for page in trashed_pages]}
 
 # POST /api/pages/:notebookId - create a new page

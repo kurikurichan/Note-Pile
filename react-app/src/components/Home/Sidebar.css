@@ -36,10 +36,6 @@ body {
     position: absolute;
 }
 
-.sb-active {
-    background-color: var(--sidebar-highlight);
-}
-
 #account {
     font-size: 12px;
     font-weight: bold;
@@ -135,6 +131,10 @@ body {
 
 .navlink {
     color: var(--sidebar-font)
+}
+
+.sb-active {
+    background-color: var(--sidebar-highlight);
 }
 
 .user-image,
