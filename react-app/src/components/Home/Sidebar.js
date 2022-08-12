@@ -6,6 +6,7 @@ import LogoutButton from '../auth/LogoutButton';
 import CreateNBModal from './CreateNBModal';
 
 import default_user from './default_user.jpeg';
+import evernote_logo from './evernote_logo.png';
 
 import './Sidebar.css';
 
@@ -57,7 +58,7 @@ export default function Sidebar() {
     <div className="sidebar">
         <div id="drop-container">
             <div className="user-dropdown" onClick={handleUserMenu}>
-                <img src={default_user} id="user-image"/>
+                <img src={evernote_logo} id="user-image"/>
                 <p id="main-username">{user.username}</p>
                 <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
             </div>
@@ -66,7 +67,7 @@ export default function Sidebar() {
                 <p id="account">ACCOUNT</p>
                 <div className="username-block">
                     <i className="fa-solid fa-check" style={{color: 'skyblue'}}></i>
-                    <img src={default_user} className="user-image"/>
+                    <img src={evernote_logo} className="user-image"/>
                     <div id="user-info">
                         <p className="user-name">{user.username}</p>
                         <p className='user-email'>{user.email}</p>
