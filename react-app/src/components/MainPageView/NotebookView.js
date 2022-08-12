@@ -97,24 +97,21 @@ export default function NotebookView() {
     // make an auto select page function here. run inside of useEffect when notebookId changes
     const findFirstPage = (currentPageId) => {
         // initialize to first page OR current page if there is one
-        const firstPage = Object.values(allPagesOfNotebook)[0];
-        if (firstPage) {
-            setSelectedPageId(firstPage.id);
+        if (allPagesOfNotebook) {
+            const firstPage = Object.values(allPagesOfNotebook)[0];
+            if (firstPage) {
+                setSelectedPageId(firstPage.id);
+            }
         }
     };
-
 
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
+        findFirstPage();
         // also omg close the dumb menu lol
         setShowMenu(false);
-    }, [notebookId])
-
-    // when notebook changes grab the 1st page to auto select it
-    useEffect(() => {
-        findFirstPage();
-    }, [allPagesOfNotebook]);
+    }, [notebookId]);
 
     if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
   return (

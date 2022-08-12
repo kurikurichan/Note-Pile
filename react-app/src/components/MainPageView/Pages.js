@@ -17,7 +17,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     const [editTitle, setEditTitle] = useState(false);
 
     // for resizing text area
-    const [textAreaHeight, setTextAreaHeight] = useState(1);
+    const [textAreaHeight, setTextAreaHeight] = useState(40);
 
     const dispatch = useDispatch();
 
