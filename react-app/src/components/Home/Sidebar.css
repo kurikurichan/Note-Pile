@@ -1,13 +1,25 @@
-.sidebar {
+.sidebar-wrap {
     width: 12vw;
-    background-color: var(--sidebar-body);
-    display: flex;
-    flex-direction: column;
-    color: var(--sidebar-font);
     height: 100vh;
     position: fixed;
     left: 0;
+    background-color: var(--sidebar-body);
+
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    height: 30vh;
+
+    color: var(--sidebar-font);
     font-family: soleil, sans-serif;
+}
+
+.sidebar > * {
+    padding-left: 10px;
 }
 
 body {
@@ -18,7 +30,6 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
-    padding: 10px;
     cursor: pointer;
 }
 
@@ -43,12 +54,7 @@ body {
     font-family: soleil, sans-serif;
 }
 
-.home-button {
-    padding: 10px;
-}
-
 .dropdown-button {
-    padding: 10px;
     cursor: pointer;
 }
 
@@ -101,13 +107,10 @@ body {
 
 
 .notebook-dropdown {
-    list-style: none;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-.notebook-dropdown:hover {
-    list-style: none;
-}
 
 .notebook-li {
     text-decoration: none;
@@ -115,6 +118,8 @@ body {
     font-size: 14px;
     line-height: 1.4em;
     font-weight: bold;
+
+    padding: 3px 0px 3px 30px;
 }
 
 #new-notebook {
@@ -125,12 +130,13 @@ body {
 
 #trash-link {
     font-weight: bold;
-    padding: 10px;
     text-decoration: none;
 }
 
 .navlink {
-    color: var(--sidebar-font)
+    color: var(--sidebar-font);
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 .sb-active {

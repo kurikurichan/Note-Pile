@@ -51,62 +51,63 @@ export default function Sidebar() {
 
     if (!notebooks || !user) return <p className="loading">Loading...</p>
   return (
-    <div className="sidebar">
-        <div id="drop-container">
-            <div className="user-dropdown" onClick={handleUserMenu}>
-                <img src={evernote_logo} id="user-image"/>
-                <p id="main-username">{user.username}</p>
-                <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
-            </div>
-            {showUserMenu &&
-            <div id="logout-div">
-                <p id="account">ACCOUNT</p>
-                <div className="username-block">
-                    <i className="fa-solid fa-check" style={{color: 'skyblue'}}></i>
-                    <img src={evernote_logo} className="user-image"/>
-                    <div id="user-info">
-                        <p className="user-name">{user.username}</p>
-                        <p className='user-email'>{user.email}</p>
-                    </div>
+    <div className="sidebar-wrap">
+        <div className="sidebar">
+            <div id="drop-container">
+                <div className="user-dropdown" onClick={handleUserMenu}>
+                    <img src={evernote_logo} id="user-image"/>
+                    <p id="main-username">{user.username}</p>
+                    <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
                 </div>
-                <LogoutButton />
-            </div>}
-        </div>
+                {showUserMenu &&
+                <div id="logout-div">
+                    <p id="account">ACCOUNT</p>
+                    <div className="username-block">
+                        <i className="fa-solid fa-check" style={{color: 'skyblue'}}></i>
+                        <img src={evernote_logo} className="user-image"/>
+                        <div id="user-info">
+                            <p className="user-name">{user.username}</p>
+                            <p className='user-email'>{user.email}</p>
+                        </div>
+                    </div>
+                    <LogoutButton />
+                </div>}
+            </div>
 
-        <NavLink to="/home" className="navlink" activeClassName='sb-active'>
-            <span className="home-button">
-                <i className="fa-solid fa-house"></i>
-                {` `}Home
+            <NavLink to="/home" className="navlink" activeClassName='sb-active'>
+                <span className="home-button">
+                    <i className="fa-solid fa-house"></i>
+                    {` `}Home
+                </span>
+            </NavLink>
+            <span className="dropdown-button" onClick={handleDropDown}>
+                {!noteDropdown && <i className="fa-solid fa-caret-right"></i>}
+                {noteDropdown && <i className="fa-solid fa-caret-down"></i>}
+                {` `}<i className="fa-solid fa-book"></i>{` `}Notebooks
             </span>
-        </NavLink>
-        <span className="dropdown-button" onClick={handleDropDown}>
-            {!noteDropdown && <i className="fa-solid fa-caret-right"></i>}
-            {noteDropdown && <i className="fa-solid fa-caret-down"></i>}
-            {` `}<i className="fa-solid fa-book"></i>{` `}Notebooks
-        </span>
-        { noteDropdown && (
-            <div className="notebook-dropdown">
-                {Object.values(notebooks).map(book =>
-                    <NavLink to={`/${book.id}`} key={book.id} className="notebook-li" activeClassName='sb-active'>
-                            {book.title}
-                    </NavLink>
-                    )}
+            <>
+                { noteDropdown && (
+                <div className="notebook-dropdown">
+                        {Object.values(notebooks).map(book =>
+                            <NavLink to={`/${book.id}`} key={book.id} className="notebook-li" activeClassName='sb-active'>
+                                {book.title}
+                            </NavLink>)}
 
-
-                <CreateNBModal user={user} />
+                 <CreateNBModal user={user} />
+                </div>)}
+            </>
+            <NavLink to="/trash" className="navlink" activeClassName='sb-active'>
+                <span id="trash-link">
+                    <i className="fa-solid fa-trash"></i>{` `}Trash
+                </span>
+            </NavLink>
+            <div id="sidebar-padding">
 
             </div>
-        )}
-        <span id="trash-link">
-            <NavLink to="/trash" className="navlink" activeClassName='sb-active'><i className="fa-solid fa-trash"></i>{` `}Trash</NavLink>
-        </span>
-        <div id="sidebar-padding">
+            <div className="sidebar-footer">
 
+            </div>
         </div>
-        <div className="sidebar-footer">
-
-        </div>
-
     </div>
   )
 }

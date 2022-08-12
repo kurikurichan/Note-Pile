@@ -39,10 +39,10 @@ export default function CreateNBModal({ user }) {
 
   return (
     <>
-        <li onClick={() => setShowModal(true)} id="new-notebook">
+        <div onClick={() => setShowModal(true)} className="notebook-li" id="new-notebook">
             <i className="fa-solid fa-book-medical"></i>
             {` `}New Notebook
-        </li>
+        </div>
 
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
