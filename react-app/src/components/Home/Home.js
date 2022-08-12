@@ -61,7 +61,7 @@ export default function Home() {
   // grab 4 most recent ones
   const getPagesToDisplay = () => {
     if (allPages) {
-      const allPagesArr = Object.values(allPages).sort((p1, p2) => {
+      const allPagesArr = Object.values(allPages).filter(pg => pg.content).sort((p1, p2) => {
         return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
       });
       return allPagesArr.slice(0, 4);

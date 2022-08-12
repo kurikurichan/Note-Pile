@@ -95,7 +95,7 @@ export default function NotebookView() {
     }
 
     // make an auto select page function here. run inside of useEffect when notebookId changes
-    const findFirstPage = (currentPageId) => {
+    const findFirstPage = () => {
         // initialize to first page OR current page if there is one
         if (allPagesOfNotebook) {
             const firstPage = Object.values(allPagesOfNotebook)[0];

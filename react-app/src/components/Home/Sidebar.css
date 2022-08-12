@@ -50,8 +50,6 @@ body {
     margin-top: 3vh;
     z-index: 955;
 
-    /* overflow: visible; */
-
     transition-duration: .1s;
     transition-timing-function: ease-in-out;
 
