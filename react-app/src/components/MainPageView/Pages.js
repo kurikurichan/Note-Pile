@@ -151,7 +151,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                     {currentPage.content ? currentPage.content : "Start writing here!"}
                 </div>}
                 {editContent &&
-                <div className='editing-page'>
                     <textarea
                         className="page-contents white"
                         value={content}
@@ -164,7 +163,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         translate="no"
                         style={{padding:"12px 40px 0px"}}
                     / >
-                </div>
 
 
                 }

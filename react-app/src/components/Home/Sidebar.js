@@ -36,10 +36,6 @@ export default function Sidebar() {
         }
     }
 
-    const handleShowEdit = () => {
-        setShowEdit(!showEdit);
-    }
-
     const handleUserMenu = () => {
         setShowUserMenu(!showUserMenu);
     }
