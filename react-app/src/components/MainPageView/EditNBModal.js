@@ -24,7 +24,7 @@ export default function EditNBModal({user, notebookId }) {
 
         const data = {
           userId: user.id,
-          nbTitle
+          title: nbTitle
         };
 
         const editedNotebook = await(dispatch(editNotebook(data, notebookId)))

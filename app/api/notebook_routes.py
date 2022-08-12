@@ -53,6 +53,8 @@ def update_notebook(notebookId):
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    print("--------received put data: ", request.json)
+
     notebook = Notebook.query.get(notebookId)
 
     if notebook.userId != current_user.id:
