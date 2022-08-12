@@ -157,9 +157,9 @@ export default function Trash() {
 
                     <div
                         className="page-contents white"
-                        value={currentPage ? currentPage.content : content}
                         style={{padding:"12px 40px 0px"}}
                     >
+                        {currentPage ? currentPage.content : "Nothing to display"}
                     </div>
 
                 </div>

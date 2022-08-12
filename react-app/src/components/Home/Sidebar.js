@@ -91,6 +91,7 @@ export default function Sidebar() {
                             <NavLink to={`/${book.id}`} key={book.id} className="notebook-li" activeClassName='sb-active'>
                                 {book.title}
                             </NavLink>)}
+                {/* {!Object.values(notebooks).length && <p className="notebook-li">Shelf is empty</p>} */}
 
                  <CreateNBModal user={user} />
                 </div>)}

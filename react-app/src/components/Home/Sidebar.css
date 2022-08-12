@@ -114,6 +114,14 @@ body {
 .notebook-dropdown {
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.notebook-dropdown::-webkit-scrollbar {
+    display: none; /* hide the scrollbar in Chrome, Safari */
 }
 
 
