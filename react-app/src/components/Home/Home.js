@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getEverySinglePage } from '../../store/pages.js';
 
@@ -9,7 +9,9 @@ import coffee from './coffee.jpeg';
 export default function Home() {
 
   const user = useSelector(state => state.session.user);
-  const allPages = useSelector(state => state.all_pages);
+  const allPages = useSelector(state => state.pages);
+
+  const [displayPages, setDisplayPages] = useState("");
 
   const dispatch = useDispatch();
 
@@ -17,8 +19,6 @@ export default function Home() {
   useEffect(() => {
     dispatch(getEverySinglePage(user.id));
   }, [dispatch])
-
-  if (allPages) console.log("ALL PAGES!", allPages);
 
     //  get and format long date
     const getToday = () => {
@@ -43,7 +43,7 @@ export default function Home() {
     const snippet = [];
     content = content.split('') || "";
     let snipLength = 0;
-    if (content.length > 20) snipLength = 20;
+    if (content.length > 40) snipLength = 40;
     else snipLength = content.length;
     for (let i = 0; i < snipLength; i++) {
         snippet.push(content[i]);
@@ -58,24 +58,21 @@ export default function Home() {
   }
 
   // get some pages to display up in herrr
+  // grab 4 most recent ones
   const getPagesToDisplay = () => {
     if (allPages) {
-      const allPagesArr = Object.values(allPages);
-      let numToShow = 4;
-      let result = [];
-      for (let i = 0; i < numToShow; i++) {
-        result.push(allPagesArr[i]);
-      }
-      return result;
+      const allPagesArr = Object.values(allPages).sort((p1, p2) => {
+        return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
+      });
+      return allPagesArr.slice(0, 4);
     }
   }
 
-  // variable to hold our few pages
-  let displayPages;
 
   // useEffect to grab those page snippets when pages load
   useEffect(() => {
-    displayPages = getPagesToDisplay();
+    setDisplayPages(getPagesToDisplay());
+    console.log("display pages: ", displayPages);
   }, [allPages]);
 
   return (
@@ -97,17 +94,18 @@ export default function Home() {
 
               <div className="notes-preview">
                 <div className="notes-preview-top">
-                  <p>RECENT NOTES<i className="fa-solid fa-angle-right"></i></p>
+                  <p>RECENT CONTENT<i className="fa-solid fa-angle-right"></i></p>
                 </div>
                 <div className="notes-preview-bottom">
-                  {allPages &&
+                  {displayPages &&
                     displayPages.map(pg =>
                       <div key={pg.id} className="inner-notes">
-                        <p>{pg.title}</p>
-                        <p>{getShortSnippet(pg.content)}</p>
-                        <p>{formatDate(pg.updated_at)}</p>
-                      </div>)
-                  }
+                        <div>
+                          <p id="pg-title">{pg.title}</p>
+                          <p id="pg-snippet">{getShortSnippet(pg.content)}</p>
+                        </div>
+                          <p id="pg-date">{formatDate(pg.updated_at)}</p>
+                      </div>)}
                 </div>
               </div>
 
