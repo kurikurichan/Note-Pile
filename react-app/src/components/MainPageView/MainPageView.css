@@ -19,6 +19,7 @@
     overflow: auto;
     border-right: 1px black solid;
     flex-shrink: 0;
+    z-index: 900;
 }
 
 .right-div {

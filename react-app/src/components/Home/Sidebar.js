@@ -53,12 +53,10 @@ export default function Sidebar() {
   return (
     <div className="sidebar-wrap">
         <div className="sidebar">
-            <div id="drop-container">
-                <div className="user-dropdown" onClick={handleUserMenu}>
-                    <img src={evernote_logo} id="user-image"/>
-                    <p id="main-username">{user.username}</p>
-                    <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
-                </div>
+            <div className="user-dropdown" onClick={handleUserMenu}>
+                <img src={evernote_logo} id="user-image"/>
+                <p id="main-username">{user.username}</p>
+                <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
                 {showUserMenu &&
                 <div id="logout-div">
                     <p id="account">ACCOUNT</p>
@@ -73,6 +71,7 @@ export default function Sidebar() {
                     <LogoutButton />
                 </div>}
             </div>
+
 
             <NavLink to="/home" className="navlink" activeClassName='sb-active'>
                 <span className="home-button">
