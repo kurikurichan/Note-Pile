@@ -135,7 +135,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                     </div>
                     <div className="right-icons">
                         <button
-                            className={`green-button save ${save === "Saving" && 'loading'}`}
+                            className={`green-button save ${save === "Saving" ? 'loading' : save === "Saved" ? 'disabled' : ''}`}
                             onClick={handleBlur}
                         >
                             {save}

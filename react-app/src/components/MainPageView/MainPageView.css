@@ -255,3 +255,8 @@
 .in-save-icon {
     margin-left: 7px;
 }
+
+.disabled {
+    pointer-events: none;
+    background-color: rgb(96, 212, 127);
+}

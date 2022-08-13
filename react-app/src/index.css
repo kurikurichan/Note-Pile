@@ -106,9 +106,9 @@ a {
 .loader {
     border: 16px solid var(--lighter-alabaster);
     border-top: 16px solid rgb(0, 168, 45);
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
     animation: spin 2s linear infinite;
   }
 
