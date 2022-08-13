@@ -162,7 +162,6 @@
 
 .right-icons {
     display: flex;
-    justify-content: space-around;
     margin-right: 20%;
     width: 10%;
 
@@ -181,6 +180,10 @@
 
 .trash-button {
     font-size: 18px;
+}
+
+.save {
+    margin-right: 10px;
 }
 
 .page-title-date {
@@ -259,4 +262,26 @@
 .disabled {
     pointer-events: none;
     background-color: rgb(96, 212, 127);
+}
+
+.len-warning {
+    color: tomato;
+
+    animation: len-warning 0.5s 1;
+    -webkit-animation: len-warning 0.5s 1;
+    animation-fill-mode: forwards;
+
+    animation-delay: 2s;
+    -webkit-animation-delay: 1s; /* for Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes len-warning {
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+@-webkit-keyframes len-warning {
+    from {opacity :1;}
+    to {opacity :0;}
 }

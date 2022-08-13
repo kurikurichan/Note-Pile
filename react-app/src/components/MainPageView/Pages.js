@@ -19,6 +19,9 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     // set state of the save button
     const [save, setSave] = useState("Save");
 
+    // set state of title length warning
+    const [tWarn, setTWarn] = useState(false);
+
     // for resizing text area
     const [textAreaHeight, setTextAreaHeight] = useState(40);
 
@@ -31,6 +34,14 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         currentPage = Object.values(allPagesOfNotebook).filter(page => +page.id === +pageId)[0];
     }
 
+    useEffect(() => {
+        // after a few seconds, get rid of of the title warning area
+        if (tWarn) {
+            setTimeout(() => {
+                setTWarn(false);
+            }, 1800);
+        }
+    }, [tWarn]);
 
     useEffect(() => {
         dispatch(getAllPages(userId, notebookId));
@@ -163,7 +174,11 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         onChange={(e) => setTitle(e.target.value)}
                         onBlur={handleBlur}
                         maxLength={60}
+                        onKeyDown={(e) => title.length >= 60 && setTWarn(true)}
+                        onKeyUp={(e) => title.length < 60 && setTWarn(false)}
                     />
+                    {tWarn && <p className="len-warning">Maximum length reached</p>}
+
                 </div>}
                 {!editContent &&
                 <div
