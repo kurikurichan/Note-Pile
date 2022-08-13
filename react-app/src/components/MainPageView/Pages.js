@@ -16,6 +16,9 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     const [editContent, setEditContent] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
 
+    // set state of the save button
+    const [save, setSave] = useState("Save");
+
     // for resizing text area
     const [textAreaHeight, setTextAreaHeight] = useState(40);
 
@@ -39,12 +42,16 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             setTitle(currentPage.title);
             setContent(currentPage.content);
         }
+        // reset the save button
+        setSave("Save");
     }, [pageId])
 
 
     const handleBlur = async (e) => {
 
         e.preventDefault();
+        // phase 2 save button
+        setSave("Saving");
 
         const data = {
           title,
@@ -55,12 +62,19 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
         if (Array.isArray(edited)) {
             setErrors(edited);
+            setSave("Not Saved");
         } else {
             getPages();
+            setSave("Saved")
         }
 
         setEditTitle(false);
         setEditContent(false);
+
+        /// 3 phases of save button
+        // 1: "Save" plain
+        // 2.) "Saving" spin wheel
+        // 3.) "Saved" checkmark
 
 
     };
@@ -119,9 +133,18 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         <i className="fa-solid fa-book nb-title-book"></i>{` `}
                         <p className="nb-title"> {currentNb.title} </p>
                     </div>
-                    <button className="trash page-icon" onClick={sendPageToTrash}>
-                        <i className="fa-solid fa-trash-can"></i>
-                    </button>
+                    <div className="right-icons">
+                        <button
+                            className={`green-button save ${save === "Saving" && 'loading'}`}
+                            onClick={handleBlur}
+                        >
+                            {save}
+                            {save === "Saved" && <i className="fa-solid fa-check in-save-icon" style={{color: 'rgb(214, 255, 225)'}}></i>}
+                        </button>
+                        <button className="trash-button delete-but" onClick={sendPageToTrash}>
+                            <i className="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
                 </div>
                 <div className="rich-text-stuff">
                     <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>
