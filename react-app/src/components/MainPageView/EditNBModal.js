@@ -68,6 +68,7 @@ export default function EditNBModal({user, notebookId, openMenu, pageId, allNbs,
                             placeholder="Untitled"
                             value={nbTitle}
                             onChange={(e) => setNbTitle(e.target.value)}
+                            maxLength={60}
                         />
                     </div>
                     <div className="errs">

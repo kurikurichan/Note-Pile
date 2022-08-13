@@ -7,7 +7,6 @@
     margin: 0px;
     position: fixed;
     left: 12vw;
-    z-index: 950;
   }
 
 .left-div {
@@ -20,7 +19,6 @@
     overflow: visible;
     border-right: 1px black solid;
     flex-shrink: 0;
-    z-index: 951;
 }
 
 .right-div {

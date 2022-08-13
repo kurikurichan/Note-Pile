@@ -59,6 +59,7 @@ export default function CreateNBModal({ user }) {
                             placeholder="Notebook name"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            maxLength={60}
                         />
                     </div>
                     {errors &&
