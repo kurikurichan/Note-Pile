@@ -139,6 +139,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         placeholder="Title"
                         onChange={(e) => setTitle(e.target.value)}
                         onBlur={handleBlur}
+                        maxLength={60}
                     />
                 </div>}
                 {!editContent &&
@@ -161,6 +162,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         enterKeyHint="enter"
                         placeholder="Start writing here!"
                         translate="no"
+                        maxLength={2500}
                         style={{padding:"12px 40px 0px"}}
                     / >
 

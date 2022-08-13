@@ -11,7 +11,7 @@ class Notebook(db.Model):
 
     id = Column(Integer, primary_key=True)
     userId = Column(Integer, db.ForeignKey("users.id"), nullable=False)
-    title = Column(String(30), default="Untitled", nullable=False)
+    title = Column(String(60), default="Untitled", nullable=False)
 
     user = relationship("User", back_populates="notebooks")
     pages = relationship("Page", back_populates="notebook", cascade="all, delete-orphan")
@@ -29,13 +29,11 @@ class Page(db.Model):
     id = Column(Integer, primary_key=True)
     userId = Column(Integer, ForeignKey("users.id"), nullable=False)
     notebookId = Column(Integer, ForeignKey("notebooks.id"), nullable=False)
-    title = Column(String(30), nullable=True)
+    title = Column(String(60), nullable=True)
     content = Column(Text, default="", nullable=True)
     trashed = Column(Boolean, default=False, nullable=False)
     created_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now())
     updated_at = Column(DateTime(timezone=True), nullable=True, server_default= func.now(), onupdate=func.now())
-    # created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    # updated_at = db.Column(db.DateTime, nullable=True, default=datetime.now(), onupdate=datetime.now)
 
     user = relationship("User", back_populates="pages")
     notebook = relationship("Notebook", back_populates="pages")

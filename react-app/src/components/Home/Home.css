@@ -13,7 +13,7 @@
 .above-home-text {
     display: flex;
     justify-content: space-between;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 .above-home-text > h3 {
