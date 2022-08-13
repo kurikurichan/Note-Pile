@@ -19,8 +19,7 @@ export default function Sidebar() {
     const [noteDropdown, setNoteDropdown] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
-    // for notebook page url
-    const [firstPageNum, setFirstPageNum] = useState("");
+
     // errors for notebook submit
     const [errors, setErrors] = useState([]);
 
@@ -38,6 +37,15 @@ export default function Sidebar() {
 
     const handleUserMenu = () => {
         setShowUserMenu(!showUserMenu);
+    }
+
+    const formatTitle = (name) => {
+
+        // cap the title at 15 chars to format for sidebar
+        if (name.length > 15) {
+            return name.slice(0,15) + '...';
+        }
+        return name;
     }
 
     // test CRUDS!
@@ -89,7 +97,7 @@ export default function Sidebar() {
                 <div className="notebook-dropdown">
                         {Object.values(notebooks).map(book =>
                             <NavLink to={`/${book.id}`} key={book.id} className="notebook-li" activeClassName='sb-active'>
-                                {book.title}
+                                {formatTitle(book.title)}
                             </NavLink>)}
                 {/* {!Object.values(notebooks).length && <p className="notebook-li">Shelf is empty</p>} */}
 
