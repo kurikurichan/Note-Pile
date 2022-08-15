@@ -30,6 +30,19 @@ Note Pile is a full-stack clone of the popular website Evernote, which is used f
 
 ![Screen Shot 2022-08-14 at 11 55 43 PM](https://user-images.githubusercontent.com/8907997/184591990-872ebb6e-6fee-428a-a6fe-777864f4305a.png)
 
+# Code snippet
+
+Something I did that I found cool was create a "save" button that changes depending on whether the user is in the page, saving the page, or the page has been saved.
+```javascript
+ <button
+     className={`green-button save ${save === "Saving" ? 'loading' : save === "Saved" ? 'disabled' : ''}`}
+     onClick={handleBlur}
+ >
+     {save}
+     {save === "Saved" && <i className="fa-solid fa-check in-save-icon" style={{color: 'rgb(214, 255, 225)'}}></i>}
+ </button>
+```
+I did this by using a ternary if/if else/else operator on the classname based on the local state. I also had a "Save" useState effect, and then change that state in my saving function at different points, that is called whenever the page's textarea becomes out of focus, or the save button is otherwise pressed.
 
 How to run Note Pile locally:
 
