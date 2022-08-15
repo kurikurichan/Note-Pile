@@ -26,6 +26,10 @@ Note Pile is a full-stack clone of the popular website Evernote, which is used f
  
 ![Screen Shot 2022-08-14 at 11 48 32 PM](https://user-images.githubusercontent.com/8907997/184591937-336b0238-4afc-4ca5-a146-df590d20e875.png)
 
+# Home Page
+
+![Screen Shot 2022-08-15 at 12 35 12 AM](https://user-images.githubusercontent.com/8907997/184594769-8814c602-bb7d-4e24-8160-332f7fd0642b.png)
+
 # Viewing a notebook
 
 ![Screen Shot 2022-08-14 at 11 55 43 PM](https://user-images.githubusercontent.com/8907997/184591990-872ebb6e-6fee-428a-a6fe-777864f4305a.png)
