@@ -52,9 +52,9 @@ const SignUpForm = () => {
     <div className="form-wrapper">
       <form className="form login" onSubmit={onSignUp}>
         <div className="form-logo">
-                      <img src={evernote_logo} id="logo" alt="Evernote logo" />
-                      <span id="logo-text">Note Pile</span>
-                      <p>Remember everything important.</p>
+          <img src={evernote_logo} id="logo" alt="Evernote logo" />
+          <span id="logo-text">Note Pile</span>
+          <p>Remember everything important.</p>
         </div>
         <div className="signup-dongles">
           {/* <label>User Name</label> */}

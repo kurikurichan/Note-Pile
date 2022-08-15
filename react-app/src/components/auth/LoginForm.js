@@ -34,6 +34,10 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const handleDemo = async () => {
+    await dispatch(login("demo@aa.io", "password"));
+  };
+
   if (user) {
     return <Redirect to='/home' />;
   }
@@ -47,7 +51,8 @@ const LoginForm = () => {
                     <p>Remember everything important.</p>
       </div>
         <div className="form-dongles">
-            {/* <label htmlFor='email'>Email</label> */}
+          <div>
+            <label htmlFor='email' className="label">Email</label>
             <input
               name='email'
               type='text'
@@ -55,7 +60,9 @@ const LoginForm = () => {
               value={email}
               onChange={updateEmail}
             />
-            {/* <label htmlFor='password'>Password</label> */}
+          </div>
+          <div>
+            <label htmlFor='password' className="label">Password</label>
             <input
               name='password'
               type='password'
@@ -63,6 +70,7 @@ const LoginForm = () => {
               value={password}
               onChange={updatePassword}
             />
+          </div>
             <button type='submit' className="green-button login-but">Login</button>
         </div>
         <div className="form-errors">
@@ -73,6 +81,8 @@ const LoginForm = () => {
         <div className="dont-have-account">
           <p>Don't have an account?</p>
           <Link to="/sign-up">Create account</Link>
+          <p>or</p>
+          <button onClick={handleDemo} className="demo-but">Demo User</button>
         </div>
       </form>
       <img src={bg} className="bg" alt="bg"/>
