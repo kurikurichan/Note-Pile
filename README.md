@@ -33,17 +33,16 @@ Note Pile is a full-stack clone of the popular website Evernote, which is used f
 
 How to run Note Pile locally:
 
-Clone this repository: https://github.com/kurikurichan/Note-Pile
-Create a database user
-Create a database with your user as its owner
-Run ```pipenv install``` in the project root directory
-Add a .env file to the root directory following the .env example file format
-
-cd into the react-app directory and run npm install
-create a .env file in this folder and add ```REACT_APP_BASE_URL=http://localhost:5000``` to it
-run ```pipenv shell``` in the root directory 
-run database with ```flask db migrate```,  ```flask db upgrade```,  ```flask seed all```
-cd into the react-app folder and run ```npm start```
+* Clone this repository: https://github.com/kurikurichan/Note-Pile
+* Create a database user
+* Create a database with your user as its owner
+* Run ```pipenv install``` in the project root directory
+* Add a .env file to the root directory following the .env example file format
+* cd into the react-app directory and run npm install
+* create a .env file in this folder and add ```REACT_APP_BASE_URL=http://localhost:5000``` to it
+* run ```pipenv shell``` in the root directory 
+* run database with ```flask db migrate```,  ```flask db upgrade```,  ```flask seed all```
+* cd into the react-app folder and run ```npm start```
 
 ## Future Features
 * Rich text editor
