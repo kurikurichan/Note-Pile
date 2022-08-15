@@ -164,16 +164,26 @@
 
 .signup-dongles {
 
-    height: 50%;
+    height: 62%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
 
+    margin-top: 1%;
+    margin-bottom: 2%;
+
 }
 
-.signup-dongles > input {
+.signup-dongles > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.signup-dongles > div > input {
 
     color: #333333;
     font-size: 1.08em;

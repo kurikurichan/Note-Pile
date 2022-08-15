@@ -57,39 +57,47 @@ const SignUpForm = () => {
           <p>Remember everything important.</p>
         </div>
         <div className="signup-dongles">
-          {/* <label>User Name</label> */}
-          <input
-            type='text'
-            name='username'
-            onChange={updateUsername}
-            value={username}
-            placeholder="User Name"
-          ></input>
-          {/* <label>Email</label> */}
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-            placeholder="Email"
-          ></input>
-          {/* <label>Password</label> */}
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-            placeholder="Password"
-          ></input>
-          {/* <label>Repeat Password</label> */}
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-            placeholder="Repeat Password"
-          ></input>
+          <div>
+            <label className="label">User Name</label>
+            <input
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              value={username}
+              placeholder="User Name"
+            ></input>
+          </div>
+          <div>
+            <label className="label">Email</label>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+              placeholder="Email"
+            ></input>
+          </div>
+          <div>
+            <label className="label">Password</label>
+            <input
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              value={password}
+              placeholder="Password"
+            ></input>
+          </div>
+          <div>
+            <label className="label">Repeat Password</label>
+            <input
+              type='password'
+              name='repeat_password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+              placeholder="Repeat Password"
+            ></input>
+          </div>
           <button type='submit' className="green-button signup-but">Sign Up</button>
         </div>
         <div className="form-errors">
