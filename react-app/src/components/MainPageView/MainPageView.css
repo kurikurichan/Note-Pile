@@ -372,6 +372,7 @@
     height: 2.5rem;   /* Footer height */
     bottom: 0;
     width: 100%;
+    background-color: var(--background-primary);
 }
 
 .rich-text-stuff {
