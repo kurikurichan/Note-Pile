@@ -185,22 +185,22 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         onKeyDown={() => title?.length >= 60 && setTWarn(true)}
                         onKeyUp={() => title?.length < 60 && setTWarn(false)}
                     />
-                    {tWarn && <p className="len-warning">Maximum length reached</p>}
+                    {tWarn && <p className="len-warning">Maximum title length reached</p>}
 
                 </div>}
-                {!editContent &&
-                <div
-                    className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
-                    value={currentPage.content}
-                    onClick={() => setEditContent(true)}
-                    style={{padding:"12px 40px 0px"}}
-                >
-                    {currentPage.content ? currentPage.content : "Start writing here!"}
-                </div>}
+                    {!editContent &&
+                    <div
+                        className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
+                        value={currentPage.content}
+                        onClick={() => setEditContent(true)}
+                        style={{padding:"12px 40px 0px"}}
+                    >
+                        {currentPage.content ? currentPage.content : "Start writing here!"}
+                    </div>}
                 {editContent &&
                     <>
                         <textarea
-                            className="page-contents e white"
+                            className="page-edit-contents white"
                             value={content}
                             onChange={(e) => {
                                 setContent(e.target.value);
@@ -223,7 +223,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 }
             </div>
             <div className="page-footer">
-                {cWarn && <p className="len-warning c">Maximum length reached</p>}
+                {cWarn && <p className="len-warning c">Maximum body length reached</p>}
             </div>
         </>}
     </div>

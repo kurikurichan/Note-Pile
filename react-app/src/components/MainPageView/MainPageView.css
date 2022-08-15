@@ -258,15 +258,38 @@
     width: 80%;
     height: auto;
     min-height: 100%;
+
+    margin-bottom: 2.5rem;
 }
 
+.page-edit-contents {
+    background-color: #333;
+    border: 0;
+    resize: none;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+
+    font-family: soleil, sans-serif;
+    font-size: 16px;
+
+    width: 80%;
+    height: auto;
+    min-height: 100%;
+
+    margin-bottom: 2.5rem;
+}
+
+
 /* Hide scrollbar for Chrome, Safari and Opera */
-.page-contents::-webkit-scrollbar {
+.page-view::-webkit-scrollbar {
     display: none;
 }
 
 /* Hide scrollbar for Edge and Firefox */
-.page-contents {
+.page-view {
     -ms-overflow-style: none;  /* Edge  */
     scrollbar-width: none;  /* Firefox */
 }
@@ -282,6 +305,8 @@
 
 .len-warning {
     color: tomato;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 
     animation: len-warning 0.5s 1;
     -webkit-animation: len-warning 0.5s 1;
@@ -295,6 +320,8 @@
 .c {
     display: absolute;
     top: 0;
+    text-align: right;
+    margin-right: 20%;
 }
 
 @keyframes len-warning {
@@ -308,6 +335,7 @@
 }
 
 .page-view {
+    overflow-y: scroll;
     padding-bottom: 2.5rem;    /* Footer height */
 }
 
@@ -315,10 +343,5 @@
     position: absolute;
     height: 2.5rem;   /* Footer height */
     bottom: 0;
-    background-color: pink;
+    width: 100%;
 }
-
-/* page in content edit mode */
-/* .e {
-
-} */
