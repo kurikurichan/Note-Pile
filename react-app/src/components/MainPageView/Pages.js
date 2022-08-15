@@ -69,6 +69,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         if (currentPage) {
             setTitle(currentPage.title);
             setContent(currentPage.content);
+            console.log('set the page')
         }
         // reset the save button
         setSave("Save");

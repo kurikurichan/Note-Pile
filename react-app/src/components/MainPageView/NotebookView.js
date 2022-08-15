@@ -20,7 +20,7 @@ export default function NotebookView() {
         if (location.state) {
             setSelectedPageId(location.state.pageId);
         }
-    })
+    }, [location]);
 
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
@@ -108,6 +108,7 @@ export default function NotebookView() {
             const firstPage = Object.values(allPagesOfNotebook)[0];
             if (firstPage) {
                 setSelectedPageId(firstPage.id);
+                console.log('first page set');
             }
         }
     };
@@ -115,8 +116,8 @@ export default function NotebookView() {
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
-        findFirstPage();
         // also omg close the dumb menu lol
+        // findFirstPage();
         setShowMenu(false);
     }, [notebookId]);
 
