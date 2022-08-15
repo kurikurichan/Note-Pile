@@ -96,7 +96,6 @@ export const getEverySinglePage = (userId) => async (dispatch) => {
 
     const data = await res.json();
     dispatch(getEveryPage(data));
-    console.log("data from thunk", data);
     return data;
 
   }
