@@ -121,6 +121,9 @@ export default function NotebookView() {
         setShowMenu(false);
     }, [notebookId]);
 
+    const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
+
+
     if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
   return (
     <div className="out-container">
@@ -138,7 +141,7 @@ export default function NotebookView() {
                         {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
-                            <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} pageId={selectedPageId} allNbs={allNotebooks} setPageId={setSelectedPageId}/>
+                            <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} allNbs={allNotebooks} />
                             <DeleteNBModal notebookId={notebookId} openMenu={openMenu} />
                         </div>}
 
@@ -156,6 +159,15 @@ export default function NotebookView() {
                     </div>
                     <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}
+
+
+            {noNotes &&
+
+                <div className="no-pages">
+                    <i id="big-note" className="fa-solid fa-book-open"></i>
+                    <h3 id="page-empty">It all begins with pages</h3>
+                    <p>Click the '...' button above and select "Add a Page" to create a page.</p>
+                </div>}
         </div>
         <Pages
             notebookId={notebookId}

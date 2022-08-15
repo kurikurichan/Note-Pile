@@ -6,7 +6,7 @@ import { getAllNotebooks, editNotebook } from '../../store/notebooks'
 import './NBModalStyle.css';
 
 
-export default function EditNBModal({user, notebookId, openMenu, pageId, allNbs, setPageId }) {
+export default function EditNBModal({user, notebookId, openMenu, allNbs }) {
 
     const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState([]);
