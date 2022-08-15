@@ -1,4 +1,4 @@
-# Note Pile
+# Note Pile 🍃
 
 Check out a live version of Note Pile here: [Note Pile Live](https://note-pile.herokuapp.com/)
 
