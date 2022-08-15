@@ -78,8 +78,8 @@ export default function EditNBModal({user, notebookId, openMenu, pageId, allNbs,
                     </div>
                     <div className="modal-buttons">
                         <button className="cancel-but" onClick={() => {
-                        openMenu()
-                        setShowModal(false)}}>Cancel</button>
+                            openMenu()
+                            setShowModal(false)}}>Cancel</button>
                         <button type="Submit" className="green-button" onClick={handleNotebookEdit}>Continue</button>
                     </div>
 

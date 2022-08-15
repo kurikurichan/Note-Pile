@@ -21,6 +21,8 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
     // set state of title length warning
     const [tWarn, setTWarn] = useState(false);
+    // set state of page body length warning
+    const [cWarn, setCWarn] = useState(false);
 
     // for resizing text area
     const [textAreaHeight, setTextAreaHeight] = useState(40);
@@ -41,7 +43,14 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 setTWarn(false);
             }, 1800);
         }
-    }, [tWarn]);
+        // do same for body content area
+        if (cWarn) {
+            setTimeout(() => {
+                setTWarn(false);
+            }, 1800);
+        }
+
+    }, [tWarn, cWarn]);
 
     useEffect(() => {
         dispatch(getAllPages(userId, notebookId));
@@ -123,7 +132,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
         // auto grow text area as user types
         // also handle saving the info in local state here
-        setContent(e.target.value);
 
         if (e.target.scrollHeight > e.target.clientHeight) {
 
@@ -174,8 +182,8 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         onChange={(e) => setTitle(e.target.value)}
                         onBlur={handleBlur}
                         maxLength={60}
-                        onKeyDown={(e) => title.length >= 60 && setTWarn(true)}
-                        onKeyUp={(e) => title.length < 60 && setTWarn(false)}
+                        onKeyDown={() => title?.length >= 60 && setTWarn(true)}
+                        onKeyUp={() => title?.length < 60 && setTWarn(false)}
                     />
                     {tWarn && <p className="len-warning">Maximum length reached</p>}
 
@@ -190,25 +198,32 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                     {currentPage.content ? currentPage.content : "Start writing here!"}
                 </div>}
                 {editContent &&
-                    <textarea
-                        className="page-contents white"
-                        value={content}
-                        onChange={(e) => contentAutoGrow(e)}
-                        onFocus={(e) => contentAutoGrow(e)}
-                        onBlur={handleBlur}
-                        rows={textAreaHeight}
-                        enterKeyHint="enter"
-                        placeholder="Start writing here!"
-                        translate="no"
-                        maxLength={2500}
-                        style={{padding:"12px 40px 0px"}}
-                    / >
+                    <>
+                        <textarea
+                            className="page-contents e white"
+                            value={content}
+                            onChange={(e) => {
+                                setContent(e.target.value);
+                                contentAutoGrow(e);
+                            }}
+                            onFocus={(e) => contentAutoGrow(e)}
+                            onBlur={handleBlur}
+                            rows={textAreaHeight}
+                            enterKeyHint="enter"
+                            placeholder="Start writing here!"
+                            translate="no"
+                            maxLength={10000}
+                            style={{padding:"12px 40px 0px"}}
+                            onKeyDown={() => content?.length >= 10000 && setCWarn(true)}
+                            onKeyUp={() => content?.length < 10000 && setCWarn(false)}
+                        / >
+                    </>
 
 
                 }
             </div>
             <div className="page-footer">
-
+                {cWarn && <p className="len-warning c">Maximum length reached</p>}
             </div>
         </>}
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getEverySinglePage } from '../../store/pages.js';
+import { Link } from 'react-router-dom';
 
 import './Home.css';
 
@@ -40,16 +41,14 @@ export default function Home() {
 
   // get a brief snippet for teh note
   const getShortSnippet = (content) => {
-    const snippet = [];
-    content = content.split('') || "";
-    let snipLength = 0;
-    if (content.length > 40) snipLength = 40;
-    else snipLength = content.length;
-    for (let i = 0; i < snipLength; i++) {
-        snippet.push(content[i]);
-    }
-
-    return snippet.join('');
+    if (content) {
+      // we are getting 90 characters snip length
+      if (content.length > 40) {
+          return content.slice(0, 40).trim() + '...';
+      } else {
+          return content;
+      }
+  }
   }
 
   const formatDate = (date) => {
@@ -68,11 +67,17 @@ export default function Home() {
     }
   }
 
+  const returnProperLocation = (nbId, pId) => {
+    return {
+      pathname: `/${nbId}`,
+      state: { pageId: pId }
+    }
+  }
+
 
   // useEffect to grab those page snippets when pages load
   useEffect(() => {
     setDisplayPages(getPagesToDisplay());
-    console.log("display pages: ", displayPages);
   }, [allPages]);
 
   return (
@@ -99,13 +104,14 @@ export default function Home() {
                 <div className="notes-preview-bottom">
                   {displayPages.length ?
                     displayPages.map(pg =>
-                      <div key={pg.id} className="inner-notes">
+                      <Link key={pg.id} to={returnProperLocation(pg.notebookId, pg.id)} className="inner-notes">
                         <div>
-                          <p id="pg-title">{pg.title}</p>
+                          <p id="pg-title">{pg.title || "Untitled"}</p>
                           <p id="pg-snippet">{getShortSnippet(pg.content)}</p>
                         </div>
                           <p id="pg-date">{formatDate(pg.updated_at)}</p>
-                      </div>):
+                      </Link>
+                     ):
                       <p id="no-notes">You have no notes yet, create your first note in a notebook to see them here!</p>}
                 </div>
               </div>

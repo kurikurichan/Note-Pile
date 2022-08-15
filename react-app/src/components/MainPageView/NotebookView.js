@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
@@ -14,6 +14,14 @@ export default function NotebookView() {
     const { notebookId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
+
+    // change pageId if we get a location (from home)
+    useEffect(() => {
+        if (location.state) {
+            setSelectedPageId(location.state.pageId);
+        }
+    })
 
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
@@ -84,18 +92,13 @@ export default function NotebookView() {
     }
 
     const getContentSnippet = (content) => {
-
         if (content) {
-            const snippet = [];
-            content = content.split('');
-            let snipLength = 0;
-            if (content.length > 90) snipLength = 90;
-            else snipLength = content.length;
-            for (let i = 0; i < snipLength; i++) {
-                snippet.push(content[i]);
+            // we are getting 90 characters snip length
+            if (content.length > 90) {
+                return content.slice(0, 90).trim() + '...';
+            } else {
+                return content;
             }
-
-            return snippet.join('');
         }
     }
 
