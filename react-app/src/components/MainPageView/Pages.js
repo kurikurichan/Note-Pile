@@ -187,7 +187,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 <div className="main-page-title">
                     <input
                         className={`page-title ${currentPage.title ? 'white' : 'grey'}`}
-                        value={title}
+                        value={title === null ? "" : title}
                         placeholder="Title"
                         onChange={(e) => setTitle(e.target.value)}
                         onBlur={handleBlur}
