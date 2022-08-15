@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import './NBModalStyle.css';
 
-export default function DeleteNBModal({ notebookId, openMenu }) {
+export default function DeleteNBModal({ notebookId }) {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -39,7 +39,6 @@ export default function DeleteNBModal({ notebookId, openMenu }) {
                         <p>Any notes in the notebook will be permanently deleted. This cannot be undone.</p>
                         <div className="modal-buttons">
                             <button className="cancel-but" onClick={() => {
-                                openMenu()
                                 setShowModal(false)}}>Cancel</button>
                             <button className="delete-but" onClick={handleNotebookDelete}>Delete</button>
                         </div>

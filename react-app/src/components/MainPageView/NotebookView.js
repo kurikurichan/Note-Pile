@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
@@ -14,6 +14,7 @@ export default function NotebookView() {
     const { notebookId } = useParams();
     const dispatch = useDispatch();
     const location = useLocation();
+    const menuRef = useRef();
 
     // change pageId if we get a location (from home)
     useEffect(() => {
@@ -31,9 +32,21 @@ export default function NotebookView() {
     const [selectedPageId, setSelectedPageId] = useState("")
 
     // This is all for the notebooks drop down menu (for edit & delete)
-    const openMenu = () => {
-      setShowMenu(!showMenu)
-    };
+
+
+    useEffect(() => {
+        const openMenu = (e) => {
+            //   setShowMenu(!showMenu)
+            if (showMenu && menuRef.current && !menuRef.current.contains(e.target)) {
+                setShowMenu(false);
+                };
+            };
+        document.addEventListener("mousedown", openMenu);
+        // cleanup
+        return () => {
+            document.removeEventListener("mousedown", openMenu);
+        };
+    }, [showMenu]);
 
 
     // single notebook based on notebookId
@@ -63,7 +76,6 @@ export default function NotebookView() {
         if (createPage) {
             getPages();
             setSelectedPageId(createPage.id);
-            setShowMenu(false);
         }
 
     }
@@ -116,8 +128,6 @@ export default function NotebookView() {
     useEffect(() => {
         getPages();
         findFirstPage();
-        // also omg close the dumb menu lol
-        setShowMenu(false);
     }, [notebookId]);
 
     const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
@@ -135,13 +145,13 @@ export default function NotebookView() {
                 <div className="notebook-dongles">
                     <p className="page-count">{getPageCount()}</p>
                     <div className="notebook-options-dropdown">
-                        <i className="fa-solid fa-ellipsis" onClick={openMenu}></i>
+                        <i className="fa-solid fa-ellipsis" onClick={setShowMenu(true)} ref={menuRef}></i>
 
                         {showMenu &&
                         <div className="profile-dropdown">
                             <div onClick={handleNewPage}>Add a Page</div>
-                            <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} allNbs={allNotebooks} />
-                            <DeleteNBModal notebookId={notebookId} openMenu={openMenu} />
+                            <EditNBModal user={user} notebookId={notebookId} allNbs={allNotebooks} />
+                            <DeleteNBModal notebookId={notebookId} />
                         </div>}
 
 
