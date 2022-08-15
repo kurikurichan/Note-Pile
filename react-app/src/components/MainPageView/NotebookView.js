@@ -13,7 +13,6 @@ export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const { notebookId } = useParams();
     const dispatch = useDispatch();
-    const history = useHistory();
     const location = useLocation();
 
     // change pageId if we get a location (from home)

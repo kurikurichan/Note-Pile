@@ -56,7 +56,9 @@
     justify-content: space-between;
     flex-shrink: 0;
 
+    word-wrap: anywhere;
     white-space: pre-wrap;
+    margin-right: 2px;
 
     cursor: pointer;
 }
