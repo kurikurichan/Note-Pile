@@ -51,11 +51,13 @@ const SignUpForm = () => {
   return (
     <div className="form-wrapper">
       <form className="form login" onSubmit={onSignUp}>
-        <div className="form-logo">
-          <img src={evernote_logo} id="logo" alt="Evernote logo" />
-          <span id="logo-text">Note Pile</span>
-          <p>Remember everything important.</p>
-        </div>
+        <Link to="/">
+          <div className="form-logo">
+            <img src={evernote_logo} id="logo" alt="Evernote logo" />
+            <span id="logo-text">Note Pile</span>
+            <p>Remember everything important.</p>
+          </div>
+        </Link>
         <div className="signup-dongles">
           <div>
             <label className="label">User Name</label>

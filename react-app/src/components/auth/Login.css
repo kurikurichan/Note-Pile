@@ -53,6 +53,10 @@
     align-items: center;
 }
 
+.form-logo > span {
+    color: black;
+}
+
 .form-logo > p {
 
     color: #333333;

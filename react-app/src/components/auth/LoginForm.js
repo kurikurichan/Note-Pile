@@ -45,11 +45,13 @@ const LoginForm = () => {
   return (
     <div className="form-wrapper">
       <form className="form login" onSubmit={onLogin}>
-      <div className="form-logo">
-                    <img src={evernote_logo} id="logo" alt="Evernote logo" />
-                    <span id="logo-text">Note Pile</span>
-                    <p>Remember everything important.</p>
-      </div>
+        <Link to="/">
+          <div className="form-logo">
+            <img src={evernote_logo} id="logo" alt="Evernote logo" />
+            <span id="logo-text">Note Pile</span>
+            <p>Remember everything important.</p>
+          </div>
+        </Link>
         <div className="form-dongles">
           <div>
             <label htmlFor='email' className="label">Email</label>
