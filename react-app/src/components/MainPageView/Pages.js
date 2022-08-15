@@ -23,6 +23,8 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     const [tWarn, setTWarn] = useState(false);
     // set state of page body length warning
     const [cWarn, setCWarn] = useState(false);
+    // set state of sent to trash message
+    const [sent, setSent] = useState(false);
 
     // for resizing text area
     const [textAreaHeight, setTextAreaHeight] = useState(40);
@@ -46,11 +48,17 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         // do same for body content area
         if (cWarn) {
             setTimeout(() => {
-                setTWarn(false);
+                setCWarn(false);
+            }, 1800);
+        }
+        // trash message
+        if (sent) {
+            setTimeout(() => {
+                setSent(false);
             }, 1800);
         }
 
-    }, [tWarn, cWarn]);
+    }, [tWarn, cWarn, sent]);
 
     useEffect(() => {
         dispatch(getAllPages(userId, notebookId));
@@ -112,6 +120,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
         if (sentToTrash) {
             getPages();
+            setSent(true);
         }
 
     }
@@ -167,6 +176,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 </div>
                 <div className="rich-text-stuff">
                     <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>
+                    {sent && <p id="sent-to-trash">Page sent to trash</p>}
                 </div>
             </div>
             <div className="page-view">

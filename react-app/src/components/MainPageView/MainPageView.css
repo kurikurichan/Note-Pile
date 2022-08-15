@@ -152,6 +152,32 @@
     color: var(--sidebar-font);
 }
 
+.no-pages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 90%;
+    font-family: soleil, sans-serif;
+}
+
+.no-pages > p {
+    text-align: center;
+    line-height: 1.5em;
+}
+
+#page-empty {
+    margin-bottom: 4%;
+    color: white;
+}
+
+#big-note {
+    font-size: 80px;
+    margin-bottom: 10%;
+    color: rgba(204, 204, 204, .3);
+}
+
 
 
 /* PAGES.JS!!! */
@@ -344,4 +370,35 @@
     height: 2.5rem;   /* Footer height */
     bottom: 0;
     width: 100%;
+}
+
+.rich-text-stuff {
+    display: flex;
+    justify-content: space-between;
+}
+
+#sent-to-trash {
+    margin-right: 19%;
+    font-family: Source Sans Pro,-apple-system,system-ui,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    color: rgb(80, 156, 249);
+    font-weight: bold;
+    margin-top: 5px;
+
+    animation: sent-to-trash 0.5s 1;
+    -webkit-animation: sent-to-trash 0.5s 1;
+    animation-fill-mode: forwards;
+
+    animation-delay: 2s;
+    -webkit-animation-delay: 1s; /* for Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes sent-to-trash {
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+@-webkit-keyframes sent-to-trash {
+    from {opacity :1;}
+    to {opacity :0;}
 }
