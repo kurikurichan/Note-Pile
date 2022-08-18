@@ -31,14 +31,14 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/sign-up' exact={true}>
+          <SignUpForm />
+        </Route>
         <Route path='/' exact={true} >
           <Splash />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
         </Route>
         <Sidebar />
       </Switch>

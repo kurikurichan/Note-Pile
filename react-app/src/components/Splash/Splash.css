@@ -139,7 +139,7 @@
 
     font-weight: lighter;
     font-size: 18px;
-    margin-bottom: 1.5%;
+    margin-bottom: 5%;
 }
 
 .sign-up:hover {
@@ -148,6 +148,8 @@
 
 .cool-work-section {
     display: flex;
+
+    margin-top: 1.5%;
 
     justify-content: center;
 }
