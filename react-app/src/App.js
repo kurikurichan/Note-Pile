@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
 import Sidebar from './components/Home/Sidebar';
 import NotebookView from './components/MainPageView/NotebookView';
@@ -31,31 +29,25 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path='/' exact={true} >
-          <Splash />
-        </Route>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Sidebar />
-      </Switch>
-      <Switch>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
+      <Route path='/sign-up' exact={true}>
+        <SignUpForm />
+      </Route>
+      <Route path='/' exact={true} >
+        <Splash />
+      </Route>
+      <Route path='/login' exact={true}>
+        <LoginForm />
+      </Route>
         <ProtectedRoute path='/home' exact={true} >
+          <Sidebar />
           <Home />
         </ProtectedRoute>
         <ProtectedRoute path='/trash' exact={true} >
+          <Sidebar />
           <Trash />
         </ProtectedRoute>
         <ProtectedRoute path='/:notebookId' exact={true} >
+          <Sidebar />
           <NotebookView />
         </ProtectedRoute>
       </Switch>
