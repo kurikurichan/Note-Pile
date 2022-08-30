@@ -16,9 +16,10 @@
     flex-direction: column;
     color: var(--sidebar-font);
     height: 100vh;
-    overflow: visible;
+    overflow: hidden;
     border-right: 1px black solid;
     flex-shrink: 0;
+    overflow-y: scroll;
 }
 
 .right-div {
@@ -312,12 +313,14 @@
 
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.page-view::-webkit-scrollbar {
+.page-view::-webkit-scrollbar,
+.left-div::-webkit-scrollbar {
     display: none;
 }
 
 /* Hide scrollbar for Edge and Firefox */
-.page-view {
+.page-view,
+.left-div {
     -ms-overflow-style: none;  /* Edge  */
     scrollbar-width: none;  /* Firefox */
 }
