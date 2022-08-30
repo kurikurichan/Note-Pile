@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
@@ -14,6 +14,7 @@ export default function NotebookView() {
     const { notebookId } = useParams();
     const dispatch = useDispatch();
     const location = useLocation();
+    const catMenu = useRef(null);
 
     // change pageId if we get a location (from home)
     useEffect(() => {
@@ -26,14 +27,33 @@ export default function NotebookView() {
     const allNotebooks = useSelector(state => state.notebooks)
     const allPagesOfNotebook = useSelector(state => state.pages)
 
+    // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
     // pages
     const [selectedPageId, setSelectedPageId] = useState("")
 
-    // This is all for the notebooks drop down menu (for edit & delete)
-    const openMenu = () => {
-      setShowMenu(!showMenu)
-    };
+    // open the menu I guess
+    const openMenu = (e) => {
+        e.stopPropagation();
+        setShowMenu(true);
+    }
+
+    // Close the nb dropdown menu when it is clicked outside of
+    useEffect(() => {
+        const closeMenu = (e) => {
+            if (catMenu.current && showMenu && !catMenu.current.contains(e.target)) {
+                setShowMenu(false);
+            }
+        };
+
+        // event listener for when mouse is down anywhere in document
+        document.addEventListener('mouseup', closeMenu);
+
+        return () => {
+            // clean up event listener
+            document.removeEventListener("mouseup", closeMenu);
+        }
+    }, [showMenu]);
 
 
     // single notebook based on notebookId
@@ -63,7 +83,7 @@ export default function NotebookView() {
         if (createPage) {
             getPages();
             setSelectedPageId(createPage.id);
-            setShowMenu(false);
+            // setShowMenu(false);
         }
 
     }
@@ -118,7 +138,7 @@ export default function NotebookView() {
         getPages();
         // also omg close the dumb menu lol
         // findFirstPage();
-        setShowMenu(false);
+        // setShowMenu(false);
     }, [notebookId]);
 
     const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
@@ -139,10 +159,10 @@ export default function NotebookView() {
                         <i className="fa-solid fa-ellipsis" onClick={openMenu} style={{cursor: "pointer"}}></i>
 
                         {showMenu &&
-                        <div className="profile-dropdown">
+                        <div className="profile-dropdown" ref={catMenu} >
                             <div onClick={handleNewPage} style={{cursor: "pointer"}}>Add a Page</div>
-                            <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} allNbs={allNotebooks} />
-                            <DeleteNBModal notebookId={notebookId} openMenu={openMenu} />
+                            <EditNBModal user={user} notebookId={notebookId} allNbs={allNotebooks} />
+                            <DeleteNBModal notebookId={notebookId}/>
                         </div>}
 
 

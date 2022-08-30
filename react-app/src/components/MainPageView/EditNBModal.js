@@ -6,7 +6,7 @@ import { getAllNotebooks, editNotebook } from '../../store/notebooks'
 import './NBModalStyle.css';
 
 
-export default function EditNBModal({user, notebookId, openMenu, allNbs }) {
+export default function EditNBModal({user, notebookId, allNbs }) {
 
     const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState([]);
@@ -54,7 +54,6 @@ export default function EditNBModal({user, notebookId, openMenu, allNbs }) {
         {showModal && (
             <Modal onClose={() => {
                 setShowModal(false)
-                openMenu()
             }}>
 
                 <form className="modal-body update" onSubmit={handleNotebookEdit}>
@@ -78,7 +77,6 @@ export default function EditNBModal({user, notebookId, openMenu, allNbs }) {
                     </div>
                     <div className="modal-buttons">
                         <button className="cancel-but" onClick={() => {
-                            openMenu()
                             setShowModal(false)}}>Cancel</button>
                         <button type="Submit" className="green-button" onClick={handleNotebookEdit}>Continue</button>
                     </div>
