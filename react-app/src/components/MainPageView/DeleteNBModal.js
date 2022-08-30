@@ -29,7 +29,7 @@ export default function DeleteNBModal({ notebookId, openMenu }) {
 
     return (
         <>
-            <div onClick={() => setShowModal(true)}>Delete Notebook</div>
+            <div onClick={() => setShowModal(true)} style={{cursor: "pointer"}}>Delete Notebook</div>
 
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

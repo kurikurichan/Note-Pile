@@ -50,7 +50,7 @@ export default function EditNBModal({user, notebookId, openMenu, allNbs }) {
 
     return (
         <>
-        <div onClick={() => setShowModal(true) }>Rename Notebook</div>
+        <div onClick={() => setShowModal(true) } style={{cursor: "pointer"}}>Rename Notebook</div>
         {showModal && (
             <Modal onClose={() => {
                 setShowModal(false)

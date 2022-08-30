@@ -136,11 +136,11 @@ export default function NotebookView() {
                 <div className="notebook-dongles">
                     <p className="page-count">{getPageCount()}</p>
                     <div className="notebook-options-dropdown">
-                        <i className="fa-solid fa-ellipsis" onClick={openMenu}></i>
+                        <i className="fa-solid fa-ellipsis" onClick={openMenu} style={{cursor: "pointer"}}></i>
 
                         {showMenu &&
                         <div className="profile-dropdown">
-                            <div onClick={handleNewPage}>Add a Page</div>
+                            <div onClick={handleNewPage} style={{cursor: "pointer"}}>Add a Page</div>
                             <EditNBModal user={user} notebookId={notebookId} openMenu={openMenu} allNbs={allNotebooks} />
                             <DeleteNBModal notebookId={notebookId} openMenu={openMenu} />
                         </div>}
