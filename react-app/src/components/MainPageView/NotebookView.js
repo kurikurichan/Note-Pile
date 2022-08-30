@@ -41,11 +41,7 @@ export default function NotebookView() {
     // Close the nb dropdown menu when it is clicked outside of
     useEffect(() => {
         const closeMenu = (e) => {
-            console.log('closemenu called but not entered');
-            console.log('cat menu current ', catMenu.current)
-            console.log('e.target ', e.target);
             if (catMenu.current && showMenu && !catMenu.current.contains(e.target)) {
-                console.log('closemenu entered')
                 setShowMenu(false);
             }
         };
@@ -58,9 +54,6 @@ export default function NotebookView() {
             document.removeEventListener("mouseup", closeMenu);
         }
     }, [showMenu]);
-
-
-
 
 
     // single notebook based on notebookId
