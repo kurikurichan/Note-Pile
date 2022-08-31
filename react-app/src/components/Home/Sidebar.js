@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import e from 'express';
+import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { getAllNotebooks } from '../../store/notebooks';
@@ -23,6 +24,26 @@ export default function Sidebar() {
     // errors for notebook submit
     const [errors, setErrors] = useState([]);
 
+    // for user dropdown
+    const catMenu = useRef(null);
+
+    // Close the user dropdown menu when it is clicked outside of
+    useEffect(() => {
+        const closeMenu = (e) => {
+            if (catMenu.current && showUserMenu && !catMenu.current.contains(e.target)) {
+                setShowUserMenu(false);
+            }
+        };
+
+        // event listener for when mouse is down anywhere in document
+        document.addEventListener('mouseup', closeMenu);
+
+        return () => {
+            // clean up event listener
+            document.removeEventListener("mouseup", closeMenu);
+        }
+    }, [showUserMenu]);
+
 
 
 
@@ -35,8 +56,9 @@ export default function Sidebar() {
         }
     }
 
-    const handleUserMenu = () => {
-        setShowUserMenu(!showUserMenu);
+    const handleUserMenu = (e) => {
+        e.stopPropagation();
+        setShowUserMenu(true);
     }
 
     const formatTitle = (name) => {
@@ -66,7 +88,7 @@ export default function Sidebar() {
                 <p id="main-username">{user.username}</p>
                 <i className="fa-solid fa-angle-down" style={{fontSize: "10px"}}></i>
                 {showUserMenu &&
-                <div id="logout-div">
+                <div id="logout-div" ref={catMenu}>
                     <p id="account">ACCOUNT</p>
                     <div className="username-block">
                         <i className="fa-solid fa-check" style={{color: 'skyblue'}}></i>
