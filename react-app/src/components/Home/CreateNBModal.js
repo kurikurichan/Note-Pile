@@ -41,6 +41,8 @@ export default function CreateNBModal({ user }) {
     useEffect(() => {
         if (title.length >= 60) {
             setErrors(["title : Maximum length reached"]);
+        } else {
+            setErrors([]);
         }
     }, [title]);
 

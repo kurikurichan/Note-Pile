@@ -150,6 +150,11 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
     };
 
+    // make save button state "save" again after typing starts
+    useEffect(() => {
+        setSave("Save");
+    }, [title, content]);
+
 
   if (!allPagesOfNotebook) return <p className="loading right-div">Loading...</p>
   return (
