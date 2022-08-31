@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
 import { Modal } from '../../context/Modal';
 import { getAllNotebooks, newNotebook } from '../../store/notebooks'
@@ -36,6 +36,13 @@ export default function CreateNBModal({ user }) {
         }
 
     };
+
+    // get show an alert about length if at 60 chars
+    useEffect(() => {
+        if (title.length >= 60) {
+            setErrors(["title : Maximum length reached"]);
+        }
+    }, [title]);
 
   return (
     <>
