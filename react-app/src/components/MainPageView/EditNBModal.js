@@ -51,7 +51,7 @@ export default function EditNBModal({user, notebookId, allNbs }) {
     // get show an alert about length if at 60 chars
     useEffect(() => {
         if (nbTitle.length >= 60) {
-            setErrors(["title : Maximum length reached"]);
+            setErrors(["Maximum title length reached"]);
         }
     }, [nbTitle]);
 

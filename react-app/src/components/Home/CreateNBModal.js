@@ -40,7 +40,7 @@ export default function CreateNBModal({ user }) {
     // get show an alert about length if at 60 chars
     useEffect(() => {
         if (title.length >= 60) {
-            setErrors(["title : Maximum length reached"]);
+            setErrors(["Maximum title length reached"]);
         } else {
             setErrors([]);
         }

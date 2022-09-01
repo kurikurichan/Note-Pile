@@ -54,7 +54,7 @@
     width: 100%;
     height: 512px;
     object-fit: cover;
-    object-position: 50% 65%;
+    object-position: 50% 40%;
 }
 
 .contain-widgets {
