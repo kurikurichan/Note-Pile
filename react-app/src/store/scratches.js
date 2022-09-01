@@ -28,8 +28,8 @@ export const getAllScratches = (userId) => async (dispatch) => {
     }
 }
 
-export const editScratch = (scratchData, scratchId, userId) => async (dispatch) => {
-    const res = await fetch(`/api/scratches/${scratchId}/${userId}/`, {
+export const editScratch = (scratchData, userId) => async (dispatch) => {
+    const res = await fetch(`/api/scratches/${userId}/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(scratchData),

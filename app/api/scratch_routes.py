@@ -19,15 +19,15 @@ def scratch(userId):
     return {'scratch': [scratch.to_dict()]}
 
 # * PUT /api/:userId/:scratchId - update scratch pad contents@pages_routes.route('/<int:notebookId>')
-@scratch_routes.route('/<int:scratchId>/<int:userId>/', methods=["PUT"])
+@scratch_routes.route('/<int:userId>/', methods=["PUT"])
 @login_required
-def new_page(scratchId, userId):
+def new_page(userId):
 
     if userId != current_user.id:
         print("WHOOPSIE")
         return {'errors': ["user: You are unauthorized."]}, 405
 
-    scratch = Scratch.query.get(scratchId)
+    scratch = Scratch.query.filter(Scratch.userId == userId).one()
 
     if userId == scratch.userId:
         scratch.content = request.json['content']

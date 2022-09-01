@@ -17,7 +17,7 @@ export default function Scratch({ userId }) {
     }, [scratchPad]);
 
     // edit scratch content
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(scratchArr?.content || "");
     //  toggle edit form for scratch content
     const [editContent, setEditContent] = useState(false);
     // say if message is at limit
@@ -25,16 +25,20 @@ export default function Scratch({ userId }) {
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        // initial dispatch
+        dispatch(getAllScratches(userId));
+    }, dispatch);
+
     // grab initial content, update scratch content
     useEffect(() => {
-        dispatch(getAllScratches(userId));
 
         let payload = {
             content
         }
 
-        if (scratchArr && content) {
-            dispatch(editScratch(payload, scratchArr.id, userId));
+        if (content) {
+            dispatch(editScratch(payload, userId));
 
         // also do alert about length if at 800 chars
         if (scratchArr) {
