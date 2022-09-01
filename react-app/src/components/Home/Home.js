@@ -113,7 +113,7 @@ export default function Home() {
                         <div id="snippet-box">
                           <p id="pg-snippet">{getShortSnippet(pg.content)}</p>
                         </div>
-                        <div>
+                        <div id="bot-date">
                           <p id="pg-date">{formatDate(pg.updated_at)}</p>
                         </div>
                       </Link>
