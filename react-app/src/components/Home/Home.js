@@ -109,9 +109,13 @@ export default function Home() {
                       <Link key={pg.id} to={returnProperLocation(pg.notebookId, pg.id)} className="inner-notes">
                         <div>
                           <p id="pg-title">{pg.title || "Untitled"}</p>
+                        </div>
+                        <div id="snippet-box">
                           <p id="pg-snippet">{getShortSnippet(pg.content)}</p>
                         </div>
+                        <div>
                           <p id="pg-date">{formatDate(pg.updated_at)}</p>
+                        </div>
                       </Link>
                      ):
                       <p id="no-notes">You have no notes yet, create your first note in a notebook to see them here!</p>}

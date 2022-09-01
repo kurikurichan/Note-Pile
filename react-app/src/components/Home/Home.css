@@ -133,6 +133,7 @@
 
 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    overflow: hidden;
 }
 
 .inner-notes:hover {
@@ -167,4 +168,10 @@
     color: var(--sidebar-font);
     font-size: 12px;
     margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+
+#snippet-box {
+    overflow: hidden;
 }
