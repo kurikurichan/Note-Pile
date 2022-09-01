@@ -6,18 +6,10 @@ import './Scratch.css';
 
 export default function Scratch({ userId }) {
 
-    const scratchPad = useSelector(state => state.scratches);
-
-    let scratchArr;
-
-    // make scratchPad an array for ez access
-    useEffect(() => {
-        scratchArr = Object.values(scratchPad)[0];
-        console.log("scratchArr useEffect", scratchArr);
-    }, [scratchPad]);
+    const scratchPad = useSelector(state => Object.values(state.scratches)[0]);
 
     // edit scratch content
-    const [content, setContent] = useState(scratchArr?.content || "");
+    const [content, setContent] = useState(scratchPad?.content || "");
     //  toggle edit form for scratch content
     const [editContent, setEditContent] = useState(false);
     // say if message is at limit
@@ -26,7 +18,7 @@ export default function Scratch({ userId }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // initial dispatch
+        // initial dispatch to get scratch data
         dispatch(getAllScratches(userId));
     }, dispatch);
 
@@ -37,24 +29,22 @@ export default function Scratch({ userId }) {
             content
         }
 
-        if (content) {
-            dispatch(editScratch(payload, userId));
+        dispatch(editScratch(payload, userId));
 
         // also do alert about length if at 800 chars
-        if (scratchArr) {
-            if (scratchArr.content.length >= 800) {
+        if (scratchPad) {
+            if (scratchPad.content.length >= 800) {
                 setMessage("Maximum length reached");
             } else {
                 setMessage("");
             }
-        }
         }
     }, [dispatch, content]);
 
     // get initial scratch
     useEffect(() => {
         // if the data isn't null then set it (since it comes from null from backend)
-        if (scratchArr && scratchArr.content) setContent(scratchArr.content);
+        if (scratchPad && scratchPad.content) setContent(scratchPad.content);
     }, [scratchPad]);
 
     if (!scratchPad) return null;
