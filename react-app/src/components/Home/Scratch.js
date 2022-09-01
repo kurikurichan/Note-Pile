@@ -20,6 +20,8 @@ export default function Scratch({ userId }) {
     const [content, setContent] = useState("");
     //  toggle edit form for scratch content
     const [editContent, setEditContent] = useState(false);
+    // say if message is at limit
+    const [message, setMessage] = useState("");
 
     const dispatch = useDispatch();
 
@@ -33,6 +35,15 @@ export default function Scratch({ userId }) {
 
         if (scratchArr && content) {
             dispatch(editScratch(payload, scratchArr.id, userId));
+
+        // also do alert about length if at 800 chars
+        if (scratchArr) {
+            if (scratchArr.content.length >= 800) {
+                setMessage("Maximum length reached");
+            } else {
+                setMessage("");
+            }
+        }
         }
     }, [dispatch, content]);
 
@@ -40,7 +51,7 @@ export default function Scratch({ userId }) {
     useEffect(() => {
         // if the data isn't null then set it (since it comes from null from backend)
         if (scratchArr && scratchArr.content) setContent(scratchArr.content);
-    }, [scratchPad])
+    }, [scratchPad]);
 
     if (!scratchPad) return null;
   return (
@@ -64,6 +75,9 @@ export default function Scratch({ userId }) {
                     {content ? content : "Start writing..."}
                 </p>
             )}
+        </div>
+        <div className="errs">
+            <p className="error">{message}</p>
         </div>
     </div>
   )
