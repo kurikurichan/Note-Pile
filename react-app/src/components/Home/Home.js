@@ -96,7 +96,6 @@ export default function Home() {
 
           </div>
 
-          {/* <div style={{ backgroundColor: "rgba(171, 171, 171, .1)", padding: '15%', zIndex: "-1"}}></div> */}
           <div className="contain-widgets">
 
               <div className="notes-preview">

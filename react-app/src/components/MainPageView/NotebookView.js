@@ -43,8 +43,11 @@ export default function NotebookView() {
         const closeMenu = (e) => {
             // correlate clicks to to dif locations on the page
             // if current == blah do nothing
+            let modals = document.getElementById("modal-content");
             if (catMenu.current && showMenu && !catMenu.current.contains(e.target)) {
-                setShowMenu(false);
+                if (e.target !== modals) {
+                    setShowMenu(false);
+                }
             }
         };
 
@@ -56,6 +59,20 @@ export default function NotebookView() {
             document.removeEventListener("mouseup", closeMenu);
         }
     }, [showMenu]);
+
+
+    useEffect(() => {
+        const test = (e) => {
+            console.log(e.target);
+        }
+
+        document.addEventListener('click', test);
+
+        return () => {
+            // clean up event listener
+            document.removeEventListener("click", test);
+        }
+    });
 
 
     // single notebook based on notebookId
