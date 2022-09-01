@@ -6,9 +6,9 @@ import { useHistory } from 'react-router-dom';
 
 import './NBModalStyle.css';
 
-export default function DeleteNBModal({ notebookId }) {
+export default function DeleteNBModal({ notebookId, showModal, setShowModal }) {
 
-    const [showModal, setShowModal] = useState(false);
+    // const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -29,7 +29,7 @@ export default function DeleteNBModal({ notebookId }) {
 
     return (
         <>
-            <div onClick={() => setShowModal(true)} style={{cursor: "pointer"}}>Delete Notebook</div>
+            {/* <div onClick={() => setShowModal(true)} style={{cursor: "pointer"}}>Delete Notebook</div> */}
 
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

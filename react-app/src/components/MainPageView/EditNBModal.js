@@ -6,9 +6,9 @@ import { getAllNotebooks, editNotebook } from '../../store/notebooks'
 import './NBModalStyle.css';
 
 
-export default function EditNBModal({user, notebookId, allNbs }) {
+export default function EditNBModal({user, notebookId, allNbs, showModal, setShowModal }) {
 
-    const [showModal, setShowModal] = useState(false);
+    // const [showModal, setShowModal] = useState(false);
     const [errors, setErrors] = useState([]);
 
     const [nbTitle, setNbTitle] = useState("");
@@ -57,7 +57,7 @@ export default function EditNBModal({user, notebookId, allNbs }) {
 
     return (
         <>
-        <div onClick={() => setShowModal(true) } style={{cursor: "pointer"}}>Rename Notebook</div>
+        {/* <div onClick={() => setShowModal(true) } style={{cursor: "pointer"}}>Rename Notebook</div> */}
         {showModal && (
             <Modal onClose={() => {
                 setShowModal(false)

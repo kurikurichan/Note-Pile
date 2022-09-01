@@ -32,6 +32,11 @@ export default function NotebookView() {
     // pages
     const [selectedPageId, setSelectedPageId] = useState("")
 
+
+    // modal popups in dropdown menu
+    const [showEdit, setShowEdit] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+
     // open the menu I guess
     const openMenu = (e) => {
         e.stopPropagation();
@@ -59,21 +64,6 @@ export default function NotebookView() {
             document.removeEventListener("mouseup", closeMenu);
         }
     }, [showMenu]);
-
-
-    useEffect(() => {
-        const test = (e) => {
-            console.log(e.target);
-        }
-
-        document.addEventListener('click', test);
-
-        return () => {
-            // clean up event listener
-            document.removeEventListener("click", test);
-        }
-    });
-
 
     // single notebook based on notebookId
     let currentNotebook;
@@ -160,6 +150,8 @@ export default function NotebookView() {
         // setShowMenu(false);
     }, [notebookId]);
 
+
+
     const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
 
 
@@ -180,9 +172,13 @@ export default function NotebookView() {
                         {showMenu &&
                         <div className="profile-dropdown" ref={catMenu} >
                             <div onClick={handleNewPage} style={{cursor: "pointer"}}>Add a Page</div>
-                            <EditNBModal user={user} notebookId={notebookId} allNbs={allNotebooks} />
-                            <DeleteNBModal notebookId={notebookId}/>
+                            <div onClick={() => setShowEdit(true) } style={{cursor: "pointer"}}>Rename Notebook</div>
+                            <div onClick={() => setShowDelete(true)} style={{cursor: "pointer"}}>Delete Notebook</div>
                         </div>}
+                        <>
+                            {showEdit && <EditNBModal user={user} notebookId={notebookId} allNbs={allNotebooks} showModal={showEdit} setShowModal={setShowEdit} />}
+                            {showDelete && <DeleteNBModal notebookId={notebookId} showModal={showDelete} setShowModal={setShowDelete} />}
+                        </>
 
 
                     </div>
