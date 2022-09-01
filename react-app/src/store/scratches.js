@@ -45,7 +45,6 @@ const scratches = (state = {}, action) => {
     switch (action.type) {
 
       case GET_SCRATCH:
-        console.log("GET_SCRATCH data: ", action.scratch);
         action.scratch.scratch.forEach((scratch) => {
           newState[scratch.id] = scratch;
         });

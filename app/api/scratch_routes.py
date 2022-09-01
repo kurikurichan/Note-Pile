@@ -23,12 +23,17 @@ def scratch(userId):
 @login_required
 def new_page(scratchId, userId):
 
+    if userId != current_user.id:
+        print("WHOOPSIE")
+        return {'errors': ["user: You are unauthorized."]}, 405
+
     scratch = Scratch.query.get(scratchId)
 
     if userId == scratch.userId:
         scratch.content = request.json['content']
+        print("----- success -----", scratch.content)
 
         db.session.commit()
-        return scratch.to_dict()
+        return {'scratch': [scratch.to_dict()]}
     else:
         return jsonify({"error"})

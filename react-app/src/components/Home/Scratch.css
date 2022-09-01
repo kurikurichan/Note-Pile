@@ -1,6 +1,7 @@
 .scratch-area {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .scratch {
@@ -35,11 +36,13 @@
     font-size: 14px;
     overflow-wrap: anywhere;
     white-space: pre-wrap;
+    height: 90%;
 }
 
 .scratch-title,
 .scratch-text-area {
     margin-left: 5px;
+    margin-right: 5px;
     width: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
@@ -49,7 +52,23 @@
     color: white;
     font-weight: bold;
     font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     overflow-wrap: anywhere;
+}
+
+.edit-scratch {
+    background-color: transparent;
+    border: none;
+    resize: none;
+    height: 80%;
+    width: 90%;
+
+    outline: none;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    color: var(--sidebar-font);
+    font-size: 14px;
 }
