@@ -9,16 +9,22 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 
-    height: 30vh;
+    height: 100%;
 
     color: var(--sidebar-font);
     font-family: soleil, sans-serif;
+
+    overflow-y: scroll;
 }
 
+.sidebar::-webkit-scrollbar {
+    display: none; /* hide the scrollbar in Chrome, Safari */
+}
+
+
 .sidebar > * {
-    padding-left: 10px;
+    margin: 10px 0px 10px 10px;
 }
 
 body {
@@ -114,16 +120,11 @@ body {
 .notebook-dropdown {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
-
-.notebook-dropdown::-webkit-scrollbar {
-    display: none; /* hide the scrollbar in Chrome, Safari */
-}
-
 
 .notebook-li {
     text-decoration: none;
