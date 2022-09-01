@@ -13,7 +13,7 @@ export default function Scratch({ userId }) {
     // make scratchPad an array for ez access
     useEffect(() => {
         scratchArr = Object.values(scratchPad)[0];
-        console.log("scratchArr: ", scratchArr);
+        console.log("scratchArr useEffect", scratchArr);
     }, [scratchPad]);
 
     // edit scratch content
@@ -23,27 +23,24 @@ export default function Scratch({ userId }) {
 
     const dispatch = useDispatch();
 
-    // load initial scratch content
+    // grab initial content, update scratch content
     useEffect(() => {
         dispatch(getAllScratches(userId));
-        // if the data isn't null then set it (since it comes from null from backend)
-        if (scratchArr && scratchArr.content) setContent(scratchArr.content);
-    }, [dispatch]);
-
-    // handle when scratch content changes - save it
-    const handleScratchChange = async (e) => {
-        // update the local state content
-        setContent(e.target.value);
 
         let payload = {
             content
         }
 
-        if (content) {
-            const updatedScratch = await dispatch(editScratch(payload, scratchArr?.id, userId));
-            if (updatedScratch) console.log ("successfully edited");
+        if (scratchArr && content) {
+            dispatch(editScratch(payload, scratchArr.id, userId));
         }
-    };
+    }, [dispatch, content]);
+
+    // get initial scratch
+    useEffect(() => {
+        // if the data isn't null then set it (since it comes from null from backend)
+        if (scratchArr && scratchArr.content) setContent(scratchArr.content);
+    }, [scratchPad])
 
     if (!scratchPad) return null;
   return (
@@ -57,7 +54,7 @@ export default function Scratch({ userId }) {
                 <textarea
                     className="edit-scratch"
                     value={content}
-                    onChange={handleScratchChange}
+                    onChange={(e) => setContent(e.target.value)}
                     placeholder="Start writing..."
                     rows={6}
                     maxLength={800}
