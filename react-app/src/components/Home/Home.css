@@ -13,20 +13,20 @@
 .above-home-text {
     display: flex;
     justify-content: space-between;
-    /* z-index: 100; */
 }
 
 .above-home-text > h3 {
     color: var(--lighter-alabaster);
     font-family: soleil, sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-shadow: 1px 1px 2px black;
 
-    margin-top: 5px;
+    margin-left: 20px;
+    margin-top: 15px;
 
 }
 
@@ -35,8 +35,9 @@
     color: var(--lighter-alabaster);
     font-family: soleil, sans-serif;
     text-shadow: 1px 1px 2px black;
+    font-size: 18px;
 
-    margin-top: 6px;
+    margin-top: 15px;
 }
 
 .above-home {
