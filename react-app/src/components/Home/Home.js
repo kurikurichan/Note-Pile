@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getEverySinglePage } from '../../store/pages.js';
 import { Link } from 'react-router-dom';
+import Scratch from './Scratch.js';
 
 import './Home.css';
+import './Scratch.css';
 
 import coffee from './coffee.jpeg';
 
@@ -117,6 +119,7 @@ export default function Home() {
               </div>
 
               <div className="scratch">
+                <Scratch userId = {user.id} />
               </div>
           </div>
         </div>

@@ -59,6 +59,8 @@
 .contain-widgets {
     height: 50%;
     width: 90%;
+    display: flex;
+    align-items: center;
 }
 
 .notes-preview-top {

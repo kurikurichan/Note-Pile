@@ -41,6 +41,8 @@ export default function NotebookView() {
     // Close the nb dropdown menu when it is clicked outside of
     useEffect(() => {
         const closeMenu = (e) => {
+            // correlate clicks to to dif locations on the page
+            // if current == blah do nothing
             if (catMenu.current && showMenu && !catMenu.current.contains(e.target)) {
                 setShowMenu(false);
             }

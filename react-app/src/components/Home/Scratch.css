@@ -1,0 +1,74 @@
+.scratch-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.scratch {
+    background-color: rgb(38, 34, 34);
+    border: 1px solid rgba(204, 204, 204, .3);
+
+    flex: 1;
+    overflow: hidden;
+    padding: 0 1px 0 16px;
+    position: relative;
+
+    flex: 1 1 auto;
+    overflow: hidden;
+    position: relative;
+
+    height: 100%;
+    max-width: 30%;
+
+    margin-left: 5%;
+    margin-right: 5%;
+
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 2px 6px rgba(0, 0, 0, .3);
+    box-shadow: 1px 2px 6px rgba(0, 0, 0, .3);
+}
+
+/* max length should be 600! */
+/* placeholder "Start writing..." */
+
+.scratch-text-area {
+    color: var(--sidebar-font);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    height: 90%;
+}
+
+.scratch-title,
+.scratch-text-area {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+}
+
+.scratch-title {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.edit-scratch {
+    background-color: transparent;
+    border: none;
+    resize: none;
+    height: 80%;
+    width: 90%;
+
+    outline: none;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    color: var(--sidebar-font);
+    font-size: 14px;
+}
