@@ -57,7 +57,7 @@ export default function Sidebar() {
 
     const handleUserMenu = (e) => {
         e.stopPropagation();
-        setShowUserMenu(true);
+        setShowUserMenu(!showUserMenu);
     }
 
     const formatTitle = (name) => {

@@ -39,7 +39,7 @@ export default function Scratch({ userId }) {
                 setMessage("");
             }
         }
-    }, [dispatch, content]);
+    }, [content]);
 
     // get initial scratch
     useEffect(() => {
