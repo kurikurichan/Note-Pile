@@ -5,7 +5,7 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
-import Sidebar from './components/Home/Sidebar';
+import Sidebar from './components/Sidebar/Sidebar';
 import NotebookView from './components/MainPageView/NotebookView';
 import Trash from './components/Trash/Trash';
 import Home from './components/Home/Home';

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { getAllNotebooks } from '../../store/notebooks';
 import LogoutButton from '../auth/LogoutButton';
-import CreateNBModal from './CreateNBModal';
+import CreateNBModal from '../Home/CreateNBModal.js';
 
-import default_user from './default_user.jpeg';
 import evernote_logo from './evernote_logo.png';
+import Search from './Search';
 
 import './Sidebar.css';
 
@@ -100,6 +100,8 @@ export default function Sidebar() {
                     <LogoutButton />
                 </div>}
             </div>
+
+            <Search />
 
 
             <NavLink to="/home" className="navlink" activeClassName='sb-active'>
