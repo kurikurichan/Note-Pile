@@ -100,7 +100,7 @@ export default function Home() {
 
               <div className="notes-preview">
                 <div className="notes-preview-top">
-                  <p>RECENT CONTENT<i className="fa-solid fa-angle-right"></i></p>
+                  <p>RECENT PAGES<i className="fa-solid fa-angle-right"></i></p>
                 </div>
                 <div className="notes-preview-bottom">
                   {displayPages.length ?
@@ -117,7 +117,7 @@ export default function Home() {
                         </div>
                       </Link>
                      ):
-                      <p id="no-notes">You have no notes yet, create your first note in a notebook to see them here!</p>}
+                      <p id="no-notes">You have no pages yet, create your first note in a notebook to see them here!</p>}
                 </div>
               </div>
 
