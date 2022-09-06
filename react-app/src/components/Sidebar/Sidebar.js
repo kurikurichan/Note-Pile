@@ -101,7 +101,7 @@ export default function Sidebar() {
                 </div>}
             </div>
 
-            <Search />
+            <Search userId={user.id} />
 
 
             <NavLink to="/home" className="navlink" activeClassName='sb-active'>
