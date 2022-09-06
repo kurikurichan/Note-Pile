@@ -33,7 +33,7 @@ export default function Search({ userId }) {
       setSearchText(searchWord);
       // demonstrates filtering thru data
       const newFilter = data.filter(result => {
-        return result.title.toLowerCase().includes(searchWord.toLowerCase());
+        return result.title && result.title.toLowerCase().includes(searchWord.toLowerCase());
       });
 
       if (searchWord === "") {
@@ -63,14 +63,14 @@ export default function Search({ userId }) {
           value={searchText}
           onChange={handleFilter}
         />
-        <div>{filteredData.length && <i className="fa-solid fa-x" onClick={handleClear}></i>}</div>
+        <div>{searchText.length > 0 && <i className="fa-solid fa-x" onClick={handleClear}></i>}</div>
       </div>
 
-      {filteredData.length &&
+      {filteredData.length > 0 &&
         <div className="data-result">
-          {data && filteredData.slice(0, 15).map((value, key) =>
-            <Link to={`/${value.notebookId}`} className="data-item">
-              <p>{value.title}</p>
+          {data && filteredData.slice(0, 15).map(value =>
+            <Link to={`/${value.notebookId}`} className="data-item" key={value.id}>
+              <p className="data-item">{value.title}</p>
             </Link>)}
 
         </div>

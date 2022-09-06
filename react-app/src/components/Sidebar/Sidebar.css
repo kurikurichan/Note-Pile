@@ -3,7 +3,7 @@
 }
 
 .sidebar-wrap {
-    width: 12vw;
+    min-width: 200px;
     height: 100vh;
     position: relative;
     left: 0;
