@@ -99,7 +99,7 @@ export default function Search({ userId }) {
         <div id="unactive-search" onClick={() => setDoSearch(true)}>
           <i className="fa-solid fa-magnifying-glass"></i>
           <input
-            placeholder="Search"
+            placeholder="Search page titles"
             className="unactive-search-input"
           />
         </div>
