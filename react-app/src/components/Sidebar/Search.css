@@ -88,6 +88,7 @@
 .data-item {
     padding: 4px 0px 2px 0px;
     display: flex;
+    align-items: center;
     height: 25px;
     background-color: transparent;
     text-decoration: none;
@@ -108,13 +109,23 @@
     overflow: hidden;
     -webkit-box-orient: vertical;
     white-space: nowrap;
+    font-size: 14px;
 }
 
 .data-item > i {
+    font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
 }
 
 .fa-x {
+    font-size: 10px;
     cursor: pointer;
+    padding: 2px;
+    border-radius: 2px;
+    margin-right: 4px;
+}
+
+.fa-x:hover {
+    background-color: #7c7c7d;
 }
