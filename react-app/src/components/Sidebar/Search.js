@@ -17,9 +17,6 @@ export default function Search({ userId }) {
   // show big search box when clicked
   const [doSearch, setDoSearch] = useState(false);
 
-  // for dealing with search menu later
-  const searchRef = useRef();
-
   const dispatch = useDispatch();
 
   // dispatch for the page data
@@ -54,6 +51,7 @@ export default function Search({ userId }) {
     const handleClear = (e) => {
       setSearchText("");
       setFilteredData([]);
+      setDoSearch(false);
     }
 
 
@@ -72,7 +70,7 @@ export default function Search({ userId }) {
                   type="text"
                   value={searchText}
                   onChange={handleFilter}
-                  onBlur={() => setDoSearch(false)}
+                  // onBlur={() => setDoSearch(false)}
               />
 
               <div>{searchText.length > 0 && <i className="fa-solid fa-x" onClick={handleClear}></i>}</div>
@@ -84,7 +82,12 @@ export default function Search({ userId }) {
               {filteredData.length > 0 &&
                 <div className="data-result">
                   {data && filteredData.slice(0, 15).map(pg =>
-                    <Link to={returnProperLocation(pg.notebookId, pg.id)} className="data-item" key={pg.id}>
+                    <Link
+                      to={returnProperLocation(pg.notebookId, pg.id)}
+                      className="data-item"
+                      key={pg.id}
+                      onClick={() => setDoSearch(false)}
+                    >
                       <i className="fa-solid fa-book-open"></i>
                       <p>{pg.title}</p>
                     </Link>)}

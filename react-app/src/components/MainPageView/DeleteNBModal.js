@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from "react-redux";
 import { Modal } from '../../context/Modal';
 import { deleteNotebook } from '../../store/notebooks';
@@ -20,7 +20,10 @@ export default function DeleteNBModal({ notebookId, showModal, setShowModal }) {
 
         let deleted = await dispatch(deleteNotebook(notebookId));
 
+        console.log("HELLO!!!!!!!! deleted ---")
+
         if (deleted) {
+            console.log("deleted--------------------")
             setShowModal(false);
             history.push(`/home`);
         }

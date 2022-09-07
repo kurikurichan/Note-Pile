@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { Modal } from '../../context/Modal';
 import { deletePage } from '../../store/pages';
-import { useHistory } from 'react-router-dom';
 
 import '../MainPageView/NBModalStyle.css';
 
@@ -11,7 +10,6 @@ export default function EmptyTrash({ user, allTrashedPages, getTheTrash }) {
     const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     // for dispatching delete notebook
     const handleEmptyTrash = async (e) => {
