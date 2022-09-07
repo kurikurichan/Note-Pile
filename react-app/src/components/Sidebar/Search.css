@@ -1,27 +1,6 @@
-/* #search { */
-    /* note when focused: gray20 */
-    /* background: var(--sidebar-highlight);
-    border-radius: 40px;
-    padding: 0 14px;
-    position: relative;
-
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    caret-color: var(--gray90);
-    color: var(--gray90);
-    font-size: 14px;
-    height: 30px;
-    padding: 0 5px 0 10px;
-    width: 100%;
-
+.search {
     width: 90%;
-} */
-
-.search-wrapper {
-    background-color: pink;
-    width: 12vw;
 }
-
 
 #unactive-search {
     display: flex;
@@ -39,7 +18,7 @@
 }
 
 /* wass unactive-search-inputs */
-.search-inputs {
+.unactive-search-input {
     background: var(--sidebar-highlight);
 
     -webkit-box-sizing: border-box;
@@ -62,15 +41,16 @@
     height: 40px;
 }
 
-/* This one is like the entire box */
+/* Contains: search box, icons, input, and data results */
 #active-search-wrapper {
-    width: 20vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
 
+    box-sizing: border-box;
+
     background-color: var(--gray20);
-    min-height: auto;
-    position: absolute;
+    min-height: auto
 }
 
 /* this is the part that contains the icon & input */
@@ -80,9 +60,13 @@
 
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 95%;
     height: 40px;
 }
+
+/* #active-search:hover {
+    border: 1px solid var(--white);
+} */
 
 #active-search-input {
     background-color: transparent;
@@ -94,19 +78,38 @@
     height: 30px;
     padding: 0 5px 0 10px;
 
-    width: 90%;
+    width: 85%;
     border: 0;
     outline: none;
 }
 
 .data-result {
-    min-height: 100px;
-    width: 90%;
+    max-width: 100%;
     background-color: var(--gray20);
+    box-sizing: border-box;
 }
 
 .data-item {
+    padding: 4px 0px 2px 0px;
+    display: flex;
     height: 25px;
     background-color: transparent;
-    border-bottom: 1px solid rgba(204, 204, 204, 0.552);
+    text-decoration: none;
+    color: var(--gray90);
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+.data-item > p {
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+.data-item > i {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fa-x {
+    cursor: pointer;
 }

@@ -60,30 +60,50 @@ export default function Search({ userId }) {
 
   return (
     <div className="search">
-      <div className="search-inputs">
-        <i className="fa-solid fa-magnifying-glass"></i>
-        <input
-          autoComplete='off'
-          id="active-search-input"
-          placeholder="Search page titles"
-          type="text"
-          value={searchText}
-          onChange={handleFilter}
-        />
-        <div>{searchText.length > 0 && <i className="fa-solid fa-x" onClick={handleClear}></i>}</div>
-      </div>
+      {doSearch ? (
+        <div className="active-search-wrapper">
+          <form id="active-search">
+            <i className="fa-solid fa-magnifying-glass"></i>
+            <>
+              <input
+                  autoComplete='off'
+                  id="active-search-input"
+                  placeholder="Search page titles"
+                  type="text"
+                  value={searchText}
+                  onChange={handleFilter}
+                  onBlur={() => setDoSearch(false)}
+              />
 
-      {filteredData.length > 0 &&
-        <div className="data-result">
-          {data && filteredData.slice(0, 15).map(pg =>
-            <Link to={returnProperLocation(pg.notebookId, pg.id)} className="data-item" key={pg.id}>
-              <i className="fa-solid fa-book-open"></i>
-              <p className="data-item">{pg.title}</p>
-            </Link>)}
+              <div>{searchText.length > 0 && <i className="fa-solid fa-x" onClick={handleClear}></i>}</div>
+
+            </>
+
+          </form>
+
+              {filteredData.length > 0 &&
+                <div className="data-result">
+                  {data && filteredData.slice(0, 15).map(pg =>
+                    <Link to={returnProperLocation(pg.notebookId, pg.id)} className="data-item" key={pg.id}>
+                      <i className="fa-solid fa-book-open"></i>
+                      <p>{pg.title}</p>
+                    </Link>)}
+                </div>
+              }
+
 
         </div>
-      }
 
+      ):(
+
+        <div id="unactive-search" onClick={() => setDoSearch(true)}>
+          <i className="fa-solid fa-magnifying-glass"></i>
+          <input
+            placeholder="Search"
+            className="unactive-search-input"
+          />
+        </div>
+      )}
     </div>
   )
 }
