@@ -54,6 +54,12 @@ export default function Search({ userId }) {
       setDoSearch(false);
     }
 
+    const handleBlur = (e) => {
+      //  basically we can blur out *if* nothing is in our search results.
+      // this is to prevent accidental clicking out of search data
+      if (searchText.length === 0) setDoSearch(false)
+    }
+
 
 
   return (
@@ -70,7 +76,7 @@ export default function Search({ userId }) {
                   type="text"
                   value={searchText}
                   onChange={handleFilter}
-                  // onBlur={() => setDoSearch(false)}
+                  // onBlur={handleClear}
               />
 
               <div>{searchText.length > 0 && <i className="fa-solid fa-x" onClick={handleClear}></i>}</div>

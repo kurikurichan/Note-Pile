@@ -18,12 +18,9 @@ export default function DeleteNBModal({ notebookId, showModal, setShowModal }) {
 
         e.preventDefault(e);
 
-        let deleted = await dispatch(deleteNotebook(notebookId));
-
-        console.log("HELLO!!!!!!!! deleted ---")
+        const deleted = await dispatch(deleteNotebook(notebookId));
 
         if (deleted) {
-            console.log("deleted--------------------")
             setShowModal(false);
             history.push(`/home`);
         }
