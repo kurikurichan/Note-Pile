@@ -1,32 +1,39 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getEverySinglePage } from '../../store/pages';
+import { getEverySinglePage } from '../../store/all_pages';
 
 import "./Search.css";
 
 export default function Search({ userId }) {
 
-  const data = useSelector(state => Object.values(state.pages));
-  console.log("Data:", data);
+  const data = useSelector(state => Object.values(state.all_pages));
 
-    // search text
-    const [searchText, setSearchText] = useState("");
+  // search text
+  const [searchText, setSearchText] = useState("");
 
-    const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
-    // show big search box when clicked
-    const [doSearch, setDoSearch] = useState(false);
+  // show big search box when clicked
+  const [doSearch, setDoSearch] = useState(false);
 
-    // for dealing with search menu later
-    const searchRef = useRef();
+  // for dealing with search menu later
+  const searchRef = useRef();
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    // dispatch for the page data
-    useEffect(() => {
-      dispatch(getEverySinglePage(userId));
-    }, [dispatch]);
+  // dispatch for the page data
+  useEffect(() => {
+    dispatch(getEverySinglePage(userId));
+  }, [dispatch]);
+
+
+  const returnProperLocation = (nbId, pId) => {
+    return {
+      pathname: `/${nbId}`,
+      state: { pageId: pId }
+    }
+  }
 
     const handleFilter = (e) => {
       const searchWord = e.target.value;
@@ -68,9 +75,10 @@ export default function Search({ userId }) {
 
       {filteredData.length > 0 &&
         <div className="data-result">
-          {data && filteredData.slice(0, 15).map(value =>
-            <Link to={`/${value.notebookId}`} className="data-item" key={value.id}>
-              <p className="data-item">{value.title}</p>
+          {data && filteredData.slice(0, 15).map(pg =>
+            <Link to={returnProperLocation(pg.notebookId, pg.id)} className="data-item" key={pg.id}>
+              <i className="fa-solid fa-book-open"></i>
+              <p className="data-item">{pg.title}</p>
             </Link>)}
 
         </div>

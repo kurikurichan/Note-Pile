@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getEverySinglePage } from '../../store/pages.js';
+import { getEverySinglePage } from '../../store/all_pages.js';
 import { Link } from 'react-router-dom';
 import Scratch from './Scratch.js';
 
@@ -12,7 +12,7 @@ import coffee from './coffee.jpeg';
 export default function Home() {
 
   const user = useSelector(state => state.session.user);
-  const allPages = useSelector(state => state.pages);
+  const allPages = useSelector(state => state.all_pages);
 
   const [displayPages, setDisplayPages] = useState("");
 
