@@ -99,12 +99,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         setEditTitle(false);
         setEditContent(false);
 
-        /// 3 phases of save button
-        // 1: "Save" plain
-        // 2.) "Saving" spin wheel
-        // 3.) "Saved" checkmark
-
-
     };
 
     const sendPageToTrash = async (e) => {
