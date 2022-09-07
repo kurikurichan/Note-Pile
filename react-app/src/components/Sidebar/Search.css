@@ -1,0 +1,135 @@
+.search {
+    width: 90%;
+}
+
+#unactive-search {
+    display: flex;
+    align-items: center;
+    background-color: var(--sidebar-highlight);
+    border-radius: 40px;
+    width: 90%;
+    height: 40px;
+
+}
+
+#unactive-search > i,
+#active-search > i {
+    padding-left: 10px;
+}
+
+/* wass unactive-search-inputs */
+.unactive-search-input {
+    background: var(--sidebar-highlight);
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    caret-color: var(--gray90);
+    color: var(--gray90);
+    font-size: 14px;
+    height: 30px;
+    padding: 0 5px 0 10px;
+
+    width: 100%;
+    border: 0;
+    outline: none;
+
+    display: flex;
+    align-items: center;
+    background-color: var(--sidebar-highlight);
+    border-radius: 40px;
+    width: 90%;
+    height: 40px;
+}
+
+/* Contains: search box, icons, input, and data results */
+#active-search-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    min-height: auto;
+    border-radius: 4px;
+}
+
+/* this is the part that contains the icon & input */
+#active-search {
+    border-radius: 4px;
+    background-color: rgb(34, 34, 34);
+
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+}
+
+#active-search-input {
+    background-color: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    caret-color: var(--gray90);
+    color: var(--gray90);
+    font-size: 14px;
+    height: 30px;
+    padding: 0 5px 0 10px;
+
+    width: 85%;
+    border: 0;
+    outline: none;
+}
+
+.data-result {
+    max-width: 100%;
+    background-color: var(--gray20);
+    background-color: rgb(34, 34, 34);
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-top: -5px;
+    padding-top: 5px;
+}
+
+.data-item {
+    padding: 4px 0px 2px 0px;
+    display: flex;
+    align-items: center;
+    height: 25px;
+    background-color: transparent;
+    text-decoration: none;
+    color: var(--lighter-alabaster);
+    text-overflow: ellipsis;
+    word-break: break-all;
+
+    overflow: hidden;
+    white-space: normal;
+}
+
+.data-item:hover {
+    background-color: #7c7c7d;
+}
+
+.data-item > p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.data-item > i {
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fa-x {
+    font-size: 10px;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 2px;
+    margin-right: 4px;
+}
+
+.fa-x:hover {
+    background-color: #7c7c7d;
+}

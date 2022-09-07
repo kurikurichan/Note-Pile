@@ -58,6 +58,14 @@
     --gray10: #1a1a1a;
 
 
+    --scrollbar-corner-background-color: transparent;
+    --scrollbar-thumb-background-color: transparent;
+    --scrollbar-track-background-color: transparent;
+    --scrollbar-track-background-color--hover: hsla(0,0%,100%,0.12);
+    --scrollbar-thumb-background-color--content-hover: hsla(0,0%,100%,0.4);
+    --sidebar-scrollbar-thumb-background-color: var(--gray40);
+
+
 }
 
 */
