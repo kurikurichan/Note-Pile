@@ -71,4 +71,29 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     color: var(--sidebar-font);
     font-size: 14px;
+
 }
+
+.edit-scratch::-webkit-scrollbar-track {
+    border-radius: 10px;
+	background-color: transparent;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.edit-scratch::-webkit-scrollbar {
+    background-color: transparent;
+	width: 12px;
+}
+
+.edit-scratch::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: #555;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    margin: 20px 0 20px 0;
+}
+
+  /* Firefox */
+.edit-scratch {
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+  }
