@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getAllPages, editPage, addToTrash } from '../../store/pages';
 
 import './MainPageView.css';
 
-export default function Pages({ notebookId, userId, pageId, currentNb }) {
-
-    const allPagesOfNotebook = useSelector(state => state.pages)
+export default function Pages({ notebookId, userId, pageId, currentNb, allPages }) {
 
     const [errors, setErrors] = useState([]);
     // edit page title & content
@@ -31,8 +29,9 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     // single page to use in our dynamic page view
     let currentPage;
 
-    if (allPagesOfNotebook) {
-        currentPage = Object.values(allPagesOfNotebook).filter(page => +page.id === +pageId)[0];
+    if (allPages) {
+        console.log("")
+        currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
     }
 
     useEffect(() => {
@@ -57,10 +56,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
 
     }, [tWarn, cWarn, sent]);
 
-    useEffect(() => {
-        dispatch(getAllPages(userId, notebookId));
-    }, [dispatch])
-
     // load the fields we have with stuff we have already
     useEffect(() => {
         if (currentPage) {
@@ -69,7 +64,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
         }
         // reset the save button
         setSave("Save");
-    }, [pageId])
+    }, [allPages, pageId])
 
 
     const handleBlur = async (e) => {
@@ -143,7 +138,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     }, [title, content]);
 
 
-  if (!allPagesOfNotebook) return <p className="loading right-div">Loading...</p>
+  if (!allPages) return <p className="loading right-div">Loading...</p>
   return (
     <div className="right-div">
         {currentPage &&
@@ -160,7 +155,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                             onClick={handleBlur}
                         >
                             {save}
-                            {save === "Saved" && <i className="fa-solid fa-check in-save-icon" style={{color: 'rgb(214, 255, 225)'}}></i>}
                         </button>
                         <button className="trash-button delete-but" onClick={sendPageToTrash}>
                             <i className="fa-solid fa-trash-can"></i>

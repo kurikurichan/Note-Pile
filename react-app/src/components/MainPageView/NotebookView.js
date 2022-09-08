@@ -204,12 +204,13 @@ export default function NotebookView() {
                     <p>Click the '...' button above and select "Add a Page" to create a page.</p>
                 </div>}
         </div>
-        <Pages
+        {Object.values(allPagesOfNotebook).length > 0 && <Pages
             notebookId={notebookId}
             userId={user.id}
             pageId={selectedPageId}
             currentNb={currentNotebook}
-         />
+            allPages={allPagesOfNotebook}
+         />}
     </div>
   )
 }
