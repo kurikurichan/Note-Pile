@@ -12,9 +12,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     // edit page title & content
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    //  toggle edit forms for page title & content
-    const [editContent, setEditContent] = useState(false);
-    const [editTitle, setEditTitle] = useState(false);
 
     // set state of the save button
     const [save, setSave] = useState("Save");
@@ -96,9 +93,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
             setSave("Saved")
         }
 
-        setEditTitle(false);
-        setEditContent(false);
-
     };
 
     const sendPageToTrash = async (e) => {
@@ -179,14 +173,10 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 </div>
             </div>
             <div className="page-view">
-                {!editTitle ?
-                <div className={`main-page-title ${currentPage.title ? 'white' : 'grey'}`} onClick={() => setEditTitle(true)} >
-                    <h1>{currentPage.title || "Title"}</h1>
-                </div> :
                 <div className="main-page-title">
                     <input
                         className={`page-title ${currentPage.title ? 'white' : 'grey'}`}
-                        value={title === null ? "" : title}
+                        value={title}
                         placeholder="Title"
                         onChange={(e) => setTitle(e.target.value)}
                         onBlur={handleBlur}
@@ -196,40 +186,26 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                     />
                     {tWarn && <p className="len-warning">Maximum title length reached</p>}
 
-                </div>}
-                    {!editContent &&
-                    <div
-                        className={`page-contents ${currentPage.content ? 'white' : 'grey'}`}
-                        value={currentPage.content}
-                        onClick={() => setEditContent(true)}
+                </div>
+
+                    <textarea
+                        className="page-edit-contents white"
+                        value={content}
+                        onChange={(e) => {
+                            setContent(e.target.value);
+                            contentAutoGrow(e);
+                        }}
+                        onFocus={(e) => contentAutoGrow(e)}
+                        onBlur={handleBlur}
+                        rows={textAreaHeight}
+                        enterKeyHint="enter"
+                        placeholder="Start writing here!"
+                        translate="no"
+                        maxLength={10000}
                         style={{padding:"12px 40px 0px"}}
-                    >
-                        {currentPage.content ? currentPage.content : "Start writing here!"}
-                    </div>}
-                {editContent &&
-                    <>
-                        <textarea
-                            className="page-edit-contents white"
-                            value={content}
-                            onChange={(e) => {
-                                setContent(e.target.value);
-                                contentAutoGrow(e);
-                            }}
-                            onFocus={(e) => contentAutoGrow(e)}
-                            onBlur={handleBlur}
-                            rows={textAreaHeight}
-                            enterKeyHint="enter"
-                            placeholder="Start writing here!"
-                            translate="no"
-                            maxLength={10000}
-                            style={{padding:"12px 40px 0px"}}
-                            onKeyDown={() => content?.length >= 10000 && setCWarn(true)}
-                            onKeyUp={() => content?.length < 10000 && setCWarn(false)}
-                        / >
-                    </>
-
-
-                }
+                        onKeyDown={() => content?.length >= 10000 && setCWarn(true)}
+                        onKeyUp={() => content?.length < 10000 && setCWarn(false)}
+                    / >
             </div>
             <div className="page-footer">
                 {cWarn && <p className="len-warning c">Maximum body length reached</p>}
