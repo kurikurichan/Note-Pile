@@ -67,6 +67,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
     // load the fields we have with stuff we have already
     useEffect(() => {
         if (currentPage) {
+            console.log("useEffect - set new page info");
             setTitle(currentPage.title);
             setContent(currentPage.content);
         }
@@ -186,7 +187,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 <div className="main-page-title">
                     <input
                         className={`page-title ${currentPage.title ? 'white' : 'grey'}`}
-                        value={title === null ? "" : title}
+                        value={title || ""}
                         placeholder="Title"
                         onChange={(e) => setTitle(e.target.value)}
                         onBlur={handleBlur}
@@ -204,7 +205,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                         onClick={() => setEditContent(true)}
                         style={{padding:"12px 40px 0px"}}
                     >
-                        {currentPage.content ? currentPage.content : "Start writing here!"}
+                        {currentPage.content || "Start writing here!"}
                     </div>}
                 {editContent &&
                     <>
@@ -232,7 +233,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb }) {
                 }
             </div>
             <div className="page-footer">
-                {cWarn && <p className="len-warning c">Maximum body length reached</p>}
+                {cWarn && <p className="len-warning c">Maximum body length reached (10000 characters)</p>}
             </div>
         </>}
     </div>

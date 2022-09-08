@@ -65,6 +65,7 @@ export default function Home() {
       const allPagesArr = Object.values(allPages).filter(pg => pg.content).sort((p1, p2) => {
         return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
       });
+      console.log("allPagesArr", allPagesArr)
       return allPagesArr.slice(0, 4);
     }
   }

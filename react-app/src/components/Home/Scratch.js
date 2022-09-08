@@ -6,6 +6,7 @@ import './Scratch.css';
 
 export default function Scratch({ userId }) {
 
+    // note: change the way we make this an object later so useEffect stops complaining
     const scratchPad = useSelector(state => Object.values(state.scratches)[0]);
 
     // edit scratch content

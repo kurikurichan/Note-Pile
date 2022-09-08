@@ -18,6 +18,7 @@ export default function Sidebar() {
     // for notebooks dropdown selection
     const [noteDropdown, setNoteDropdown] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    // Show user menu  in top left corner
     const [showUserMenu, setShowUserMenu] = useState(false);
 
     // errors for notebook submit
@@ -28,19 +29,40 @@ export default function Sidebar() {
 
     // Close the user dropdown menu when it is clicked outside of
     useEffect(() => {
+
+        console.log("useeffect ran");
+        console.log("setUserMenu: ", showUserMenu)
+
         const closeMenu = (e) => {
+            // console.log(e.target.classList.contains("fa-angle-down"));
+            console.log("catMenu.current", catMenu.current)
+            console.log("2nd if statement logic: ", catMenu.current && showUserMenu && e.target.id === "main-username")
+
+            // if useRef is active, if user menu is open...
+            //  || e.target.id === "main-username" || e.target.classList.contains("fa-angle-down")
             if (catMenu.current && showUserMenu && !catMenu.current.contains(e.target)) {
+                console.log("first if statement")
                 setShowUserMenu(false);
+                // (e.target.id === "main-username" || e.target.classList.contains("fa-angle-down")
             }
+
+            // console.log("catMenu.current", catMenu.current, "showUseMenu: ", showUserMenu, "e.target.id", e.target.id)
+            // console.log("2nd if statement logic again: ", catMenu.current && showUserMenu && e.target.id === "main-username")
+
+            // if (!catMenu.current && showUserMenu && e.target.id === "main-username" || !catMenu.current.contains(e.target)) {
+            //     setShowUserMenu(false);
+
+            // }
         };
 
-        // event listener for when mouse is down anywhere in document
+        // event listener for when mouse is up anywhere in document
         document.addEventListener('mouseup', closeMenu);
 
         return () => {
             // clean up event listener
             document.removeEventListener("mouseup", closeMenu);
         }
+
     }, [showUserMenu]);
 
 
@@ -56,8 +78,11 @@ export default function Sidebar() {
     }
 
     const handleUserMenu = (e) => {
-        e.stopPropagation();
         setShowUserMenu(!showUserMenu);
+        if (!showUserMenu) {
+            setShowUserMenu(true);
+            console.log("handleUserMenu click")
+       }
     }
 
     const formatTitle = (name) => {
