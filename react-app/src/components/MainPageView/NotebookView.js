@@ -167,7 +167,7 @@ export default function NotebookView() {
                 <div className="notebook-dongles">
                     <p className="page-count">{getPageCount()}</p>
                     <div className="notebook-options-dropdown">
-                        <i className="fa-solid fa-ellipsis" onClick={openMenu} style={{cursor: "pointer"}}></i>
+                        <i className="fa-solid fa-ellipsis" onClick={openMenu}></i>
 
                         {showMenu &&
                         <div className="profile-dropdown" ref={catMenu} >
