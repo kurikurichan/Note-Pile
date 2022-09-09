@@ -76,6 +76,7 @@
 
 .title-view {
     padding: 15px;
+    padding-bottom: 13px;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid var(--sidebar-highlight);
@@ -110,6 +111,16 @@
 
 .notebook-options-dropdown {
     position: relative;
+}
+
+.notebook-options-dropdown > .fa-ellipsis {
+    cursor: pointer;
+    padding: 2px 4px 2px 4px;
+    border-radius: 2px;
+}
+
+.notebook-options-dropdown > .fa-ellipsis:hover {
+    background-color: #2d2c2c;
 }
 
 .profile-dropdown {

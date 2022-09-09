@@ -134,3 +134,9 @@
 .fa-x:hover {
     background-color: #7c7c7d;
 }
+
+#no-results {
+    font-style: italic;
+    font-size: 12px;
+    padding: 3px 0 3px 10px;
+}

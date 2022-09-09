@@ -100,6 +100,11 @@ export default function Search({ userId }) {
                 </div>
               }
 
+              {filteredData.length === 0 && searchText.length > 0 &&
+              <div className="data-result">
+                <p id="no-results">No results found</p>
+              </div>}
+
 
         </div>
 
