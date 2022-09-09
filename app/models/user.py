@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
 
     notebooks = relationship("Notebook", back_populates="user", cascade= "all, delete")
     pages = relationship("Page", back_populates="user", cascade= "all, delete")
-    scratch = relationship("Scratch", back_populates="user")
+    scratch = relationship("Scratch", back_populates="user", cascade= "all, delete")
 
     # automatically create a scratch table
     def __init__(self, **kwargs):
@@ -38,5 +38,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'scratch': self.scratch[0].to_dict()
         }

@@ -15,8 +15,11 @@ def scratch(userId):
         return {'errors': ["user: You are unauthorized."]}, 405
 
     scratch = Scratch.query.filter(Scratch.userId == userId).one();
+    print("----- get scratch -----", scratch.id, scratch.content, scratch.to_dict())
 
-    return {'scratch': [scratch.to_dict()]}
+
+    # return {'scratch': [scratch.to_dict()]}
+    return scratch.to_dict()
 
 # * PUT /api/:userId/:scratchId - update scratch pad contents@pages_routes.route('/<int:notebookId>')
 @scratch_routes.route('/<int:userId>/', methods=["PUT"])
@@ -31,9 +34,9 @@ def new_page(userId):
 
     if userId == scratch.userId:
         scratch.content = request.json['content']
-        print("----- success -----", scratch.content)
+        print("----- edit scratch -----", scratch.id, scratch.content, scratch.to_dict())
 
         db.session.commit()
-        return {'scratch': [scratch.to_dict()]}
+        return scratch.to_dict()
     else:
         return jsonify({"error"})

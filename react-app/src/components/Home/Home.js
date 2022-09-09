@@ -122,7 +122,7 @@ export default function Home() {
               </div>
 
               <div className="scratch">
-                <Scratch userId = {user.id} />
+                <Scratch user = {user} />
               </div>
           </div>
         </div>

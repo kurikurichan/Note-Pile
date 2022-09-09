@@ -420,3 +420,7 @@
     from {opacity :1;}
     to {opacity :0;}
 }
+
+.nbview {
+    background-color: var(--background-primary);
+}
