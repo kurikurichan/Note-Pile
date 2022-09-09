@@ -211,6 +211,9 @@ export default function NotebookView() {
             currentNb={currentNotebook}
             allPages={allPagesOfNotebook}
          />}
+
+        {Object.values(allPagesOfNotebook).length === 0 &&
+            <div className="right-div"></div>}
     </div>
   )
 }
