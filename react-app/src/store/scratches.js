@@ -23,6 +23,7 @@ export const getAllScratches = (userId) => async (dispatch) => {
 
       const data = await res.json();
       dispatch(getScratches(data));
+      console.log("this is scratch data from getScratch thunk: ", data)
       return data;
 
     }

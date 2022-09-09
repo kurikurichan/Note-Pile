@@ -155,7 +155,7 @@ export default function NotebookView() {
     const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
 
 
-    if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading nbview">Loading...</p>
+    if (!user || !currentNotebook || !allPagesOfNotebook) return <p className="loading right-div">Loading...</p>
   return (
     <div className="out-container">
         <div className="left-div">
@@ -211,6 +211,9 @@ export default function NotebookView() {
             currentNb={currentNotebook}
             allPages={allPagesOfNotebook}
          />}
+
+        {Object.values(allPagesOfNotebook).length === 0 &&
+        <div className="right-div"></div>}
     </div>
   )
 }

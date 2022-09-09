@@ -6,12 +6,17 @@ import './Scratch.css';
 
 export default function Scratch({ userId }) {
 
-    const scratchPad = useSelector(state => Object.values(state.scratches)[0]);
+    const scratchPad = useSelector(state => state.scratches);
+
+    // Object.values(state.scratches)[0]
+
+    let scratchArr;
+
+    if (scratchPad) scratchArr = Object.values(scratchPad)[0];
 
     // edit scratch content
-    const [content, setContent] = useState(scratchPad?.content || "");
-    //  toggle edit form for scratch content
-    const [editContent, setEditContent] = useState(false);
+    const [content, setContent] = useState(scratchArr?.content);
+
     // say if message is at limit
     const [message, setMessage] = useState("");
 
@@ -20,34 +25,49 @@ export default function Scratch({ userId }) {
     useEffect(() => {
         // initial dispatch to get scratch data
         dispatch(getAllScratches(userId));
+        console.log("iniital scratch dispatch")
     }, dispatch);
 
-    // grab initial content, update scratch content
     useEffect(() => {
+        if (scratchArr) {
+            console.log("setContent scratchArr.cont || '' ");
+          setContent(scratchArr.content || " ")
+          console.log("content: ", content)
+        }
+    }, [scratchPad, content]);
+
+
+    const handleChange = (e) => {
+
+        setContent(e.target.value);
 
         let payload = {
             content
         }
-
+        console.log("edit dispatch");
         dispatch(editScratch(payload, userId));
 
         // also do alert about length if at 800 chars
-        if (scratchPad) {
-            if (scratchPad.content.length >= 800) {
+        if (content) {
+            if (content.length >= 800) {
                 setMessage("Maximum length reached");
             } else {
                 setMessage("");
             }
         }
-    }, [content]);
+    }
 
     // get initial scratch
-    useEffect(() => {
-        // if the data isn't null then set it (since it comes from null from backend)
-        if (scratchPad && scratchPad.content) setContent(scratchPad.content);
-    }, [scratchPad]);
+    // useEffect(() => {
+    //     console.log("scratxchPad useEffect rendered");
+    //     // if the data isn't null then set it (since it comes from null from backend)
+    //     if (scratchArr && scratchArr.content) {
+    //         console.log("scratchPad useeffect  content is set")
+    //         setContent(scratchArr.content);
 
-    if (!scratchPad) return null;
+    //     }
+    // }, [scratchArr]);
+
   return (
 
     <div className= "scratch-area">
@@ -55,20 +75,16 @@ export default function Scratch({ userId }) {
             <p>SCRATCH PAD</p>
         </div>
         <div className= "scratch-text-area">
-            {editContent ? (
+            {scratchArr && scratchArr.content &&
                 <textarea
                     className="edit-scratch"
                     value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    onChange={handleChange}
                     placeholder="Start writing..."
                     rows={6}
                     maxLength={800}
                 />
-            ):(
-                <p placeholder='Start writing...' onClick={setEditContent(true)}>
-                    {content ? content : "Start writing..."}
-                </p>
-            )}
+            }
         </div>
         <div className="errs">
             <p className="error">{message}</p>
