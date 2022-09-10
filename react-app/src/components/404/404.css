@@ -1,0 +1,13 @@
+.not-found {
+    background-color: var(--background-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found > h1 {
+    color: var(--sidebar-font);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-bottom: 1%;
+}

@@ -10,6 +10,7 @@ import NotebookView from './components/MainPageView/NotebookView';
 import Trash from './components/Trash/Trash';
 import Home from './components/Home/Home';
 import Splash from './components/Splash/Splash';
+import NotFound from './components/404/404';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,26 +24,26 @@ function App() {
   }, [dispatch]);
 
   if (!loaded) {
-    return null;
+    return <div className="loader" style={{backgroundColor:"var(--background-primary)"}}></div>;
   }
 
   return (
     <BrowserRouter>
       <Switch>
-      <Route path='/sign-up' exact={true}>
+      <Route path='/sign-up'>
         <SignUpForm />
       </Route>
       <Route path='/' exact={true} >
         <Splash />
       </Route>
-      <Route path='/login' exact={true}>
+      <Route path='/login'>
         <LoginForm />
       </Route>
-        <ProtectedRoute path='/home' exact={true} >
+        <ProtectedRoute path='/home'>
           <Sidebar />
           <Home />
         </ProtectedRoute>
-        <ProtectedRoute path='/trash' exact={true} >
+        <ProtectedRoute path='/trash' >
           <Sidebar />
           <Trash />
         </ProtectedRoute>
@@ -50,6 +51,10 @@ function App() {
           <Sidebar />
           <NotebookView />
         </ProtectedRoute>
+        <Route path='*'>
+          <Sidebar />
+          <NotFound />
+        </Route>
       </Switch>
 
     </BrowserRouter>
