@@ -111,6 +111,14 @@ a {
     background-color: rgb(1, 188, 51);
 }
 
+.loader-bg {
+    background-color: var(--background-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .loader {
     border: 16px solid var(--lighter-alabaster);
     border-top: 16px solid rgb(0, 168, 45);
