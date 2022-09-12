@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
 import { getAllNotebooks, newNotebook } from '../../store/notebooks'
 
@@ -13,6 +14,7 @@ export default function CreateNBModal({ user }) {
     const [title, setTitle] = useState("");
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleNotebookSubmit = async (e) => {
 
@@ -33,6 +35,7 @@ export default function CreateNBModal({ user }) {
             await dispatch(getAllNotebooks());
             setShowModal(false);
             setTitle("");
+            history.push(`/${postNotebook.id}`);
         }
 
     };
