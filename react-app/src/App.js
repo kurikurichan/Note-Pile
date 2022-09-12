@@ -11,6 +11,7 @@ import Trash from './components/Trash/Trash';
 import Home from './components/Home/Home';
 import Splash from './components/Splash/Splash';
 import NotFound from './components/404/404';
+import Load from './components/404/Load';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,21 +25,23 @@ function App() {
   }, [dispatch]);
 
   if (!loaded) {
-    return <div className="loader" style={{backgroundColor:"var(--background-primary)"}}></div>;
+    // return <div className="loader" style={{backgroundColor:"var(--background-primary)"}}></div>;
+    return <Load />;
+
   }
 
   return (
     <BrowserRouter>
       <Switch>
-      <Route path='/sign-up'>
-        <SignUpForm />
-      </Route>
-      <Route path='/' exact={true} >
-        <Splash />
-      </Route>
-      <Route path='/login'>
-        <LoginForm />
-      </Route>
+        <Route path='/sign-up'>
+          <SignUpForm />
+        </Route>
+        <Route path='/' exact={true} >
+          <Splash />
+        </Route>
+        <Route path='/login'>
+          <LoginForm />
+        </Route>
         <ProtectedRoute path='/home'>
           <Sidebar />
           <Home />
