@@ -20,19 +20,19 @@ Note Pile is a full-stack clone of the popular website Evernote, which is used f
 
 # Landing page
 
-![Screen Shot 2022-08-14 at 11 48 20 PM](https://user-images.githubusercontent.com/8907997/184591463-f11747d2-0abf-4ded-84b4-2dfcadd48375.png)
+<img width="1248" alt="Screen Shot 2022-09-12 at 12 28 42 AM" src="https://user-images.githubusercontent.com/8907997/189597557-f3ae8f40-17ce-46b5-a918-db83e65115e2.png">
 
 # Login page
- 
-![Screen Shot 2022-08-14 at 11 48 32 PM](https://user-images.githubusercontent.com/8907997/184591937-336b0238-4afc-4ca5-a146-df590d20e875.png)
+
+ <img width="1365" alt="Screen Shot 2022-09-12 at 12 28 52 AM" src="https://user-images.githubusercontent.com/8907997/189597611-6adaccf1-a7f8-41ca-8e71-50b7a1f8f127.png">
 
 # Home Page
 
-![Screen Shot 2022-08-15 at 12 35 12 AM](https://user-images.githubusercontent.com/8907997/184594769-8814c602-bb7d-4e24-8160-332f7fd0642b.png)
+<img width="1433" alt="Screen Shot 2022-09-12 at 12 30 55 AM" src="https://user-images.githubusercontent.com/8907997/189597679-de0cbc71-5d7a-4d74-928d-b48db96084fc.png">
 
 # Viewing a notebook
 
-![Screen Shot 2022-08-14 at 11 55 43 PM](https://user-images.githubusercontent.com/8907997/184591990-872ebb6e-6fee-428a-a6fe-777864f4305a.png)
+<img width="1440" alt="Screen Shot 2022-09-12 at 12 32 16 AM" src="https://user-images.githubusercontent.com/8907997/189597731-fef859b0-28d4-4cb4-b245-86349aca144d.png">
 
 # Code snippet
 
@@ -63,6 +63,6 @@ How to run Note Pile locally:
 
 ## Future Features
 * Rich text editor
-* Scratch pad
+* AWS
 * Notebook display page
 * Drawing
