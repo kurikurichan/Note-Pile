@@ -76,6 +76,8 @@ export default function EditNBModal({user, notebookId, allNbs, showModal, setSho
                             onChange={(e) => setNbTitle(e.target.value)}
                             maxLength={60}
                         />
+                        <button type="Submit" style={{display:"none"}} />
+
                     </div>
                     <div className="errs">
                         {errors && errors.map((error, ind) => (
