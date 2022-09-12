@@ -19,7 +19,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     // set state of page body length warning
     const [cWarn, setCWarn] = useState(false);
     // set state of sent to trash message
-    const [sent, setSent] = useState(false);
+    // const [sent, setSent] = useState(false);
 
     // for resizing text area
     const [textAreaHeight, setTextAreaHeight] = useState(40);
@@ -47,18 +47,18 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
             }, 1800);
         }
         // trash message
-        if (sent) {
-            setTimeout(() => {
-                setSent(false);
-            }, 1800);
-        }
+        // if (sent) {
+        //     setTimeout(() => {
+        //         setSent(false);
+        //     }, 1800);
+        // }
 
-    }, [tWarn, cWarn, sent]);
+    }, [tWarn, cWarn]);
 
     // load the fields we have with stuff we have already
     useEffect(() => {
         if (currentPage) {
-            setTitle(currentPage.title);
+            setTitle(currentPage.title || "");
             setContent(currentPage.content);
         }
         // reset the save button
@@ -102,7 +102,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
         if (sentToTrash) {
             getPages();
-            setSent(true);
+            // setSent(true);
         }
 
     }
@@ -137,7 +137,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     }, [title, content]);
 
 
-  if (!allPages) return <p className="loading right-div">Loading...</p>
+//   if (!allPages) return <p className="loading right-div">Loading...</p>
   return (
     <div className="right-div">
         {currentPage &&
@@ -162,13 +162,13 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
                 </div>
                 <div className="rich-text-stuff">
                     <p className="page-title-date"> {getFormattedDate(currentPage.updated_at)} </p>
-                    {sent && <p id="sent-to-trash">Page sent to trash</p>}
+                    {/* {sent && <p id="sent-to-trash">Page sent to trash</p>} */}
                 </div>
             </div>
             <div className="page-view">
                 <div className="main-page-title">
                     <input
-                        className={`page-title ${currentPage.title ? 'white' : 'grey'}`}
+                        className={`page-title ${title ? 'white' : 'grey'}`}
                         value={title}
                         placeholder="Title"
                         onChange={(e) => setTitle(e.target.value)}
