@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { getEverySinglePage } from '../../store/all_pages';
@@ -76,7 +76,6 @@ export default function Search({ userId }) {
                   type="text"
                   value={searchText}
                   onChange={handleFilter}
-                  // onBlur={handleClear}
               />
 
               <div>{searchText.length > 0 && <i className="fa-solid fa-x" onClick={handleClear}></i>}</div>
