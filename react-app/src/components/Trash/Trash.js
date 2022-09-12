@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllTrash, addToTrash } from '../../store/pages';
 import EmptyTrash from './EmptyTrashModal';
 import './Trash.css';
+import NotFound from '../404/404';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -99,7 +100,7 @@ export default function Trash() {
     const noTrashedNotes = allTrashedPages && Object.values(allTrashedPages).length === 0;
 
 
-    if (!user || !allTrashedPages) return <p className="loading right-div">Loading...</p>
+    if (!user || !allTrashedPages) return <NotFound />
   return (
     <div className="out-container">
         <div className="left-div">

@@ -6,7 +6,8 @@
     align-items: center;
 }
 
-.not-found > h1 {
+.not-found > h1,
+.not-found > h3 {
     color: var(--sidebar-font);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding-bottom: 1%;
