@@ -66,7 +66,7 @@ export default function Search({ userId }) {
     <div className="search">
       {doSearch ? (
         <div className="active-search-wrapper">
-          <form id="active-search">
+          <div id="active-search">
             <i className="fa-solid fa-magnifying-glass"></i>
             <>
               <input
@@ -82,7 +82,7 @@ export default function Search({ userId }) {
 
             </>
 
-          </form>
+          </div>
 
               {filteredData.length > 0 &&
                 <div className="data-result">
