@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editScratch, getAllScratches } from '../../store/scratches';
 import { authenticate } from '../../store/session';
 
@@ -7,9 +7,6 @@ import './Scratch.css';
 
 export default function Scratch({ user }) {
 
-    // const scratchPad = useSelector(state => state.scratches);
-    // console.log(see);
-    // const user = useSelector(state => state.session)
     const scratchPad = user.scratch;
 
     // edit scratch content

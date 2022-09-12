@@ -23,7 +23,6 @@ export const getAllScratches = (userId) => async (dispatch) => {
 
       const data = await res.json();
       dispatch(getScratches(data));
-      console.log("this is scratch data from getScratch thunk: ", data)
       return data;
 
     }
@@ -37,7 +36,6 @@ export const editScratch = (scratchData, userId) => async (dispatch) => {
     });
 
     const data = await res.json();
-    console.log("edit data thunk: ", data);
     dispatch(updateScratch(data));
     return data;
 };
@@ -48,10 +46,7 @@ const scratches = (state = {}, action) => {
     switch (action.type) {
 
       case GET_SCRATCH:
-        // console.log(JSON.stringify(action.scratch));
         newState[action.scratch.id] = action.scratch;
-        console.log(newState);
-
         return newState;
 
       case UPDATE_SCRATCH:

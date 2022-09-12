@@ -30,7 +30,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     let currentPage;
 
     if (allPages) {
-        console.log("")
         currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
     }
 

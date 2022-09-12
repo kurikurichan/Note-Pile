@@ -27,13 +27,13 @@ export default function Home() {
     const getToday = () => {
       const today = new Date();
       const weekdays = [
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday",
-        "Sunday"
+        "Saturday"
       ]
       return weekdays[today.getDay()] + ", " +
       today.toLocaleDateString('en-CA', {
