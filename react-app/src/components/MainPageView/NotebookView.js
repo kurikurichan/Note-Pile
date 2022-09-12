@@ -25,10 +25,9 @@ export default function NotebookView() {
 
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
-    // const allPagesOfNotebook = useSelector(state => Object.values(state.pages).sort((p1, p2) => {
-    //     return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
-    //   }));
-    const allPagesOfNotebook = useSelector(state => state.pages);
+    const allPagesOfNotebook = useSelector(state => Object.values(state.pages).sort((p1, p2) => {
+        return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
+    }));
 
     // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
