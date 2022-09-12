@@ -65,10 +65,9 @@ export default function Scratch({ user }) {
                 rows={6}
                 maxLength={800}
             />
-
-        </div>
-        <div className="errs">
-            <p className="error">{message}</p>
+            <div className="errs">
+                <p className="error" style={{color: "red"}}>{message}</p>
+            </div>
         </div>
     </div>
   )
