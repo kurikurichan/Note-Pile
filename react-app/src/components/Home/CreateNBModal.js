@@ -70,6 +70,7 @@ export default function CreateNBModal({ user }) {
                             onChange={(e) => setTitle(e.target.value)}
                             maxLength={60}
                         />
+                        <button type="Submit" style={{display:"none"}} />
                     </div>
                     {errors &&
                     <div className="errs">
@@ -79,7 +80,7 @@ export default function CreateNBModal({ user }) {
                     </div>}
                     <div className="modal-buttons">
                         <button className="cancel-but" onClick={() => setShowModal(false)}>Cancel</button>
-                        <button type="Submit" className="green-button" onClick={handleNotebookSubmit}>Create</button>
+                        <button type="Submit" className="green-button">Create</button>
                     </div>
 
                 </form>
