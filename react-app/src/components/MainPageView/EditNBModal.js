@@ -52,6 +52,8 @@ export default function EditNBModal({user, notebookId, allNbs, showModal, setSho
     useEffect(() => {
         if (nbTitle.length >= 60) {
             setErrors(["Maximum title length reached"]);
+        } else {
+            setErrors([]);
         }
     }, [nbTitle]);
 
