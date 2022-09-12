@@ -132,9 +132,6 @@ export default function Sidebar() {
                     <i className="fa-solid fa-trash"></i>{` `}Trash
                 </span>
             </NavLink>
-            <div id="sidebar-padding">
-
-            </div>
             <div className="sidebar-footer">
 
             </div>

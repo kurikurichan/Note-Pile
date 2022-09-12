@@ -146,7 +146,7 @@ export default function Splash() {
         <footer className="splash-footer">
             <p>Clone of Evernote by Krista Strucke</p>
             <div className="links">
-                <a href="https://github.com/kurikurichan" target="_blank">
+                <a href="https://github.com/kurikurichan" target="_blank" rel="noopener noreferrer">
                     <i className="fa-brands fa-github"></i>
                 </a>
                 <a
