@@ -128,9 +128,9 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* <div className="scratch">
+              <div className="scratch">
                 <Scratch user = {user} />
-              </div> */}
+              </div>
           </div>
         </div>
     </div>
