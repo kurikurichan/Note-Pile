@@ -4,19 +4,31 @@ import { getAllTrash, addToTrash } from '../../store/pages';
 import EmptyTrash from './EmptyTrashModal';
 import './Trash.css';
 import NotFound from '../404/404';
+import LoadSidebar from '../404/LoadSidebar';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.session.user);
-    const allTrashedPages = useSelector(state => state.pages)
+    const allTrashedPages = useSelector(state => state.pages);
+
+    const [loaded, setLoaded] = useState(false);
+
 
     // initial load trashed pages
 
-    useEffect(() => {
-        dispatch(getAllTrash(user.id));
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getAllTrash(user.id));
+    // }, [dispatch])
+
+      // load the pages
+  useEffect(() => {
+    (async() => {
+        await dispatch(getAllTrash(user.id));
+      setLoaded(true);
+    })();
+  }, [dispatch])
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -25,11 +37,7 @@ export default function Trash() {
 
 
     // single page to use in our dynamic page view
-    let currentPage;
-
-    if (allTrashedPages) {
-        currentPage = Object.values(allTrashedPages).filter(page => +page.id === +selectedPageId)[0];
-    }
+    let currentPage = Object.values(allTrashedPages).filter(page => +page.id === +selectedPageId)[0];
 
     useEffect(() => {
         if (currentPage) {
@@ -97,10 +105,11 @@ export default function Trash() {
         return snippet.join('');
     }
 
-    const noTrashedNotes = allTrashedPages && Object.values(allTrashedPages).length === 0;
+    const noTrashedNotes = Object.values(allTrashedPages).length === 0;
 
+    if (!loaded) return <LoadSidebar />;
+    if (!user) return <NotFound />;
 
-    if (!user || !allTrashedPages) return <NotFound />
   return (
     <div className="out-container">
         <div className="left-div">

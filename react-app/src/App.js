@@ -25,9 +25,7 @@ function App() {
   }, [dispatch]);
 
   if (!loaded) {
-    // return <div className="loader" style={{backgroundColor:"var(--background-primary)"}}></div>;
     return <Load />;
-
   }
 
   return (

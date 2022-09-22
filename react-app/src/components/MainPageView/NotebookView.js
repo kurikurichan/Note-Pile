@@ -18,6 +18,9 @@ export default function NotebookView() {
     const location = useLocation();
     const catMenu = useRef(null);
 
+    const [loaded, setLoaded] = useState(false);
+
+
     // change pageId if we get a location (from home)
     useEffect(() => {
         if (location.state) {
@@ -70,15 +73,18 @@ export default function NotebookView() {
     }, [showMenu]);
 
     // single notebook based on notebookId
-    let currentNotebook;
+    let currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
 
-    if (allNotebooks) {
-        currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
-    }
+    // useEffect(() => {
+    //     dispatch(getAllNotebooks());
+    // }, [dispatch])
 
     useEffect(() => {
-        dispatch(getAllNotebooks());
-    }, [dispatch])
+        (async() => {
+          await dispatch(getAllNotebooks());
+          setLoaded(true);
+        })();
+      }, [dispatch])
 
     // Pages stuff
 
@@ -157,8 +163,8 @@ export default function NotebookView() {
 
     const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
 
-    if (!currentNotebook) return <NotFound />
-    if (!user || !allPagesOfNotebook) return <LoadSidebar />
+    if (!loaded) return <LoadSidebar />
+    if (!user || !currentNotebook) return <NotFound />
   return (
     <div className="out-container">
         <div className="left-div">
