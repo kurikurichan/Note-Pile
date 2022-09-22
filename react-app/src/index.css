@@ -111,12 +111,20 @@ a {
     background-color: rgb(1, 188, 51);
 }
 
-.loader-bg {
-    background-color: var(--background-primary);
+.loader-bg,
+.loader-sidebar {
+    background-color: rgb(41, 41, 41);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.loader-sidebar {
+    width: 100%;
+    margin: 0px;
+    position: fixed;
+    left: 200px;
 }
 
 .loader {

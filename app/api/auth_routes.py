@@ -76,6 +76,18 @@ def sign_up():
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+# route to update user's scratchPad
+@auth_routes.route('/<int:userId>', methods=["PUT"])
+@login_required
+def scratch(userId):
+    print("-------accessed scratch pad")
+    if userId == current_user.id:
+        print("------------- passed user check ")
+        user = User.query.get(userId)
+        user.scratch = request.json['scratch']
+        print(user.scratch, "---------------")
+        db.session.commit()
+        return user.to_dict()
 
 @auth_routes.route('/unauthorized')
 def unauthorized():

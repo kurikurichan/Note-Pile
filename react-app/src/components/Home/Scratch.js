@@ -1,43 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { editScratch, getAllScratches } from '../../store/scratches';
-import { authenticate } from '../../store/session';
+import { useDispatch, useSelector } from 'react-redux';
+import { editScratch } from '../../store/session';
 
 import './Scratch.css';
 
 export default function Scratch({ user }) {
 
+    // const scratchPad = user.scratch;
     const scratchPad = user.scratch;
-
+    
     // edit scratch content
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(scratchPad || "");
 
     // say if message is at limit
     const [message, setMessage] = useState("");
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        // initial dispatch to get scratch data
-        dispatch(getAllScratches(user.id));
-        dispatch(authenticate(user.id));
-    }, [dispatch]);
-
-
-    useEffect(() => {
-        if (scratchPad && scratchPad.content) {
-          setContent(scratchPad.content)
-        }
-    }, [scratchPad]);
 
     useEffect(() => {
         // update scratchPad content when it changes
         let payload = {
-            content
+            scratch: content
         }
         dispatch(editScratch(payload, user.id));
-        dispatch(getAllScratches(user.id));
-
 
         // also do alert about length if at 800 chars
         if (content) {

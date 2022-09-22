@@ -3,14 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session'
 import notebooks from './notebooks';
 import pages from './pages';
-import scratches from './scratches';
 import all_pages from './all_pages';
 
 const rootReducer = combineReducers({
   session,
   notebooks,
   pages,
-  scratches,
   all_pages
 });
 

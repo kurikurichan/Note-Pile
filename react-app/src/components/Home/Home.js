@@ -8,6 +8,7 @@ import './Home.css';
 import './Scratch.css';
 
 import coffee from './coffee.jpeg';
+import LoadSidebar from '../404/LoadSidebar.js';
 
 export default function Home() {
 
@@ -16,11 +17,16 @@ export default function Home() {
 
   const [displayPages, setDisplayPages] = useState("");
 
+  const [loaded, setLoaded] = useState(false);
+
   const dispatch = useDispatch();
 
   // load the pages
   useEffect(() => {
-    dispatch(getEverySinglePage(user.id));
+    (async() => {
+      await dispatch(getEverySinglePage(user.id));
+      setLoaded(true);
+    })();
   }, [dispatch])
 
     //  get and format long date
@@ -82,6 +88,7 @@ export default function Home() {
     setDisplayPages(getPagesToDisplay());
   }, [allPages]);
 
+  if (!loaded) return <LoadSidebar />;
   return (
     <div className="home-container">
       <div className="scrollable">
