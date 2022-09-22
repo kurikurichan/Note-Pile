@@ -52,18 +52,18 @@ class Page(db.Model):
         }
 
 
-class Scratch(db.Model):
-    __tablename__ = "scratches"
+# class Scratch(db.Model):
+#     __tablename__ = "scratches"
 
-    id = Column(Integer, primary_key=True)
-    userId = Column(Integer, ForeignKey("users.id"), nullable=False)
-    content = Column(Text, nullable=True)
+#     id = Column(Integer, primary_key=True)
+#     userId = Column(Integer, ForeignKey("users.id"), nullable=False)
+#     content = Column(Text, nullable=True)
 
-    user = relationship("User", back_populates="scratch")
+#     user = relationship("User", back_populates="scratch")
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "userId": self.userId,
-            "content": self.content
-        }
+#     def to_dict(self):
+#         return {
+#             "id": self.id,
+#             "userId": self.userId,
+#             "content": self.content
+#         }
