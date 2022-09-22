@@ -16,13 +16,6 @@ class User(db.Model, UserMixin):
 
     notebooks = relationship("Notebook", back_populates="user", cascade= "all, delete")
     pages = relationship("Page", back_populates="user", cascade= "all, delete")
-    # scratch = relationship("Scratch", back_populates="user", cascade= "all, delete")
-
-    # automatically create a scratch table
-    # def __init__(self, **kwargs):
-    #     super(User, self).__init__(**kwargs)
-    #     self.scratch.append(Scratch(userId=self.id))
-
 
     @property
     def password(self):
