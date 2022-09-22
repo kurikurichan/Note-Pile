@@ -27,11 +27,8 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     const dispatch = useDispatch();
 
     // single page to use in our dynamic page view
-    let currentPage;
+    let currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
 
-    if (allPages) {
-        currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
-    }
 
     useEffect(() => {
         // after a few seconds, get rid of of the title warning area

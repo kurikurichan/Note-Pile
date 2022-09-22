@@ -20,14 +20,6 @@ export default function NotebookView() {
 
     const [loaded, setLoaded] = useState(false);
 
-
-    // change pageId if we get a location (from home)
-    useEffect(() => {
-        if (location.state) {
-            setSelectedPageId(location.state.pageId);
-        }
-    }, [location]);
-
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
     const allPagesOfNotebook = useSelector(state => Object.values(state.pages).sort((p1, p2) => {
@@ -72,7 +64,7 @@ export default function NotebookView() {
         }
     }, [showMenu]);
 
-    // single notebook based on notebookId
+    // // single notebook based on notebookId
     let currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
 
     // useEffect(() => {
@@ -113,10 +105,7 @@ export default function NotebookView() {
 
     // count dem pages for display
     const getPageCount = () => {
-        let numPages = 0;
-        if (allPagesOfNotebook) {
-            numPages = Object.values(allPagesOfNotebook).length;
-        }
+        let numPages = Object.values(allPagesOfNotebook).length;
         // get proper ending based on length
         if (numPages === 1) return `${numPages} page`;
         else return `${numPages} pages`;
@@ -141,27 +130,55 @@ export default function NotebookView() {
     }
 
     // make an auto select page function here. run inside of useEffect when notebookId changes
-    const findFirstPage = () => {
+    const findFirstPage = (notebookId) => {
         // initialize to first page OR current page if there is one
-        if (allPagesOfNotebook) {
-            const firstPage = Object.values(allPagesOfNotebook)[0];
-            if (firstPage) {
-                setSelectedPageId(firstPage.id);
-                console.log('first page set');
-            }
+        // currently it's getting the page from previous notebook
+
+        let firstPage;
+        console.log("all pages of nb: ", allPagesOfNotebook)
+        for (let i in allPagesOfNotebook) {
+            firstPage = allPagesOfNotebook[i];
+            break;
+        }
+
+        if (firstPage) {
+            setSelectedPageId(firstPage.id);
+            console.log('first page set');
         }
     };
 
-    // load pages with each notebookId change
+    // change pageId if we get a location (from home)
+    // location renders whenever notebook is reloaded
     useEffect(() => {
         getPages();
-        // findFirstPage();
-        // setShowMenu(false);
-    }, [notebookId]);
+        if (location.state) {
+            setSelectedPageId(location.state.pageId);
+        } else {
+            console.log("current notebook id: ", notebookId)
+            for (let i in allPagesOfNotebook) {
+                if (allPagesOfNotebook[i].notebookId === notebookId) {
+                    setSelectedPageId(allPagesOfNotebook[i].id);
+                    break;
+                }
+            }
+
+        }
+    }, [location]);
+
+    useEffect(() => {
+        console.log("notebook id rerendered")
+    }, [notebookId])
+
+    // load pages with each notebookId change
+    // useEffect(() => {
+    //     getPages();
+    //     // findFirstPage();
+    //     // setShowMenu(false);
+    // }, [notebookId]);
 
 
 
-    const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
+    const noNotes = Object.values(allPagesOfNotebook).length === 0;
 
     if (!loaded) return <LoadSidebar />
     if (!user || !currentNotebook) return <NotFound />
