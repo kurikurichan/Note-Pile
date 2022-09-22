@@ -9,6 +9,7 @@ import EditNBModal from './EditNBModal';
 import './MainPageView.css';
 import DeleteNBModal from './DeleteNBModal';
 import NotFound from '../404/404';
+import LoadSidebar from '../404/LoadSidebar';
 
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -157,8 +158,8 @@ export default function NotebookView() {
 
     const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
 
-
-    if (!user || !currentNotebook || !allPagesOfNotebook) return <NotFound />
+    if (!currentNotebook) return <NotFound />
+    if (!user || !allPagesOfNotebook) return <LoadSidebar />
   return (
     <div className="out-container">
         <div className="left-div">
