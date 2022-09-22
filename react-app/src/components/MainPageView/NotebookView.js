@@ -149,7 +149,6 @@ export default function NotebookView() {
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
-        // also omg close the dumb menu lol
         // findFirstPage();
         // setShowMenu(false);
     }, [notebookId]);
