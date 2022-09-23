@@ -426,17 +426,19 @@
 }
 
 
-#toolbar {
-    border: none;
+#ql-toolbar {
+    border: none !important;
     margin-left: 20px;
 }
 
-.formats > * {
+.ql-formats > * {
     color: var(--sidebar-font);
     opacity: 1;
 }
 
-
+.quill > * {
+    border: none !important;
+}
 .ql-container {
     width: 80%;
     height: 100%;
