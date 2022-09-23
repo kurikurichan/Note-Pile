@@ -7,9 +7,9 @@ import CustomToolbar from './CustomToolbar';
 
 export default function Editor({content, setContent, setCWarn, handleBlur}) {
 
-    const handleChange = (html) => {
-      setContent(html);
-    }
+    // const handleChange = (html) => {
+    //   setContent(html);
+    // }
 
     // const modules = {
     //     toolbar: {
@@ -54,7 +54,7 @@ export default function Editor({content, setContent, setCWarn, handleBlur}) {
       <ReactQuill
           theme="snow"
           value={content}
-          onChange={handleChange}
+          onChange={(e) => setContent(e)}
           placeholder="Start writing here!"
           modules={modules}
           // formats={formats}

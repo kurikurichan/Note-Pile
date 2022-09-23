@@ -70,7 +70,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
     const handleBlur = async (e) => {
 
-        e.preventDefault();
         // phase 2 save button
         setSave("Saving");
 

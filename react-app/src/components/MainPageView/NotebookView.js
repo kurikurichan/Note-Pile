@@ -5,6 +5,7 @@ import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
 import EditNBModal from './EditNBModal';
+import parse from 'html-react-parser';
 
 import './MainPageView.css';
 import DeleteNBModal from './DeleteNBModal';
@@ -199,7 +200,7 @@ export default function NotebookView() {
                 <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
                     <div className="page-title-content">
                         <p className="page-small-title">{page.title || "Untitled"}</p>
-                        <p className="preview">{getContentSnippet(page.content)}</p>
+                        <p className="preview">{getContentSnippet(parse(page.content))}</p>
                     </div>
                     <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}

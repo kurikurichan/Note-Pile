@@ -4,6 +4,9 @@ import { getEverySinglePage } from '../../store/all_pages.js';
 import { Link } from 'react-router-dom';
 import Scratch from './Scratch.js';
 
+import parse from 'html-react-parser';
+
+
 import './Home.css';
 import './Scratch.css';
 
@@ -117,7 +120,7 @@ export default function Home() {
                           <p id="pg-title">{pg.title || "Untitled"}</p>
                         </div>
                         <div id="snippet-box">
-                          <p id="pg-snippet">{getShortSnippet(pg.content)}</p>
+                          <p id="pg-snippet">{getShortSnippet(parse(pg.content))}</p>
                         </div>
                         <div id="bot-date">
                           <p id="pg-date">{formatDate(pg.updated_at)}</p>
