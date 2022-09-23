@@ -424,3 +424,53 @@
 .nbview {
     background-color: var(--background-primary);
 }
+
+
+#toolbar {
+    border: none;
+    margin-left: 20px;
+}
+
+.formats > * {
+    color: var(--sidebar-font);
+    opacity: 1;
+}
+
+
+.ql-container {
+    width: 80%;
+    height: 100%;
+    border: none !important;
+    margin-left: -20px;
+}
+
+.ql-editor {
+    background-color: transparent;
+    border: 0;
+    resize: none;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+
+    font-family: soleil, sans-serif;
+    font-size: 16px;
+
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+
+    color: white;
+
+    margin-bottom: 2.5rem;
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before{
+    color: var(--sidebar-font);
+}
+
+.ql-font .ql-size {
+    background-color: transparent;
+    color: var(--sidebar-font);
+}

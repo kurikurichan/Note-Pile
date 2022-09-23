@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllPages, editPage, addToTrash } from '../../store/pages';
+import Editor from './Editor/Editor';
 
 import './MainPageView.css';
 
@@ -9,6 +10,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     const [errors, setErrors] = useState([]);
     // edit page title & content
     const [title, setTitle] = useState("");
+    // name was content- changed to value for React-Quill
     const [content, setContent] = useState("");
 
     // set state of the save button
@@ -181,24 +183,13 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
                 </div>
 
-                    <textarea
-                        className="page-edit-contents white"
-                        value={content}
-                        onChange={(e) => {
-                            setContent(e.target.value);
-                            contentAutoGrow(e);
-                        }}
-                        onFocus={(e) => contentAutoGrow(e)}
-                        onBlur={handleBlur}
-                        rows={textAreaHeight}
-                        enterKeyHint="enter"
-                        placeholder="Start writing here!"
-                        translate="no"
-                        maxLength={10000}
-                        style={{padding:"12px 40px 0px"}}
-                        onKeyDown={() => content?.length >= 10000 && setCWarn(true)}
-                        onKeyUp={() => content?.length < 10000 && setCWarn(false)}
-                    / >
+                <Editor
+                    content={content}
+                    setContent={setContent}
+                    setCWarn={setCWarn}
+                    handleBlur={handleBlur}
+
+                />
             </div>
             <div className="page-footer">
                 {cWarn && <p className="len-warning c">Maximum body length reached</p>}
