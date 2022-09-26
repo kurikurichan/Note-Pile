@@ -120,7 +120,7 @@ export default function Home() {
                           <p id="pg-title">{pg.title || "Untitled"}</p>
                         </div>
                         <div id="snippet-box">
-                          <p id="pg-snippet">{getShortSnippet(parse(pg.content))}</p>
+                          <div id="pg-snippet">{getShortSnippet(parse(pg.content))}</div>
                         </div>
                         <div id="bot-date">
                           <p id="pg-date">{formatDate(pg.updated_at)}</p>

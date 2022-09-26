@@ -2,7 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-import '../MainPageView.css';
+import './Editor.css';
 import CustomToolbar from './CustomToolbar';
 
 export default function Editor({content, setContent, setCWarn, handleBlur}) {

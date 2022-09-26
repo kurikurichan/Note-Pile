@@ -134,9 +134,9 @@ export default function NotebookView() {
         if (content) {
             // we are getting 90 characters snip length
             if (content.length > 90) {
-                return content.slice(0, 90).trim() + '...';
+                return parse(content.slice(0, 90).trim() + '...');
             } else {
-                return content;
+                return parse(content);
             }
         }
     }
@@ -200,7 +200,7 @@ export default function NotebookView() {
                 <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
                     <div className="page-title-content">
                         <p className="page-small-title">{page.title || "Untitled"}</p>
-                        <p className="preview">{getContentSnippet(parse(page.content))}</p>
+                        <div className="preview">{getContentSnippet(page.content)}</div>
                     </div>
                     <p className="page-date">{formatDate(page.updated_at)}</p>
                 </div>)}
