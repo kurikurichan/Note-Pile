@@ -48,6 +48,20 @@ export default function Editor({content, setContent, setCWarn, handleBlur}) {
         ]
     }
 
+    // stop the auto blur in react quill when pasting text
+    const handleQuillBlur = (range, source, editor) => {
+      setTimeout(() => {
+        let selection = editor.getSelection();
+        // if this is true, that means something was copy pasted
+        if (selection) {
+        }
+        // it's true blur.
+        else {
+          handleBlur();
+        }
+      }, 100);
+    }
+
   return (
     <>
       {/* <CustomToolbar /> */}
@@ -58,7 +72,7 @@ export default function Editor({content, setContent, setCWarn, handleBlur}) {
           placeholder="Start writing here!"
           modules={modules}
           // formats={formats}
-          onBlur={handleBlur}
+          onBlur={handleQuillBlur}
           translate="no"
           maxLength={10000}
           style={{padding:"12px 40px 0px"}}
