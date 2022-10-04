@@ -5,7 +5,6 @@ import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
 import EditNBModal from './EditNBModal';
-import parse from 'html-react-parser';
 
 import './MainPageView.css';
 import DeleteNBModal from './DeleteNBModal';
@@ -28,6 +27,12 @@ export default function NotebookView() {
             setSelectedPageId(location.state.pageId);
         }
     }, [location]);
+
+    const htmlToText = (text) => {
+        let temp = document.createElement('div');
+        temp.innerHTML = text;
+        return temp.textContent || temp.innerText || "";
+      }
 
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
@@ -134,9 +139,9 @@ export default function NotebookView() {
         if (content) {
             // we are getting 90 characters snip length
             if (content.length > 90) {
-                return parse(content.slice(0, 90).trim() + '...');
+                return htmlToText(content.slice(0, 90).trim() + '...');
             } else {
-                return parse(content);
+                return htmlToText(content);
             }
         }
     }

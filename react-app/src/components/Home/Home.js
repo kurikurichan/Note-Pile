@@ -4,8 +4,6 @@ import { getEverySinglePage } from '../../store/all_pages.js';
 import { Link } from 'react-router-dom';
 import Scratch from './Scratch.js';
 
-import parse from 'html-react-parser';
-
 
 import './Home.css';
 import './Scratch.css';
@@ -14,6 +12,13 @@ import coffee from './coffee.jpeg';
 import LoadSidebar from '../404/LoadSidebar.js';
 
 export default function Home() {
+
+
+  const htmlToText = (text) => {
+    let temp = document.createElement('div');
+    temp.innerHTML = text;
+    return temp.textContent || temp.innerText || "";
+  }
 
   const user = useSelector(state => state.session.user);
   const allPages = useSelector(state => state.all_pages);
@@ -120,7 +125,7 @@ export default function Home() {
                           <p id="pg-title">{pg.title || "Untitled"}</p>
                         </div>
                         <div id="snippet-box">
-                          <div id="pg-snippet">{getShortSnippet(parse(pg.content))}</div>
+                          <div id="pg-snippet">{getShortSnippet(htmlToText(pg.content))}</div>
                         </div>
                         <div id="bot-date">
                           <p id="pg-date">{formatDate(pg.updated_at)}</p>
