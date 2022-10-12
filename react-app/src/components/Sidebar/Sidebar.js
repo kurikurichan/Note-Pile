@@ -8,6 +8,8 @@ import CreateNBModal from '../Home/CreateNBModal.js';
 import evernote_logo from './evernote_logo.png';
 import Search from './Search';
 
+import pic from './new_linkedin.png';
+
 import './Sidebar.css';
 
 export default function Sidebar() {
@@ -135,6 +137,28 @@ export default function Sidebar() {
             <div className="sidebar-footer">
 
             </div>
+        </div>
+        <div className="socials">
+            <p>Hire this woman!</p>
+            <a href="https://krista.red/" target="_blank" rel="noopener noreferrer">
+                <img src={pic} id="pic" alt="nice pic of krista"/>
+            </a>
+            <div id="sb-links">
+                <a href="https://github.com/kurikurichan" target="_blank" rel="noopener noreferrer">
+                        <i className="fa-brands fa-github"></i>
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/krista-strucke-044b3369/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <i className="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:developerkrista@gmail.com">
+                    <i className="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+
         </div>
     </div>
   )
