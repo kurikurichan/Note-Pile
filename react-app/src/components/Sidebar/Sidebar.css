@@ -10,13 +10,14 @@
     position: relative;
     left: 0;
     background-color: var(--sidebar-body);
+    overflow-y: hidden;
 }
 
 .sidebar {
     display: flex;
     flex-direction: column;
 
-    height: 100%;
+    height: 80%;
 
     color: var(--sidebar-font);
     font-family: soleil, sans-serif;
@@ -24,6 +25,36 @@
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+.socials {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;
+    border-top: 1px solid rgba(204, 204, 204, 0.304);
+    padding-top: 10px;
+}
+
+.socials > p {
+    color: var(--sidebar-font);
+    font-family: soleil, sans-serif;
+    font-size: 16px;
+}
+
+#pic {
+    height: 110px;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+
+#sb-links {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    font-size: 22px;
 }
 
 .sidebar::-webkit-scrollbar {
