@@ -10,7 +10,6 @@
     position: relative;
     left: 0;
     background-color: var(--sidebar-body);
-    overflow-y: hidden;
 }
 
 .sidebar {
@@ -35,6 +34,7 @@
     padding: 2px;
     border-top: 1px solid rgba(204, 204, 204, 0.304);
     padding-top: 10px;
+    overflow-x: hidden;
 }
 
 .socials > p {
