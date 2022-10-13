@@ -31,10 +31,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2px;
+    padding: 2px 2px 0 2px;
     border-top: 1px solid rgba(204, 204, 204, 0.304);
     padding-top: 10px;
-    overflow-x: hidden;
+    overflow: hidden;
+    background-color: black;
 }
 
 .socials > p {
