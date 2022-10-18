@@ -424,3 +424,13 @@
 .nbview {
     background-color: var(--background-primary);
 }
+
+
+
+/* smaller computer screen (like 24"?) */
+@media screen and (max-width: 1366px) {
+    .right-icons {
+        margin-right: 30%;
+    }
+
+}

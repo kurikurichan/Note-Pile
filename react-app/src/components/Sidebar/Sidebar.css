@@ -211,3 +211,16 @@ body {
 #user-image {
     margin-right: 2.5%;
 }
+
+
+/* smaller computer screen (like 24"?) */
+@media screen and (max-width: 1366px) {
+    .sidebar {
+        height: 70%;
+    }
+
+    .socials {
+        height: 30%;
+    }
+
+}
