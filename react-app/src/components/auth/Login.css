@@ -218,3 +218,28 @@
     font-size: 12px;
     margin-bottom: 2px;
 }
+
+/* smaller computer screen (like 24"?) */
+@media screen and (max-width: 1366px) {
+    .form {
+        width: 314px;
+        height: 500px;
+    }
+
+    .form-dongles > button {
+        margin-top: 10px;
+    }
+
+    .dont-have-account {
+        margin-bottom: -15px;
+    }
+
+    .form > a {
+        margin-top: -20px;
+    }
+
+    .signup-but {
+        margin-bottom: -10px;
+    }
+
+}

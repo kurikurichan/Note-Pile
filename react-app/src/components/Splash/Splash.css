@@ -216,3 +216,11 @@
 .links > a > i {
     font-size: 25px;
 }
+
+/* smaller computer screen (like 24"?) */
+@media screen and (max-width: 1366px) {
+    .links {
+        width: 10%;
+    }
+
+}

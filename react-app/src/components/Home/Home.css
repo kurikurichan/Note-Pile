@@ -183,3 +183,11 @@
     overflow: hidden;
     margin-bottom: 30px;
 }
+
+
+/* smaller computer screen (like 24"?) */
+@media screen and (max-width: 1366px) {
+    .above-home {
+        height: 350px;
+    }
+}
