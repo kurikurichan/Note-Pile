@@ -434,3 +434,15 @@
     }
 
 }
+
+/* smaller computer screen (like 13") */
+@media screen and (max-width: 1180px) {
+    .right-icons {
+        margin-right: 35%;
+    }
+
+    .page-view {
+        width: 80%;
+    }
+
+}

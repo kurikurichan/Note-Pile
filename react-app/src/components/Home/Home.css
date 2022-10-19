@@ -191,3 +191,20 @@
         height: 350px;
     }
 }
+
+
+/* smaller computer screen (like 13") */
+@media screen and (max-width: 1180px) {
+    .right-icons {
+        margin-right: 35%;
+    }
+
+    #today {
+        margin-right: 20%;
+    }
+
+    .contain-widgets {
+        width: 80%;
+    }
+
+}
