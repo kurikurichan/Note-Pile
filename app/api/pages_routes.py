@@ -14,7 +14,6 @@ pages_routes = Blueprint('pages', __name__)
 def all_pages(userId):
 
     if userId != current_user.id:
-        print("WHOOPSIE")
         return {'errors': ["user: You are unauthorized."]}, 405
 
     pages = Page.query.filter(Page.trashed == False, Page.userId == userId).all()
