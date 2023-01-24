@@ -150,7 +150,7 @@ export default function Splash() {
                     <i className="fa-brands fa-github"></i>
                 </a>
                 <a
-                    href="https://www.linkedin.com/in/krista-strucke-044b3369/"
+                    href="https://www.linkedin.com/in/krista-strucke"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
