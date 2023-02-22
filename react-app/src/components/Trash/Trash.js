@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTrash, addToTrash } from '../../store/pages';
+import { getAllTrash, addToTrash, deletePage } from '../../store/pages';
 import EmptyTrash from './EmptyTrashModal';
 import './Trash.css';
 import NotFound from '../404/404';
 import LoadSidebar from '../404/LoadSidebar';
+import PermanentlyDeletePage from './PermanentlyDeletePage';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -109,18 +110,6 @@ export default function Trash() {
             }
         }
     }
-    // const getContentSnippet = (content) => {
-    //     const snippet = [];
-    //     content = content.split('') || "";
-    //     let snipLength = 0;
-    //     if (content.length > 90) snipLength = 90;
-    //     else snipLength = content.length;
-    //     for (let i = 0; i < snipLength; i++) {
-    //         snippet.push(content[i]);
-    //     }
-
-    //     return snippet.join('');
-    // }
 
     const noTrashedNotes = Object.values(allTrashedPages).length === 0;
 
@@ -169,11 +158,12 @@ export default function Trash() {
                         <div className="note-in-trash">Note in Trash</div>
                         <p className="page-title-date"> {currentPage && getFormattedDate(currentPage.updated_at)} </p>
                     </div>
-
-                    <button className="green-button restore" onClick={restorePage}>
-                        Restore Page
-                    </button>
-
+                    <div className="right-icons trashed">
+                        <button className="green-button restore" style={{width: '130px'}} onClick={restorePage}>
+                            Restore Page
+                        </button>
+                        <PermanentlyDeletePage user={user} pageId={currentPage.id} getTheTrash={getTheTrash} />
+                    </div>
                 </div>
 
                 <div className="page-view">
@@ -185,8 +175,8 @@ export default function Trash() {
                     <div
                         className="page-contents white"
                         style={{padding:"12px 40px 0px"}}
+                        dangerouslySetInnerHTML={{__html: currentPage.content}}
                     >
-                        {currentPage ? currentPage.content : "Nothing to display"}
                     </div>
 
                 </div>

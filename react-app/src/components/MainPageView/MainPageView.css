@@ -216,6 +216,11 @@
     margin-top: 5px;
 }
 
+.trashed {
+    width: 20%;
+    margin-bottom: 10px;
+}
+
 .nb-title-book {
     margin-left: 10px;
 }
