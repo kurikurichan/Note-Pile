@@ -133,12 +133,14 @@ export const newPage = (page, notebookId) => async (dispatch) => {
 
 
 export const editPage = (pageData, pageId) => async (dispatch) => {
+  
     const res = await fetch(`/api/pages/${pageId}/`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content- Type": "application/json"},
       body: JSON.stringify(pageData),
     });
 
+    // add res.ok
     const data = await res.json();
     dispatch(updatePage(data));
 };

@@ -78,7 +78,11 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
           content
         };
 
+        // add try/catch  here
         const edited = await dispatch(editPage(data, pageId));
+
+        // errorss will come back in array form
+        // change this to accept a positive
 
         if (Array.isArray(edited)) {
             setErrors(edited);

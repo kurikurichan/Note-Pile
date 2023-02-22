@@ -92,18 +92,35 @@ export default function Trash() {
         });
     };
 
-    const getContentSnippet = (content) => {
-        const snippet = [];
-        content = content.split('') || "";
-        let snipLength = 0;
-        if (content.length > 90) snipLength = 90;
-        else snipLength = content.length;
-        for (let i = 0; i < snipLength; i++) {
-            snippet.push(content[i]);
-        }
-
-        return snippet.join('');
+    const htmlToText = (text) => {
+        let temp = document.createElement('div');
+        temp.innerHTML = text;
+        return temp.textContent || temp.innerText || "";
     }
+
+
+    const getContentSnippet = (content) => {
+        if (content) {
+            // we are getting 90 characters snip length
+            if (content.length > 90) {
+                return htmlToText(content.slice(0, 90).trim() + '...');
+            } else {
+                return htmlToText(content);
+            }
+        }
+    }
+    // const getContentSnippet = (content) => {
+    //     const snippet = [];
+    //     content = content.split('') || "";
+    //     let snipLength = 0;
+    //     if (content.length > 90) snipLength = 90;
+    //     else snipLength = content.length;
+    //     for (let i = 0; i < snipLength; i++) {
+    //         snippet.push(content[i]);
+    //     }
+
+    //     return snippet.join('');
+    // }
 
     const noTrashedNotes = Object.values(allTrashedPages).length === 0;
 
