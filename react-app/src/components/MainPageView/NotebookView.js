@@ -13,20 +13,20 @@ import LoadSidebar from '../404/LoadSidebar';
 
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
-    const { notebookId } = useParams();
+    const { notebookId, pageId } = useParams();
     const dispatch = useDispatch();
-    const location = useLocation();
+    // const location = useLocation();
     const catMenu = useRef(null);
 
     const [loaded, setLoaded] = useState(false);
 
 
     // change pageId if we get a location (from home)
-    useEffect(() => {
-        if (location.state) {
-            setSelectedPageId(location.state.pageId);
-        }
-    }, [location]);
+    // useEffect(() => {
+    //     if (location.state) {
+    //         setSelectedPageId(location.state.pageId);
+    //     }
+    // }, [location]);
 
     const htmlToText = (text) => {
         let temp = document.createElement('div');
@@ -43,7 +43,7 @@ export default function NotebookView() {
     // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
     // pages
-    const [selectedPageId, setSelectedPageId] = useState("")
+    const [selectedPageId, setSelectedPageId] = useState(pageId || 1);
 
 
     // modal popups in dropdown menu
@@ -147,16 +147,16 @@ export default function NotebookView() {
     }
 
     // make an auto select page function here. run inside of useEffect when notebookId changes
-    const findFirstPage = () => {
-        // initialize to first page OR current page if there is one
-        if (allPagesOfNotebook) {
-            const firstPage = Object.values(allPagesOfNotebook)[0];
-            if (firstPage) {
-                setSelectedPageId(firstPage.id);
-                console.log('first page set');
-            }
-        }
-    };
+    // const findFirstPage = () => {
+    //     // initialize to first page OR current page if there is one
+    //     if (allPagesOfNotebook) {
+    //         const firstPage = Object.values(allPagesOfNotebook)[0];
+    //         if (firstPage) {
+    //             setSelectedPageId(firstPage.id);
+    //             console.log('first page set');
+    //         }
+    //     }
+    // };
 
     // load pages with each notebookId change
     useEffect(() => {
