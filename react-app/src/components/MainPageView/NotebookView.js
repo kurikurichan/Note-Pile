@@ -29,8 +29,6 @@ export default function NotebookView() {
 
     // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
-    // pages
-    const [selectedPageId, setSelectedPageId] = useState(pageId);
 
     // modal popups in dropdown menu
     const [showEdit, setShowEdit] = useState(false);
@@ -89,7 +87,7 @@ export default function NotebookView() {
 
         if (createPage) {
             getPages();
-            setSelectedPageId(createPage.id);
+            history.push(`/${notebookId}/${createPage.id}`);
             setShowMenu(false);
         }
 
@@ -139,9 +137,7 @@ export default function NotebookView() {
 
             </div>
             {Object.values(allPagesOfNotebook).map(page =>
-                // <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
-                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => {
-                    setSelectedPageId(page.id)
+                <div key={page.id} className={`pages ${page.id == pageId && 'page-active'}`} onClick={() => {
                     history.push(`/${notebookId}/${page.id}`)
                 }}>
                     <div className="page-title-content">
@@ -163,7 +159,7 @@ export default function NotebookView() {
         {!noNotes && <Pages
             notebookId={notebookId}
             userId={user.id}
-            pageId={selectedPageId}
+            pageId={pageId}
             currentNb={currentNotebook}
             allPages={allPagesOfNotebook}
          />}
