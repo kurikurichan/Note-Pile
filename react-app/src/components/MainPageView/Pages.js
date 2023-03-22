@@ -8,6 +8,7 @@ import './MainPageView.css';
 
 export default function Pages({ notebookId, userId, pageId, currentNb, allPages }) {
 
+
     const [errors, setErrors] = useState([]);
     // edit page title & content
     const [title, setTitle] = useState("");
@@ -27,11 +28,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     const dispatch = useDispatch();
 
     // single page to use in our dynamic page view
-    let currentPage;
-
-    if (allPages) {
-        currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
-    }
+    let currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
 
     useEffect(() => {
         // after a few seconds, get rid of of the title warning area
@@ -57,10 +54,8 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
     // load the fields we have with stuff we have already
     useEffect(() => {
-        if (currentPage) {
-            setTitle(currentPage.title || "");
-            setContent(currentPage.content);
-        }
+        setTitle(currentPage.title || "");
+        setContent(currentPage.content);
         // reset the save button
         setSave("Save");
     }, [allPages, pageId])

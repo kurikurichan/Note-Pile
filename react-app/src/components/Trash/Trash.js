@@ -6,7 +6,7 @@ import './Trash.css';
 import NotFound from '../404/404';
 import LoadSidebar from '../404/LoadSidebar';
 import PermanentlyDeletePage from './PermanentlyDeletePage';
-import { getContentSnippet, formatDate, getPageCount, getFormattedDate } from '../../utils';
+import { getContentSnippet, formatDate, getPageCount, getFormattedDate, isEmpty} from '../../utils';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -62,7 +62,7 @@ export default function Trash() {
         }
     }
 
-    const noTrashedNotes = Object.values(allTrashedPages).length === 0;
+    const noTrashedNotes = isEmpty(allTrashedPages);
 
     if (!loaded) return <LoadSidebar />;
     if (!user) return <NotFound />;

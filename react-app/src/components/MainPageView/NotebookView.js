@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
@@ -17,6 +17,7 @@ export default function NotebookView() {
     const { notebookId, pageId } = useParams();
     const dispatch = useDispatch();
     const catMenu = useRef(null);
+    const history = useHistory();
 
     const [loaded, setLoaded] = useState(false);
 
@@ -101,8 +102,6 @@ export default function NotebookView() {
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
-        setSelectedPageId(selectedPageId)
-        console.log('re-rendered')
     }, [notebookId]);
 
     const noNotes = isEmpty(allPagesOfNotebook);
@@ -140,7 +139,11 @@ export default function NotebookView() {
 
             </div>
             {Object.values(allPagesOfNotebook).map(page =>
-                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
+                // <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
+                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => {
+                    setSelectedPageId(page.id)
+                    history.push(`/${notebookId}/${page.id}`)
+                }}>
                     <div className="page-title-content">
                         <p className="page-small-title">{page.title || "Untitled"}</p>
                         <div className="preview">{getContentSnippet(page.content)}</div>
@@ -157,7 +160,7 @@ export default function NotebookView() {
                     <p>Click the '...' button above and select "Add a Page" to create a page.</p>
                 </div>}
         </div>
-        {Object.values(allPagesOfNotebook).length > 0 && <Pages
+        {!noNotes && <Pages
             notebookId={notebookId}
             userId={user.id}
             pageId={selectedPageId}
@@ -165,7 +168,7 @@ export default function NotebookView() {
             allPages={allPagesOfNotebook}
          />}
 
-        {Object.values(allPagesOfNotebook).length === 0 &&
+        {noNotes &&
             <div className="right-div"></div>}
     </div>
   )

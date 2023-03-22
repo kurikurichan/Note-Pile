@@ -36,14 +36,14 @@ export const isEmpty = (obj) => {
         return false;
     }
     return true;
-}
+};
 
 export const getPageCount = (obj) => {
     let numPages = Object.values(obj).length;
     // get proper ending based on length
     if (numPages === 1) return `${numPages} page`;
     else return `${numPages} pages`;
-}
+};
 
 // deprecated in this app but useful to remember for future when using useLocation()
 const returnProperLocation = (nbId, pId) => {
@@ -51,4 +51,4 @@ const returnProperLocation = (nbId, pId) => {
       pathname: `/${nbId}`,
       state: { pageId: pId }
     }
-}
+};
