@@ -46,9 +46,6 @@ export default function Sidebar() {
     }, [showUserMenu]);
 
 
-
-
-
     const handleDropDown = () => {
         setNoteDropdown(!noteDropdown);
         if (!noteDropdown) {
@@ -121,7 +118,7 @@ export default function Sidebar() {
                 { noteDropdown && (
                 <div className="notebook-dropdown">
                         {Object.values(notebooks).map(book =>
-                            <NavLink to={`/${book.id}`} key={book.id} className="notebook-li" activeClassName='sb-active'>
+                            <NavLink to={`/${book.id}/1`} key={book.id} className="notebook-li" activeClassName='sb-active'>
                                 {formatTitle(book.title)}
                             </NavLink>)}
                 {/* {!Object.values(notebooks).length && <p className="notebook-li">Shelf is empty</p>} */}

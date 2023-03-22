@@ -6,6 +6,7 @@ import './Trash.css';
 import NotFound from '../404/404';
 import LoadSidebar from '../404/LoadSidebar';
 import PermanentlyDeletePage from './PermanentlyDeletePage';
+import { getContentSnippet, formatDate, getPageCount, getFormattedDate } from '../../utils';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
@@ -15,13 +16,6 @@ export default function Trash() {
     const allTrashedPages = useSelector(state => state.pages);
 
     const [loaded, setLoaded] = useState(false);
-
-
-    // initial load trashed pages
-
-    // useEffect(() => {
-    //     dispatch(getAllTrash(user.id));
-    // }, [dispatch])
 
       // load the pages
   useEffect(() => {
@@ -68,49 +62,6 @@ export default function Trash() {
         }
     }
 
-
-    // count dem pages for display
-    const getPageCount = () => {
-        let numPages = 0;
-        if (allTrashedPages) {
-            numPages = Object.values(allTrashedPages).length;
-        }
-        // get proper ending based on length
-        if (numPages === 1) return `${numPages} page`;
-        else return `${numPages} pages`;
-    }
-
-    const formatDate = (date) => {
-        const splitted = date.split(' ');
-        return `${splitted[2]} ${splitted[1]}`
-    }
-
-    //  get and format updated date
-    const getFormattedDate = (date) => {
-        const theDate = new Date(date);
-        return "Last edited on " + theDate.toLocaleDateString('en-CA', {
-            dateStyle: "medium"
-        });
-    };
-
-    const htmlToText = (text) => {
-        let temp = document.createElement('div');
-        temp.innerHTML = text;
-        return temp.textContent || temp.innerText || "";
-    }
-
-
-    const getContentSnippet = (content) => {
-        if (content) {
-            // we are getting 90 characters snip length
-            if (content.length > 90) {
-                return htmlToText(content.slice(0, 90).trim() + '...');
-            } else {
-                return htmlToText(content);
-            }
-        }
-    }
-
     const noTrashedNotes = Object.values(allTrashedPages).length === 0;
 
     if (!loaded) return <LoadSidebar />;
@@ -125,7 +76,7 @@ export default function Trash() {
                     Trash
                 </h1>
                 <div className="notebook-dongles">
-                    <p className="page-count">{getPageCount()}</p>
+                    <p className="page-count">{getPageCount(allTrashedPages)}</p>
                     {!noTrashedNotes &&
                         <EmptyTrash user={user} allTrashedPages={allTrashedPages} getTheTrash={getTheTrash} />}
                 </div>

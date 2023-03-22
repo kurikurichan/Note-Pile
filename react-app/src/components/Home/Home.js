@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getEverySinglePage } from '../../store/all_pages.js';
 import { Link } from 'react-router-dom';
 import Scratch from './Scratch.js';
+import { htmlToText, formatDate } from '../../utils/index.js';
 
 
 import './Home.css';
@@ -12,13 +13,6 @@ import coffee from './coffee.jpeg';
 import LoadSidebar from '../404/LoadSidebar.js';
 
 export default function Home() {
-
-
-  const htmlToText = (text) => {
-    let temp = document.createElement('div');
-    temp.innerHTML = text;
-    return temp.textContent || temp.innerText || "";
-  }
 
   const user = useSelector(state => state.session.user);
   const allPages = useSelector(state => state.all_pages);
@@ -67,11 +61,6 @@ export default function Home() {
   }
   }
 
-  const formatDate = (date) => {
-    const splitted = date.split(' ');
-    return `${splitted[2]} ${splitted[1]}`
-  }
-
   // get some pages to display up in herrr
   // grab 4 most recent ones
   const getPagesToDisplay = () => {
@@ -80,13 +69,6 @@ export default function Home() {
         return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
       });
       return allPagesArr.slice(0, 4);
-    }
-  }
-
-  const returnProperLocation = (nbId, pId) => {
-    return {
-      pathname: `/${nbId}`,
-      state: { pageId: pId }
     }
   }
 
@@ -120,7 +102,7 @@ export default function Home() {
                 <div className="notes-preview-bottom">
                   {displayPages.length ?
                     displayPages.map(pg =>
-                      <Link key={pg.id} to={returnProperLocation(pg.notebookId, pg.id)} className="inner-notes">
+                      <Link key={pg.id} to={`/${pg.notebookId}/${pg.id}`} className="inner-notes">
                         <div>
                           <p id="pg-title">{pg.title || "Untitled"}</p>
                         </div>

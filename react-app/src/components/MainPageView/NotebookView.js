@@ -5,6 +5,7 @@ import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
 import EditNBModal from './EditNBModal';
+import { getContentSnippet, formatDate, getPageCount, isEmpty } from '../../utils';
 
 import './MainPageView.css';
 import DeleteNBModal from './DeleteNBModal';
@@ -15,24 +16,9 @@ export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const { notebookId, pageId } = useParams();
     const dispatch = useDispatch();
-    // const location = useLocation();
     const catMenu = useRef(null);
 
     const [loaded, setLoaded] = useState(false);
-
-
-    // change pageId if we get a location (from home)
-    // useEffect(() => {
-    //     if (location.state) {
-    //         setSelectedPageId(location.state.pageId);
-    //     }
-    // }, [location]);
-
-    const htmlToText = (text) => {
-        let temp = document.createElement('div');
-        temp.innerHTML = text;
-        return temp.textContent || temp.innerText || "";
-      }
 
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
@@ -43,8 +29,7 @@ export default function NotebookView() {
     // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
     // pages
-    const [selectedPageId, setSelectedPageId] = useState(pageId || 1);
-
+    const [selectedPageId, setSelectedPageId] = useState(pageId);
 
     // modal popups in dropdown menu
     const [showEdit, setShowEdit] = useState(false);
@@ -81,10 +66,6 @@ export default function NotebookView() {
     // single notebook based on notebookId
     let currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
 
-    // useEffect(() => {
-    //     dispatch(getAllNotebooks());
-    // }, [dispatch])
-
     useEffect(() => {
         (async() => {
           await dispatch(getAllNotebooks());
@@ -117,57 +98,14 @@ export default function NotebookView() {
         await dispatch(getAllPages(user.id, notebookId));
     };
 
-    // count dem pages for display
-    const getPageCount = () => {
-        let numPages = 0;
-        if (allPagesOfNotebook) {
-            numPages = Object.values(allPagesOfNotebook).length;
-        }
-        // get proper ending based on length
-        if (numPages === 1) return `${numPages} page`;
-        else return `${numPages} pages`;
-    }
-
-    const formatDate = (date) => {
-        if (date) {
-            const splitted = date.split(' ');
-            return `${splitted[2]} ${splitted[1]}`;
-        }
-    }
-
-    const getContentSnippet = (content) => {
-        if (content) {
-            // we are getting 90 characters snip length
-            if (content.length > 90) {
-                return htmlToText(content.slice(0, 90).trim() + '...');
-            } else {
-                return htmlToText(content);
-            }
-        }
-    }
-
-    // make an auto select page function here. run inside of useEffect when notebookId changes
-    // const findFirstPage = () => {
-    //     // initialize to first page OR current page if there is one
-    //     if (allPagesOfNotebook) {
-    //         const firstPage = Object.values(allPagesOfNotebook)[0];
-    //         if (firstPage) {
-    //             setSelectedPageId(firstPage.id);
-    //             console.log('first page set');
-    //         }
-    //     }
-    // };
-
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
-        // findFirstPage();
-        // setShowMenu(false);
+        setSelectedPageId(selectedPageId)
+        console.log('re-rendered')
     }, [notebookId]);
 
-
-
-    const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
+    const noNotes = isEmpty(allPagesOfNotebook);
 
     if (!loaded) return <LoadSidebar />
     if (!user || !currentNotebook) return <NotFound />
@@ -180,7 +118,7 @@ export default function NotebookView() {
                     {currentNotebook.title}
                 </h1>
                 <div className="notebook-dongles">
-                    <p className="page-count">{getPageCount()}</p>
+                    <p className="page-count">{getPageCount(allPagesOfNotebook)}</p>
                     <div className="notebook-options-dropdown">
                         <i className="fa-solid fa-ellipsis" onClick={openMenu}></i>
 

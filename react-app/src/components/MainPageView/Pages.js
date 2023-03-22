@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllPages, editPage, addToTrash } from '../../store/pages';
 import Editor from './Editor/Editor';
+import { getFormattedDate } from '../../utils';
 
 import './MainPageView.css';
 
@@ -22,9 +23,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     const [cWarn, setCWarn] = useState(false);
     // set state of sent to trash message
     // const [sent, setSent] = useState(false);
-
-    // for resizing text area
-    const [textAreaHeight, setTextAreaHeight] = useState(40);
 
     const dispatch = useDispatch();
 
@@ -114,26 +112,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
     const getPages = async () => {
         await dispatch(getAllPages(userId, notebookId));
-    };
-
-    //  get and format updated date
-    const getFormattedDate = (date) => {
-        const theDate = new Date(date);
-        return "Last edited on " + theDate.toLocaleDateString('en-CA', {
-            dateStyle: "medium"
-        });
-    };
-
-    const contentAutoGrow = (e) => {
-
-        // auto grow text area as user types
-        // also handle saving the info in local state here
-
-        if (e.target.scrollHeight > e.target.clientHeight) {
-
-            setTextAreaHeight(e.target.scrollHeight);
-        }
-
     };
 
     // make save button state "save" again after typing starts
