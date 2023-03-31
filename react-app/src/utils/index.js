@@ -32,7 +32,10 @@ export const getFormattedDate = (date) => {
 
 export const isEmpty = (obj) => {
     // return true if empty, return false if obj contains things
+    if (!obj) return;
+    console.log("isEmptyObj: ", obj);
     for (let item in obj) {
+        // if (Array.isArray(item) && item.length === 0) continue;
         return false;
     }
     return true;

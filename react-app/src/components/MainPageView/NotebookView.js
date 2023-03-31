@@ -29,6 +29,8 @@ export default function NotebookView() {
 
     // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
+    // pages
+    // const [selectedPageId, setSelectedPageId] = useState(pageId);
 
     // modal popups in dropdown menu
     const [showEdit, setShowEdit] = useState(false);
@@ -87,6 +89,7 @@ export default function NotebookView() {
 
         if (createPage) {
             getPages();
+            // setSelectedPageId(createPage.id);
             history.push(`/${notebookId}/${createPage.id}`);
             setShowMenu(false);
         }
@@ -102,7 +105,9 @@ export default function NotebookView() {
         getPages();
     }, [notebookId]);
 
-    const noNotes = isEmpty(allPagesOfNotebook);
+
+    const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
+    // const noNotes = isEmpty(allPagesOfNotebook);
 
     if (!loaded) return <LoadSidebar />
     if (!user || !currentNotebook) return <NotFound />
@@ -156,16 +161,13 @@ export default function NotebookView() {
                     <p>Click the '...' button above and select "Add a Page" to create a page.</p>
                 </div>}
         </div>
-        {!noNotes && <Pages
+        <Pages
             notebookId={notebookId}
             userId={user.id}
             pageId={pageId}
             currentNb={currentNotebook}
             allPages={allPagesOfNotebook}
-         />}
-
-        {noNotes &&
-            <div className="right-div"></div>}
+         />
     </div>
   )
 }

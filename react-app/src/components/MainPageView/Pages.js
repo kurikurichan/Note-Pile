@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllPages, editPage, addToTrash } from '../../store/pages';
 import Editor from './Editor/Editor';
-import { getFormattedDate } from '../../utils';
+import { getFormattedDate, isEmpty } from '../../utils';
 
 import './MainPageView.css';
 
 export default function Pages({ notebookId, userId, pageId, currentNb, allPages }) {
-
 
     const [errors, setErrors] = useState([]);
     // edit page title & content
@@ -29,6 +28,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
     // single page to use in our dynamic page view
     let currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
+
 
     useEffect(() => {
         // after a few seconds, get rid of of the title warning area
@@ -54,11 +54,21 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
     // load the fields we have with stuff we have already
     useEffect(() => {
-        setTitle(currentPage.title || "");
-        setContent(currentPage.content);
+
+        // getCurrentPage();
+
+        if (currentPage) {
+            setTitle(currentPage.title || "");
+            setContent(currentPage.content);
+        }
         // reset the save button
         setSave("Save");
     }, [allPages, pageId])
+
+    // const getCurrentPage = async () => {
+    //     currentPage = await Object.values(allPages).filter(page => +page.id === +pageId)[0];
+    //     return currentPage;
+    // };
 
 
     const handleBlur = async (e) => {
@@ -116,6 +126,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
 
 //   if (!allPages) return <p className="loading right-div">Loading...</p>
+    console.log(currentPage);
   return (
     <div className="right-div">
         {currentPage &&

@@ -48,7 +48,7 @@ function App() {
           <Sidebar />
           <Trash />
         </ProtectedRoute>
-        <ProtectedRoute path='/:notebookId/:pageId' exact={true}>
+        <ProtectedRoute path='/:notebookId/:pageId'>
           <Sidebar />
           <NotebookView />
         </ProtectedRoute>
