@@ -106,8 +106,8 @@ export default function NotebookView() {
     }, [notebookId]);
 
 
-    const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
-    // const noNotes = isEmpty(allPagesOfNotebook);
+    // const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
+    const noNotes = isEmpty(allPagesOfNotebook);
 
     if (!loaded) return <LoadSidebar />
     if (!user || !currentNotebook) return <NotFound />
