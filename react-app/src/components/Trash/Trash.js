@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTrash, addToTrash, deletePage } from '../../store/pages';
 import EmptyTrash from './EmptyTrashModal';
@@ -12,6 +13,8 @@ export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const dispatch = useDispatch();
 
+    let { pageId } = useParams();
+    const history = useHistory();
     const user = useSelector(state => state.session.user);
     const allTrashedPages = useSelector(state => state.pages);
 
@@ -28,18 +31,23 @@ export default function Trash() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    const [selectedPageId, setSelectedPageId] = useState("");
+    const noTrashedNotes = isEmpty(allTrashedPages);
+
+    // fix selected page
+    if (pageId === "all") {
+        if (!noTrashedNotes) pageId = Object.values(allTrashedPages)[0].id;
+    }
 
 
     // single page to use in our dynamic page view
-    let currentPage = Object.values(allTrashedPages).filter(page => +page.id === +selectedPageId)[0];
+    let currentPage = Object.values(allTrashedPages).filter(page => +page.id === +pageId)[0];
 
     useEffect(() => {
         if (currentPage) {
             setTitle(currentPage.title);
             setContent(currentPage.content);
         }
-    }, [selectedPageId])
+    }, [pageId])
 
 
     const getTheTrash = async () => {
@@ -55,14 +63,13 @@ export default function Trash() {
             trashed: false
         }
 
-        const restored = await dispatch(addToTrash(data, selectedPageId));
+        const restored = await dispatch(addToTrash(data, pageId));
 
         if (restored) {
             getTheTrash();
         }
     }
 
-    const noTrashedNotes = isEmpty(allTrashedPages);
 
     if (!loaded) return <LoadSidebar />;
     if (!user) return <NotFound />;
@@ -83,7 +90,7 @@ export default function Trash() {
             </div>
 
             {Object.values(allTrashedPages).map(page =>
-                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
+                <div key={page.id} className={`pages ${page.id == pageId && 'page-active'}`} onClick={() => history.push(`/trash/${page.id}`)}>
                     <div className="page-title-content">
                         <p className="page-small-title">{page.title || "Untitled"}</p>
                         <p className="preview">{getContentSnippet(page.content)}</p>

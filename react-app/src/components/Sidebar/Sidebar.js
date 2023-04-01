@@ -126,7 +126,7 @@ export default function Sidebar() {
                  <CreateNBModal user={user} />
                 </div>)}
             </>
-            <NavLink to="/trash" className="navlink" activeClassName='sb-active'>
+            <NavLink to="/trash/all" className="navlink" activeClassName='sb-active'>
                 <span id="trash-link">
                     <i className="fa-solid fa-trash"></i>{` `}Trash
                 </span>
