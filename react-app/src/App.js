@@ -44,11 +44,11 @@ function App() {
           <Sidebar />
           <Home />
         </ProtectedRoute>
-        <ProtectedRoute path='/trash' >
+        <ProtectedRoute path='/trash/:pageId' >
           <Sidebar />
           <Trash />
         </ProtectedRoute>
-        <ProtectedRoute path='/:notebookId' exact={true} >
+        <ProtectedRoute path='/:notebookId/:pageId'>
           <Sidebar />
           <NotebookView />
         </ProtectedRoute>

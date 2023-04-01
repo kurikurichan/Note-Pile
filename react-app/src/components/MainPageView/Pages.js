@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllPages, editPage, addToTrash } from '../../store/pages';
 import Editor from './Editor/Editor';
+import { getFormattedDate, isEmpty } from '../../utils';
 
 import './MainPageView.css';
 
@@ -23,17 +24,11 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
     // set state of sent to trash message
     // const [sent, setSent] = useState(false);
 
-    // for resizing text area
-    const [textAreaHeight, setTextAreaHeight] = useState(40);
-
     const dispatch = useDispatch();
 
     // single page to use in our dynamic page view
-    let currentPage;
+    let currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
 
-    if (allPages) {
-        currentPage = Object.values(allPages).filter(page => +page.id === +pageId)[0];
-    }
 
     useEffect(() => {
         // after a few seconds, get rid of of the title warning area
@@ -59,6 +54,9 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
     // load the fields we have with stuff we have already
     useEffect(() => {
+
+        // getCurrentPage();
+
         if (currentPage) {
             setTitle(currentPage.title || "");
             setContent(currentPage.content);
@@ -66,6 +64,11 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
         // reset the save button
         setSave("Save");
     }, [allPages, pageId])
+
+    // const getCurrentPage = async () => {
+    //     currentPage = await Object.values(allPages).filter(page => +page.id === +pageId)[0];
+    //     return currentPage;
+    // };
 
 
     const handleBlur = async (e) => {
@@ -116,26 +119,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
         await dispatch(getAllPages(userId, notebookId));
     };
 
-    //  get and format updated date
-    const getFormattedDate = (date) => {
-        const theDate = new Date(date);
-        return "Last edited on " + theDate.toLocaleDateString('en-CA', {
-            dateStyle: "medium"
-        });
-    };
-
-    const contentAutoGrow = (e) => {
-
-        // auto grow text area as user types
-        // also handle saving the info in local state here
-
-        if (e.target.scrollHeight > e.target.clientHeight) {
-
-            setTextAreaHeight(e.target.scrollHeight);
-        }
-
-    };
-
     // make save button state "save" again after typing starts
     useEffect(() => {
         setSave("Save");
@@ -143,6 +126,7 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
 
 
 //   if (!allPages) return <p className="loading right-div">Loading...</p>
+    console.log(currentPage);
   return (
     <div className="right-div">
         {currentPage &&

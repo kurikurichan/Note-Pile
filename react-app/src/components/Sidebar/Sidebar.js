@@ -46,9 +46,6 @@ export default function Sidebar() {
     }, [showUserMenu]);
 
 
-
-
-
     const handleDropDown = () => {
         setNoteDropdown(!noteDropdown);
         if (!noteDropdown) {
@@ -121,7 +118,7 @@ export default function Sidebar() {
                 { noteDropdown && (
                 <div className="notebook-dropdown">
                         {Object.values(notebooks).map(book =>
-                            <NavLink to={`/${book.id}`} key={book.id} className="notebook-li" activeClassName='sb-active'>
+                            <NavLink to={`/${book.id}/recent`} key={book.id} className="notebook-li" activeClassName='sb-active'>
                                 {formatTitle(book.title)}
                             </NavLink>)}
                 {/* {!Object.values(notebooks).length && <p className="notebook-li">Shelf is empty</p>} */}
@@ -129,7 +126,7 @@ export default function Sidebar() {
                  <CreateNBModal user={user} />
                 </div>)}
             </>
-            <NavLink to="/trash" className="navlink" activeClassName='sb-active'>
+            <NavLink to="/trash/all" className="navlink" activeClassName='sb-active'>
                 <span id="trash-link">
                     <i className="fa-solid fa-trash"></i>{` `}Trash
                 </span>

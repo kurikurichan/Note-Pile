@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTrash, addToTrash, deletePage } from '../../store/pages';
 import EmptyTrash from './EmptyTrashModal';
@@ -6,22 +7,18 @@ import './Trash.css';
 import NotFound from '../404/404';
 import LoadSidebar from '../404/LoadSidebar';
 import PermanentlyDeletePage from './PermanentlyDeletePage';
+import { getContentSnippet, formatDate, getPageCount, getFormattedDate, isEmpty} from '../../utils';
 
 export default function Trash() {
     // this is the component where we can see the list of pages and individual pages of a notebook
     const dispatch = useDispatch();
 
+    let { pageId } = useParams();
+    const history = useHistory();
     const user = useSelector(state => state.session.user);
     const allTrashedPages = useSelector(state => state.pages);
 
     const [loaded, setLoaded] = useState(false);
-
-
-    // initial load trashed pages
-
-    // useEffect(() => {
-    //     dispatch(getAllTrash(user.id));
-    // }, [dispatch])
 
       // load the pages
   useEffect(() => {
@@ -34,18 +31,23 @@ export default function Trash() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    const [selectedPageId, setSelectedPageId] = useState("");
+    const noTrashedNotes = isEmpty(allTrashedPages);
+
+    // fix selected page
+    if (pageId === "all") {
+        if (!noTrashedNotes) pageId = Object.values(allTrashedPages)[0].id;
+    }
 
 
     // single page to use in our dynamic page view
-    let currentPage = Object.values(allTrashedPages).filter(page => +page.id === +selectedPageId)[0];
+    let currentPage = Object.values(allTrashedPages).filter(page => +page.id === +pageId)[0];
 
     useEffect(() => {
         if (currentPage) {
             setTitle(currentPage.title);
             setContent(currentPage.content);
         }
-    }, [selectedPageId])
+    }, [pageId])
 
 
     const getTheTrash = async () => {
@@ -61,57 +63,13 @@ export default function Trash() {
             trashed: false
         }
 
-        const restored = await dispatch(addToTrash(data, selectedPageId));
+        const restored = await dispatch(addToTrash(data, pageId));
 
         if (restored) {
             getTheTrash();
         }
     }
 
-
-    // count dem pages for display
-    const getPageCount = () => {
-        let numPages = 0;
-        if (allTrashedPages) {
-            numPages = Object.values(allTrashedPages).length;
-        }
-        // get proper ending based on length
-        if (numPages === 1) return `${numPages} page`;
-        else return `${numPages} pages`;
-    }
-
-    const formatDate = (date) => {
-        const splitted = date.split(' ');
-        return `${splitted[2]} ${splitted[1]}`
-    }
-
-    //  get and format updated date
-    const getFormattedDate = (date) => {
-        const theDate = new Date(date);
-        return "Last edited on " + theDate.toLocaleDateString('en-CA', {
-            dateStyle: "medium"
-        });
-    };
-
-    const htmlToText = (text) => {
-        let temp = document.createElement('div');
-        temp.innerHTML = text;
-        return temp.textContent || temp.innerText || "";
-    }
-
-
-    const getContentSnippet = (content) => {
-        if (content) {
-            // we are getting 90 characters snip length
-            if (content.length > 90) {
-                return htmlToText(content.slice(0, 90).trim() + '...');
-            } else {
-                return htmlToText(content);
-            }
-        }
-    }
-
-    const noTrashedNotes = Object.values(allTrashedPages).length === 0;
 
     if (!loaded) return <LoadSidebar />;
     if (!user) return <NotFound />;
@@ -125,14 +83,14 @@ export default function Trash() {
                     Trash
                 </h1>
                 <div className="notebook-dongles">
-                    <p className="page-count">{getPageCount()}</p>
+                    <p className="page-count">{getPageCount(allTrashedPages)}</p>
                     {!noTrashedNotes &&
                         <EmptyTrash user={user} allTrashedPages={allTrashedPages} getTheTrash={getTheTrash} />}
                 </div>
             </div>
 
             {Object.values(allTrashedPages).map(page =>
-                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
+                <div key={page.id} className={`pages ${page.id == pageId && 'page-active'}`} onClick={() => history.push(`/trash/${page.id}`)}>
                     <div className="page-title-content">
                         <p className="page-small-title">{page.title || "Untitled"}</p>
                         <p className="preview">{getContentSnippet(page.content)}</p>

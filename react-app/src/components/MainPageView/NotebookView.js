@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getAllNotebooks } from '../../store/notebooks'
 import { getAllPages, newPage } from '../../store/pages';
 import Pages from './Pages';
 import EditNBModal from './EditNBModal';
+import { getContentSnippet, formatDate, getPageCount, isEmpty } from '../../utils';
 
 import './MainPageView.css';
 import DeleteNBModal from './DeleteNBModal';
@@ -13,26 +14,12 @@ import LoadSidebar from '../404/LoadSidebar';
 
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
-    const { notebookId } = useParams();
+    let { notebookId, pageId } = useParams();
     const dispatch = useDispatch();
-    const location = useLocation();
     const catMenu = useRef(null);
+    const history = useHistory();
 
     const [loaded, setLoaded] = useState(false);
-
-
-    // change pageId if we get a location (from home)
-    useEffect(() => {
-        if (location.state) {
-            setSelectedPageId(location.state.pageId);
-        }
-    }, [location]);
-
-    const htmlToText = (text) => {
-        let temp = document.createElement('div');
-        temp.innerHTML = text;
-        return temp.textContent || temp.innerText || "";
-      }
 
     const user = useSelector(state => state.session.user);
     const allNotebooks = useSelector(state => state.notebooks)
@@ -40,11 +27,15 @@ export default function NotebookView() {
         return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
     }));
 
+    const noNotes = isEmpty(allPagesOfNotebook);
+
+    // fix selected page
+    if (pageId === "recent") {
+        if (!noNotes) pageId = allPagesOfNotebook[0].id;
+    }
+
     // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
-    // pages
-    const [selectedPageId, setSelectedPageId] = useState("")
-
 
     // modal popups in dropdown menu
     const [showEdit, setShowEdit] = useState(false);
@@ -81,10 +72,6 @@ export default function NotebookView() {
     // single notebook based on notebookId
     let currentNotebook = Object.values(allNotebooks).filter(book => book.id === +notebookId)[0];
 
-    // useEffect(() => {
-    //     dispatch(getAllNotebooks());
-    // }, [dispatch])
-
     useEffect(() => {
         (async() => {
           await dispatch(getAllNotebooks());
@@ -107,7 +94,8 @@ export default function NotebookView() {
 
         if (createPage) {
             getPages();
-            setSelectedPageId(createPage.id);
+            // setSelectedPageId(createPage.id);
+            history.push(`/${notebookId}/${createPage.id}`);
             setShowMenu(false);
         }
 
@@ -117,57 +105,11 @@ export default function NotebookView() {
         await dispatch(getAllPages(user.id, notebookId));
     };
 
-    // count dem pages for display
-    const getPageCount = () => {
-        let numPages = 0;
-        if (allPagesOfNotebook) {
-            numPages = Object.values(allPagesOfNotebook).length;
-        }
-        // get proper ending based on length
-        if (numPages === 1) return `${numPages} page`;
-        else return `${numPages} pages`;
-    }
-
-    const formatDate = (date) => {
-        if (date) {
-            const splitted = date.split(' ');
-            return `${splitted[2]} ${splitted[1]}`;
-        }
-    }
-
-    const getContentSnippet = (content) => {
-        if (content) {
-            // we are getting 90 characters snip length
-            if (content.length > 90) {
-                return htmlToText(content.slice(0, 90).trim() + '...');
-            } else {
-                return htmlToText(content);
-            }
-        }
-    }
-
-    // make an auto select page function here. run inside of useEffect when notebookId changes
-    const findFirstPage = () => {
-        // initialize to first page OR current page if there is one
-        if (allPagesOfNotebook) {
-            const firstPage = Object.values(allPagesOfNotebook)[0];
-            if (firstPage) {
-                setSelectedPageId(firstPage.id);
-                console.log('first page set');
-            }
-        }
-    };
-
     // load pages with each notebookId change
     useEffect(() => {
         getPages();
-        // findFirstPage();
-        // setShowMenu(false);
     }, [notebookId]);
 
-
-
-    const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
 
     if (!loaded) return <LoadSidebar />
     if (!user || !currentNotebook) return <NotFound />
@@ -180,7 +122,7 @@ export default function NotebookView() {
                     {currentNotebook.title}
                 </h1>
                 <div className="notebook-dongles">
-                    <p className="page-count">{getPageCount()}</p>
+                    <p className="page-count">{getPageCount(allPagesOfNotebook)}</p>
                     <div className="notebook-options-dropdown">
                         <i className="fa-solid fa-ellipsis" onClick={openMenu}></i>
 
@@ -202,7 +144,9 @@ export default function NotebookView() {
 
             </div>
             {Object.values(allPagesOfNotebook).map(page =>
-                <div key={page.id} className={`pages ${page.id === selectedPageId && 'page-active'}`} onClick={() => setSelectedPageId(page.id)}>
+                <div key={page.id} className={`pages ${page.id == pageId && 'page-active'}`} onClick={() => {
+                    history.push(`/${notebookId}/${page.id}`)
+                }}>
                     <div className="page-title-content">
                         <p className="page-small-title">{page.title || "Untitled"}</p>
                         <div className="preview">{getContentSnippet(page.content)}</div>
@@ -219,16 +163,13 @@ export default function NotebookView() {
                     <p>Click the '...' button above and select "Add a Page" to create a page.</p>
                 </div>}
         </div>
-        {Object.values(allPagesOfNotebook).length > 0 && <Pages
+        <Pages
             notebookId={notebookId}
             userId={user.id}
-            pageId={selectedPageId}
+            pageId={pageId}
             currentNb={currentNotebook}
             allPages={allPagesOfNotebook}
-         />}
-
-        {Object.values(allPagesOfNotebook).length === 0 &&
-            <div className="right-div"></div>}
+         />
     </div>
   )
 }

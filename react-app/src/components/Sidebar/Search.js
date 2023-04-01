@@ -25,40 +25,33 @@ export default function Search({ userId }) {
   }, [dispatch]);
 
 
-  const returnProperLocation = (nbId, pId) => {
-    return {
-      pathname: `/${nbId}`,
-      state: { pageId: pId }
+  const handleFilter = (e) => {
+    const searchWord = e.target.value;
+    setSearchText(searchWord);
+    // demonstrates filtering thru data
+    const newFilter = data.filter(result => {
+      return result.title && result.title.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
     }
+
   }
 
-    const handleFilter = (e) => {
-      const searchWord = e.target.value;
-      setSearchText(searchWord);
-      // demonstrates filtering thru data
-      const newFilter = data.filter(result => {
-        return result.title && result.title.toLowerCase().includes(searchWord.toLowerCase());
-      });
+  const handleClear = (e) => {
+    setSearchText("");
+    setFilteredData([]);
+    setDoSearch(false);
+  }
 
-      if (searchWord === "") {
-        setFilteredData([]);
-      } else {
-        setFilteredData(newFilter);
-      }
-
-    }
-
-    const handleClear = (e) => {
-      setSearchText("");
-      setFilteredData([]);
-      setDoSearch(false);
-    }
-
-    const handleBlur = (e) => {
-      //  basically we can blur out *if* nothing is in our search results.
-      // this is to prevent accidental clicking out of search data
-      if (searchText.length === 0) setDoSearch(false)
-    }
+  const handleBlur = (e) => {
+    //  basically we can blur out *if* nothing is in our search results.
+    // this is to prevent accidental clicking out of search data
+    if (searchText.length === 0) setDoSearch(false)
+  }
 
 
 
@@ -88,7 +81,7 @@ export default function Search({ userId }) {
                 <div className="data-result">
                   {data && filteredData.slice(0, 15).map(pg =>
                     <Link
-                      to={returnProperLocation(pg.notebookId, pg.id)}
+                      to={`/${pg.notebookId}/${pg.id}`}
                       className="data-item"
                       key={pg.id}
                       onClick={() => setDoSearch(false)}
