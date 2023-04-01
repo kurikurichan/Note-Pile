@@ -14,7 +14,7 @@ import LoadSidebar from '../404/LoadSidebar';
 
 export default function NotebookView() {
     // this is the component where we can see the list of pages and individual pages of a notebook
-    const { notebookId, pageId } = useParams();
+    let { notebookId, pageId } = useParams();
     const dispatch = useDispatch();
     const catMenu = useRef(null);
     const history = useHistory();
@@ -27,10 +27,15 @@ export default function NotebookView() {
         return Date.parse(new Date(p2.updated_at)) - Date.parse(new Date(p1.updated_at));
     }));
 
+    const noNotes = isEmpty(allPagesOfNotebook);
+
+    // fix selected page
+    if (pageId === "recent") {
+        if (!noNotes) pageId = allPagesOfNotebook[0].id;
+    }
+
     // for notebook dropdown menu
     const [showMenu, setShowMenu] = useState(false);
-    // pages
-    // const [selectedPageId, setSelectedPageId] = useState(pageId);
 
     // modal popups in dropdown menu
     const [showEdit, setShowEdit] = useState(false);
@@ -105,9 +110,6 @@ export default function NotebookView() {
         getPages();
     }, [notebookId]);
 
-
-    // const noNotes = allPagesOfNotebook && Object.values(allPagesOfNotebook).length === 0;
-    const noNotes = isEmpty(allPagesOfNotebook);
 
     if (!loaded) return <LoadSidebar />
     if (!user || !currentNotebook) return <NotFound />
