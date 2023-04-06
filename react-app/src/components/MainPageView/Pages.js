@@ -124,9 +124,6 @@ export default function Pages({ notebookId, userId, pageId, currentNb, allPages 
         setSave("Save");
     }, [title, content]);
 
-
-//   if (!allPages) return <p className="loading right-div">Loading...</p>
-    console.log(currentPage);
   return (
     <div className="right-div">
         {currentPage &&
