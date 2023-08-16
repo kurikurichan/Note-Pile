@@ -4,11 +4,9 @@
 }
 
 .sidebar-wrap {
-  min-width: 200px;
-  max-width: 200px;
+  width: 200px;
   height: 100vh;
   position: relative;
-  left: 0;
   background-color: var(--sidebar-body);
 }
 
@@ -16,7 +14,7 @@
   display: flex;
   flex-direction: column;
 
-  height: 80%;
+  height: 80vh;
 
   color: var(--sidebar-font);
   font-family: soleil, sans-serif;
@@ -27,7 +25,7 @@
 }
 
 .socials {
-  height: 20%;
+  height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +43,7 @@
 }
 
 #pic {
-  height: 110px;
+  height: 90px;
   border-radius: 3px;
   margin-top: 5px;
   margin-bottom: 8px;
