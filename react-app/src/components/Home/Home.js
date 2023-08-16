@@ -29,7 +29,7 @@ export default function Home() {
       await dispatch(getEverySinglePage(user.id));
       setLoaded(true);
     })();
-  }, [dispatch])
+  }, [dispatch, user.id])
 
     //  get and format long date
     const getToday = () => {
