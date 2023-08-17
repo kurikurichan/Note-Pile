@@ -25,21 +25,18 @@ export default function UserDropdown({ user }) {
     };
 
     // event listener for when mouse is down anywhere in document
-    document.addEventListener("mouseup", closeMenu);
+    document.addEventListener("mousedown", closeMenu);
 
     return () => {
       // clean up event listener
-      document.removeEventListener("mouseup", closeMenu);
+      document.removeEventListener("mousedown", closeMenu);
     };
-  }, [catMenu, showUserMenu, setShowUserMenu]);
+  }, [catMenu, showUserMenu]);
 
   return (
-    <div
-      className="user-dropdown"
-      onClick={handleUserMenu}
-      style={{ backgroundColor: "pink" }}
-    >
+    <div className="user-dropdown" onClick={handleUserMenu}>
       <div
+        ref={catMenu}
         style={{
           width: "100%",
           display: "flex",
@@ -57,7 +54,6 @@ export default function UserDropdown({ user }) {
         {showUserMenu && (
           <motion.div
             id="logout-div"
-            ref={catMenu}
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 10 }}
             exit={{ opacity: 0, y: -10, transition: { delay: 0.05 } }}
