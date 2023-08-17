@@ -59,6 +59,10 @@
   font-size: 18px;
 }
 
+#sb-links > a:hover {
+  color: white;
+}
+
 .sidebar::-webkit-scrollbar {
   display: none; /* hide the scrollbar in Chrome, Safari */
 }
