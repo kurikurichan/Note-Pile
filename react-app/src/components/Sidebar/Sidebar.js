@@ -91,7 +91,11 @@ export default function Sidebar() {
             >
               <i className="fa-brands fa-linkedin-in"></i>
             </a>
-            <a href="mailto:developerkrista@gmail.com">
+            <a
+              href="https://krista.red/#contact"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fa-solid fa-envelope"></i>
             </a>
           </div>
