@@ -117,8 +117,10 @@ export default function Pages({
           <div className="contain-the-top-shiz">
             <div className="above-page">
               <div className="left-icons">
-                <i className="fa-solid fa-book nb-title-book"></i>
-                {` `}
+                <i
+                  className="fa-solid fa-book nb-title-book"
+                  style={{ marginRight: "5px" }}
+                ></i>
                 <p className="nb-title"> {currentNb.title} </p>
               </div>
               <div className="right-icons">
@@ -143,8 +145,7 @@ export default function Pages({
               </div>
             </div>
             <div className="rich-text-stuff">
-              <p className="page-title-date">
-                {" "}
+              <p className="page-title-date" style={{ marginRight: "5px" }}>
                 {getFormattedDate(currentPage.updated_at)}{" "}
               </p>
             </div>
