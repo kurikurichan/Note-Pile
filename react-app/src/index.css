@@ -135,6 +135,7 @@ a {
   height: 100px;
   border-radius: 50%;
   animation: spin 2s linear infinite;
+  margin-right: 200px;
 }
 
 @keyframes spin {

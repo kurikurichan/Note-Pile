@@ -1,90 +1,104 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import { login } from "../../store/session";
-import evernote_logo from './evernote_logo.png';
-import evernote_screen from './evernote_screen.png';
-import quote from './homepage-quote.svg';
+import evernote_logo from "./evernote_logo.png";
+import evernote_screen from "./evernote_screen.png";
+import quote from "./homepage-quote.svg";
 
-import './Splash.css';
+import "./Splash.css";
 
 export default function Splash() {
+  const user = useSelector((state) => state.session.user);
 
-    const user = useSelector(state => state.session.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-    const history = useHistory();
-    const dispatch = useDispatch();
-
-    const handleDemo = async () => {
-        await dispatch(login("demo@aa.io", "password"));
-        history.push('/home');
-    }
+  const handleDemo = async () => {
+    await dispatch(login("demo@aa.io", "password"));
+    history.push("/home");
+  };
 
   return (
     <div className="splash-wrapper">
-
-        <header className="splash-header">
-            {user ?
-            <Link to="home" style={{color: "black"}}>
-                <div className="splash-logo">
-                    <img src={evernote_logo} id="logo" alt="Evernote logo" />
-                    <span id="logo-text">Note Pile</span>
-                </div>
-            </Link> :
+      <header className="splash-header">
+        {user ? (
+          <Link to="home" style={{ color: "black" }}>
             <div className="splash-logo">
-                <img src={evernote_logo} id="logo" alt="Evernote logo" />
-                <span id="logo-text">Note Pile</span>
-            </div>}
-
-            <div id="contain-buttons">
-                <div>
-                <Link to="/login"><button className="login-button">Login</button></Link>
-                </div>
-                <div>
-                    <button className="demo" onClick={handleDemo}>Demo User</button>
-                </div>
+              <img src={evernote_logo} id="logo" alt="Evernote logo" />
+              <span id="logo-text">Note Pile</span>
             </div>
+          </Link>
+        ) : (
+          <div className="splash-logo">
+            <img src={evernote_logo} id="logo" alt="Evernote logo" />
+            <span id="logo-text">Note Pile</span>
+          </div>
+        )}
 
-        </header>
-
-        <div className="body">
-            <h1>Tame your work, organize your life</h1>
-            <h2>
-                Remember everything and accomplish anything with the best notes app for tackling projects.
-                <br />
-                Keep your notes, tasks, and schedule all in one place.
-            </h2>
-
-            <Link to="/sign-up"><button className="green-button sign-up">Sign up for free</button></Link>
-            <Link to="/login"><p>Already have an account? Log in</p></Link>
-
-            <div className="cool-work-section">
-                <img src={evernote_screen} id="evernote_screen" alt="wow the functionality" />
-                <div id="right-of-display">
-                    <h3>WORK ANYWHERE</h3>
-                    <p>
-                        Keep important info handy—your notes sync automatically to all your devices.
-                    </p>
-                    <h3>REMEMBER EVERYTHING</h3>
-                    <p>
-                        Make notes more useful by adding text, images, audio, scans, PDFs, and documents.
-                    </p>
-                    <h3>TURN TO-DO INTO DONE</h3>
-                    <p>
-                        Bring your notes, tasks, and schedules together to get things done more easily.
-                    </p>
-                    <h3>FIND THINGS FAST</h3>
-                    <p>
-                        Get what you need, when you need it with powerful, flexible search capabilities.
-                    </p>
-                </div>
-            </div>
-
+        <div id="contain-buttons">
+          <div>
+            <Link to="/login">
+              <button className="login-button">Login</button>
+            </Link>
+          </div>
+          <div>
+            <button className="demo" onClick={handleDemo}>
+              Demo User
+            </button>
+          </div>
         </div>
+      </header>
 
+      <div className="body">
+        <h1>Tame your work, organize your life</h1>
+        <h2>
+          Remember everything and accomplish anything with the best notes app
+          for tackling projects.
+          <br />
+          Keep your notes, tasks, and schedule all in one place.
+        </h2>
 
-{/*
+        <Link to="/sign-up">
+          <button className="green-button sign-up">Sign up for free</button>
+        </Link>
+        <Link to="/login">
+          <p>Already have an account? Log in</p>
+        </Link>
+
+        <div className="cool-work-section">
+          <img
+            src={evernote_screen}
+            id="evernote_screen"
+            alt="wow the functionality"
+          />
+          <div id="right-of-display">
+            <h3>WORK ANYWHERE</h3>
+            <p>
+              Keep important info handy—your notes sync automatically to all
+              your devices.
+            </p>
+            <h3>REMEMBER EVERYTHING</h3>
+            <p>
+              Make notes more useful by adding text, images, audio, scans, PDFs,
+              and documents.
+            </p>
+            <h3>TURN TO-DO INTO DONE</h3>
+            <p>
+              Bring your notes, tasks, and schedules together to get things done
+              more easily.
+            </p>
+            <h3>FIND THINGS FAST</h3>
+            <p>
+              Get what you need, when you need it with powerful, flexible search
+              capabilities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/*
         <div className="logo-carousel ">
 
           <div className="top-image">
@@ -143,26 +157,32 @@ export default function Splash() {
 
   </div>
  */}
-        <footer className="splash-footer">
-            <p>Clone of Evernote by Krista Strucke</p>
-            <div className="links">
-                <a href="https://github.com/kurikurichan" target="_blank" rel="noopener noreferrer">
-                    <i className="fa-brands fa-github"></i>
-                </a>
-                <a
-                    href="https://www.linkedin.com/in/krista-strucke"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <i className="fa-brands fa-linkedin-in"></i>
-                </a>
-                <a href="mailto:developerkrista@gmail.com">
-                    <i className="fa-solid fa-envelope"></i>
-                </a>
-            </div>
-        </footer>
-
+      <footer className="splash-footer">
+        <p>Clone of Evernote by Krista Strucke</p>
+        <div className="links">
+          <a
+            href="https://github.com/kurikurichan"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/krista-strucke"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a
+            href="https://krista.red/#contact"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </footer>
     </div>
-
-  )
+  );
 }

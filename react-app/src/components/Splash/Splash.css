@@ -1,226 +1,224 @@
 .splash-wrapper {
-    margin-left: 10%;
-    margin-right: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .splash-header {
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    width: 80%;
-    height: 80px;
+  width: 80%;
+  height: 80px;
 
-    margin-top: 1%;
-    margin-bottom: 4%;
-    margin-left: 5%;
+  margin-top: 1%;
+  margin-bottom: 4%;
+  margin-left: 5%;
 }
 
 .splash-logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #logo {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 #logo-text {
-    margin-left: 5px;
-    font-size: 35px;
-    font-weight: 600;
+  margin-left: 5px;
+  font-size: 35px;
+  font-weight: 600;
 }
 
 #contain-buttons {
-    display: flex;
-    flex-direction: row;
-    width: 10%;
-    justify-content: space-between;
-    align-items: center;
-
+  display: flex;
+  flex-direction: row;
+  width: 10%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .login-button {
-    font-family: "Soleil_Bold",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    color: #00a82d;
-    text-decoration: none;
+  font-family: "Soleil_Bold", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #00a82d;
+  text-decoration: none;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    display: inline-block;
-    text-align: center;
-    height: 40px;
-    min-width: 120px;
-    line-height: 37px;
-    letter-spacing: .5px;
+  display: inline-block;
+  text-align: center;
+  height: 40px;
+  min-width: 120px;
+  line-height: 37px;
+  letter-spacing: 0.5px;
 
-    border-radius: 3px;
-    border: 2px solid #00a82d;
+  border-radius: 3px;
+  border: 2px solid #00a82d;
 
-    padding: 0 10px;
-    transition: .3s border ease-in-out,.3s color ease-in-out;
-
+  padding: 0 10px;
+  transition: 0.3s border ease-in-out, 0.3s color ease-in-out;
 }
 
 .login-button:hover {
-    color: #03c436;
-    border-color: #03c436;
+  color: #03c436;
+  border-color: #03c436;
 }
 
 .demo {
-    background-color: transparent;
-    color: black;
-    font-family: soleil, sans-serif;
-    border: 0;
-    min-width: 100px;
+  background-color: transparent;
+  color: black;
+  font-family: soleil, sans-serif;
+  border: 0;
+  min-width: 100px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    margin-left: 1%;
-    font-size: 16px;
-    transition: .1s color ease-in-out;
+  margin-left: 1%;
+  font-size: 16px;
+  transition: 0.1s color ease-in-out;
 }
 
 .demo:hover {
-    color: #03c436;
+  color: #03c436;
 }
 
 #evernote_screen {
-    width: 65%;
+  width: 65%;
 }
 
 .body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .body > h1 {
-    font-size: 50px;
-    font-family: "Soleil_Medium", Helvetica, Arial, sans-serif;
-    font-weight: 400;
+  font-size: 50px;
+  font-family: "Soleil_Medium", Helvetica, Arial, sans-serif;
+  font-weight: 400;
 
-    margin-bottom: 1%;
+  margin-bottom: 1%;
 }
 
 .body > h2 {
-    font-size: 50px;
-    font-family: "Soleil_Medium", Helvetica, Arial, sans-serif;
-    font-size: 24px;
-    font-weight: 350;
-    line-height: 40px;
+  font-size: 50px;
+  font-family: "Soleil_Medium", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 350;
+  line-height: 40px;
 
-    padding-bottom: 30px;
-    text-align: center;
+  padding-bottom: 30px;
+  text-align: center;
 }
 
 .body > a > p {
-    font-size: 16px;
-    text-decoration: underline;
-    font-family: soleil, sans-serif;
-    color: black;
+  font-size: 16px;
+  text-decoration: underline;
+  font-family: soleil, sans-serif;
+  color: black;
 
-    margin-bottom: 2%;
+  margin-bottom: 2%;
 }
 
 .sign-up {
-    color: white;
-    transition: .4s color ease-in-out;
-    width: 360px;
-    height: 50px;
-    padding-left: 5%;
-    padding-right: 5%;
+  color: white;
+  transition: 0.4s color ease-in-out;
+  width: 360px;
+  height: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
 
-    letter-spacing: 1px;
+  letter-spacing: 1px;
 
-    font-weight: lighter;
-    font-size: 18px;
-    margin-bottom: 5%;
+  font-weight: lighter;
+  font-size: 18px;
+  margin-bottom: 5%;
 }
 
 .sign-up:hover {
-    background-color: #03c436;
+  background-color: #03c436;
 }
 
 .cool-work-section {
-    display: flex;
+  display: flex;
 
-    margin-top: 1.5%;
+  margin-top: 1.5%;
 
-    justify-content: center;
+  justify-content: center;
 }
 
 #right-of-display {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    width: 18%;
+  width: 18%;
 
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
 #right-of-display > h3 {
-    letter-spacing: 1px;
-    font-size: 19px;
-    line-height: 150%;
-    font-family: "Soleil_Bold",Helvetica,Arial,sans-serif;
+  letter-spacing: 1px;
+  font-size: 19px;
+  line-height: 150%;
+  font-family: "Soleil_Bold", Helvetica, Arial, sans-serif;
 
-    margin-bottom: 2%;
+  margin-bottom: 2%;
 }
 
 #right-of-display > p {
-    font-size: 16px;
-    line-height: 21px;
-    font-family: "Soleil",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  font-family: "Soleil", Helvetica, Arial, sans-serif;
 
-    margin-bottom: 5%;
+  margin-bottom: 5%;
 }
 
 .splash-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    border-top: 1px solid rgb(179, 174, 174);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-top: 1px solid rgb(179, 174, 174);
 }
 
 .splash-footer > p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 15px;
-    margin-bottom: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  margin-bottom: 12px;
 
-    color: rgb(179, 174, 174);
+  color: rgb(179, 174, 174);
 }
 
 .links {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 150px;
 }
 
 .links > a {
-    color: rgb(179, 174, 174);
+  color: rgb(179, 174, 174);
+  transition: color 150ms linear 0s;
 }
 
 .links > a:hover {
-    color: rgb(135, 131, 131);
+  color: rgb(135, 131, 131);
 }
 
 .links > a > i {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 /* smaller computer screen (like 24"?) */
 @media screen and (max-width: 1366px) {
-    .links {
-        width: 10%;
-    }
-
+  .links {
+    width: 10%;
+  }
 }

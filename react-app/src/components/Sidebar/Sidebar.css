@@ -59,6 +59,10 @@
   font-size: 18px;
 }
 
+#sb-links > a {
+  transition: color 150ms linear 0s;
+}
+
 #sb-links > a:hover {
   color: white;
 }
