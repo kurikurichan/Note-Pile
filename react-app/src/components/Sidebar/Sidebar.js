@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllNotebooks } from "../../store/notebooks";
@@ -17,18 +17,9 @@ export default function Sidebar() {
 
   // for notebooks dropdown selection
   const [noteDropdown, setNoteDropdown] = useState(false);
-  const [showUserMenu, setShowUserMenu] = useState(false);
-
-  // for user dropdown
-  const catMenu = useRef(null);
 
   const handleDropDown = () => {
     setNoteDropdown(!noteDropdown);
-  };
-
-  const handleUserMenu = (e) => {
-    e.stopPropagation();
-    setShowUserMenu(!showUserMenu);
   };
 
   // first test get notebooks
@@ -42,16 +33,8 @@ export default function Sidebar() {
   return (
     <div className="sidebar-wrap">
       <div className="sidebar">
-        <UserDropdown
-          catMenu={catMenu}
-          handleUserMenu={handleUserMenu}
-          showUserMenu={showUserMenu}
-          setShowUserMenu={setShowUserMenu}
-          user={user}
-        />
-
+        <UserDropdown user={user} />
         <Search userId={user.id} />
-
         <NavLink to="/home" className="navlink" activeClassName="sb-active">
           <span className="home-button">
             <i className="fa-solid fa-house" style={{ marginRight: "5px" }}></i>
