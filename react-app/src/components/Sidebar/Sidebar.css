@@ -155,16 +155,9 @@ body {
 }
 
 .notebook-dropdown {
-  display: none;
-  max-height: 0;
-  transition: max-height 2s ease-out;
-}
-
-.notebook-dropdown-open {
-  transition: max-height 2s ease-in-out;
-  max-height: none;
   display: flex;
   flex-direction: column;
+  margin-top: -5px;
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
