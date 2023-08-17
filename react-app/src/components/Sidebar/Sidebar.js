@@ -54,8 +54,8 @@ export default function Sidebar() {
 
         <NavLink to="/home" className="navlink" activeClassName="sb-active">
           <span className="home-button">
-            <i className="fa-solid fa-house"></i>
-            {` `}Home
+            <i className="fa-solid fa-house" style={{ marginRight: "5px" }}></i>
+            Home
           </span>
         </NavLink>
         <span className="dropdown-button" onClick={handleDropDown}>
@@ -77,35 +77,41 @@ export default function Sidebar() {
           activeClassName="sb-active"
         >
           <span id="trash-link">
-            <i className="fa-solid fa-trash"></i>
-            {` `}Trash
+            <i className="fa-solid fa-trash" style={{ marginRight: "5px" }}></i>
+            Trash
           </span>
         </NavLink>
         <div className="sidebar-footer"></div>
       </div>
-      <div className="socials">
-        <p>Hire this woman!</p>
-        <a href="https://krista.red/" target="_blank" rel="noopener noreferrer">
-          <img src={pic} id="pic" alt="nice pic of krista" />
-        </a>
-        <div id="sb-links">
+      <div className="social-container">
+        <div className="socials">
+          <p>⚡️ Hire Krista! ⚡️</p>
           <a
-            href="https://github.com/kurikurichan"
+            href="https://krista.red/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fa-brands fa-github"></i>
+            <img src={pic} id="pic" alt="nice pic of krista" />
           </a>
-          <a
-            href="https://www.linkedin.com/in/krista-strucke"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fa-brands fa-linkedin-in"></i>
-          </a>
-          <a href="mailto:developerkrista@gmail.com">
-            <i className="fa-solid fa-envelope"></i>
-          </a>
+          <div id="sb-links">
+            <a
+              href="https://github.com/kurikurichan"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/krista-strucke"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:developerkrista@gmail.com">
+              <i className="fa-solid fa-envelope"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

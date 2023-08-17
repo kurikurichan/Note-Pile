@@ -1,135 +1,133 @@
 .modal-body {
+  background: var(--background-secondary);
+  border: 1px solid var(--gray20);
+  border-radius: 4px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
 
-    background: var(--background-secondary);
-    border: 1px solid var(--gray20);
-    border-radius: 4px;
-    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+  color: var(--gray90);
 
-    color: var(--gray90);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  max-width: 990px;
+  min-height: 300px;
+  min-width: 465px;
 
-    max-width: 990px;
-    min-height: 300px;
-    min-width: 465px;
+  outline: none;
 
-    outline: none;
-
-    padding: 10px 20px 10px 20px;
-    /* z-index: 1000; */
+  padding: 10px 20px 10px 20px;
+  /* z-index: 1000; */
 }
 
 .modal-body > * {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .modal-body > h3 {
-    color: white;
+  color: white;
 }
 
 .modal-body > p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .fields > label {
-    color: var(--gray90);
-    font-size: 11px;
+  color: var(--gray90);
+  font-size: 11px;
 }
 
 .notebook-input {
-    background: transparent;
-    border: 1px solid var(--gray20);
-    box-sizing: border-box;
-    border-radius: 3px;
+  background: transparent;
+  border: 1px solid var(--gray20);
+  box-sizing: border-box;
+  border-radius: 3px;
 
-    height: 40px;
-    width: 100%;
+  height: 40px;
+  width: 100%;
 
-    color: var(--gray90);
-    font-size: 15px;
+  color: var(--gray90);
+  font-size: 15px;
 
-    outline: none;
-    margin-top: 5px;
+  outline: none;
+  margin-top: 5px;
 }
 
 .modal-buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 
-    padding-top: 20px;
-    border-top: 1px solid rgba(204, 204, 204, .1);
+  padding-top: 20px;
+  border-top: 1px solid rgba(204, 204, 204, 0.1);
 }
 
 .cancel-but {
+  background-color: transparent;
+  color: var(--gray65);
 
-    background-color: transparent;
-    color: var(--gray65);
+  cursor: pointer;
 
-    cursor: pointer;
+  user-select: none;
 
-    user-select: none;
+  border: 1px solid var(--gray45);
+  border-radius: 4px;
 
-    border: 1px solid var(--gray45);
-    border-radius: 4px;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 400;
 
-    display: inline-flex;
-    font-size: 14px;
-    font-weight: 400;
+  justify-content: center;
+  align-items: center;
 
-    justify-content: center;
-    align-items: center;
+  letter-spacing: 0;
 
-    letter-spacing: 0;
-
-    line-height: 1;
-    margin: 0;
-    padding: 10px 15px;
-    text-align: center;
-    margin-right: 8px;
+  line-height: 1;
+  margin: 0;
+  padding: 10px 15px;
+  text-align: center;
+  margin-right: 8px;
 }
 
 .errs {
-    color: var(--evernote-green-darker);
-    font-size: 13px;
+  color: var(--evernote-green-darker);
+  font-size: 13px;
 }
 
 .delete-but {
-    cursor: pointer;
+  cursor: pointer;
 
-    background-color: #e54e40;
-    padding: 8px 16px;
-    height: 32px;
+  background-color: #e54e40;
+  padding: 8px 16px;
+  height: 32px;
 
-    border-radius: 4px;
-    border: 1px solid transparent;
+  border-radius: 4px;
+  border: 1px solid transparent;
 
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 
-    color: black;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
 
-    transition: background-color 150ms linear 0s;
+  transition: background-color 150ms linear 0s;
 }
 
 .delete-but:hover {
-    background-color: #ed8682;
+  background-color: #ed8682;
 }
 
 .delete,
 .update {
-    min-height: 200px;
+  min-height: 200px;
 }
 
-
 #new-notebook {
-    cursor: pointer;
+  cursor: pointer;
 }

@@ -1,169 +1,174 @@
 /* TODO Add site wide styles */
 
 :root {
-    --sidebar-body: black;
-    --background-secondary: #181818;
-    --background-primary: #333;
-    --sidebar-font: #ccc;
-    --default-font: #afafaf;
-    --dropdown-highlight:#a0a0a0;
-    --sidebar-highlight: #3a3a3a;
-    --lighter-alabaster: #fafafa;
-    --focus-common-med-gray-2: #ababab;
-    --bright-green-button: #29cb54;
-    --tooltip-blue: #248be0;
+  --sidebar-body: black;
+  --background-secondary: #181818;
+  --background-primary: #333;
+  --sidebar-font: #ccc;
+  --default-font: #afafaf;
+  --dropdown-highlight: #a0a0a0;
+  --sidebar-highlight: #3a3a3a;
+  --lighter-alabaster: #fafafa;
+  --focus-common-med-gray-2: #ababab;
+  --bright-green-button: #29cb54;
+  --tooltip-blue: #248be0;
 
-    --gray20: #333;
+  --gray20: #333;
 
+  --dark-green: #0e753d;
+  --evernote-green-light: #26b54c;
+  --evernote-green: #00a82d;
+  --evernote-green-dark: #008f26;
+  --evernote-green-darker: #007620;
 
-    --dark-green: #0e753d;
-    --evernote-green-light: #26b54c;
-    --evernote-green: #00a82d;
-    --evernote-green-dark: #008f26;
-    --evernote-green-darker: #007620;
-
-
-    /* note these are from evernote's color catalogue for reference
+  /* note these are from evernote's color catalogue for reference
     since dis is a pixel perfect ish clone */
 
-    --gray97: #f8f8f8;
-    --gray95: #f2f2f2;
-    --gallery: #ededed;
-    --gray90: #e6e6e6;
-    --gray85: #d9d9d9;
-    --silver: #c3c3c3;
-    --gray80: #ccc;
-    --bombay: #b5b8be;
-    --dark-gray: #afafaf;
-    --nobel: #b4b4b4;
-    --grey40alpha: #999;
-    --true-grey: #888;
-    --light-slate-grey: #858f97;
-    --gray65: #a6a6a6;
-    --gray: #7a8083;
-    --boulder: #777;
-    --gray40: #666;
-    --gray45: #737373;
-    --nevada: #5b6b70;
-    --black: #000;
-    --gray25: #404040;
-    --gray30: #4d4d4d;
-    --mine-shaft: #313131;
-    --gray20: #333;
-    --gray15: #262626;
-    --night-rider: #323232;
-    --whisper: #e7e7e7;
-    --gray71: #b5b5b5;
-    --gray10: #1a1a1a;
+  --gray97: #f8f8f8;
+  --gray95: #f2f2f2;
+  --gallery: #ededed;
+  --gray90: #e6e6e6;
+  --gray85: #d9d9d9;
+  --silver: #c3c3c3;
+  --gray80: #ccc;
+  --bombay: #b5b8be;
+  --dark-gray: #afafaf;
+  --nobel: #b4b4b4;
+  --grey40alpha: #999;
+  --true-grey: #888;
+  --light-slate-grey: #858f97;
+  --gray65: #a6a6a6;
+  --gray: #7a8083;
+  --boulder: #777;
+  --gray40: #666;
+  --gray45: #737373;
+  --nevada: #5b6b70;
+  --black: #000;
+  --gray25: #404040;
+  --gray30: #4d4d4d;
+  --mine-shaft: #313131;
+  --gray20: #333;
+  --gray15: #262626;
+  --night-rider: #323232;
+  --whisper: #e7e7e7;
+  --gray71: #b5b5b5;
+  --gray10: #1a1a1a;
 
-
-    /* --scrollbar-corner-background-color: transparent;
+  /* --scrollbar-corner-background-color: transparent;
     --scrollbar-thumb-background-color: transparent;
     --scrollbar-track-background-color: transparent;
     --scrollbar-track-background-color--hover: hsla(0,0%,100%,0.12);
     --scrollbar-thumb-background-color--content-hover: hsla(0,0%,100%,0.4);
     --sidebar-scrollbar-thumb-background-color: var(--gray40); */
-
-
 }
 
-*/
-
-a, div, span, li, p, h1, h2, h3 {
-    font-family: soleil, sans-serif;
-    font-style: normal;
-    font-weight: 300;
+*/ a,
+div,
+span,
+li,
+p,
+h1,
+h2,
+h3 {
+  font-family: soleil, sans-serif;
+  font-style: normal;
+  font-weight: 300;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
+  color: rgb(109, 194, 222);
 }
 
 * {
-    margin: 0;
+  margin: 0;
 }
 
 .green-button {
-    cursor: pointer;
+  cursor: pointer;
 
-    background-color: rgb(0, 168, 45);
-    padding: 8px 16px;
-    height: 32px;
+  background-color: rgb(0, 168, 45);
+  padding: 8px 16px;
+  height: 32px;
 
-    border-radius: 4px;
-    border: 1px solid transparent;
+  border-radius: 4px;
+  border: 1px solid transparent;
 
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 
-    color: black;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
 
-    transition: background-color 150ms linear 0s;
+  transition: background-color 150ms linear 0s;
 }
 
 .green-button:hover {
-    background-color: rgb(1, 188, 51);
+  background-color: rgb(1, 188, 51);
 }
 
 .loader-bg,
 .loader-sidebar {
-    background-color: rgb(41, 41, 41);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: rgb(41, 41, 41);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .loader-sidebar {
-    width: 100%;
-    margin: 0px;
-    position: fixed;
-    left: 200px;
+  width: 100%;
+  margin: 0px;
+  position: fixed;
+  left: 200px;
 }
 
 .loader {
-    border: 16px solid var(--lighter-alabaster);
-    border-top: 16px solid rgb(0, 168, 45);
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
+  border: 16px solid var(--lighter-alabaster);
+  border-top: 16px solid rgb(0, 168, 45);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Tooltip container */
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
-  /* Tooltip text */
+/* Tooltip text */
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: var(--tooltip-blue);
-    color: black;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--tooltip-blue);
+  color: black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
 
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
 }
 
-  /* Show the tooltip text when you mouse over the tooltip container */
+/* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
 }

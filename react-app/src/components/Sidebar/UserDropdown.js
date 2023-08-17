@@ -40,13 +40,16 @@ export default function UserDropdown({
       >
         <img src={evernote_logo} alt="user" id="user-image" />
         <p id="main-username">{user.username}</p>
-        <i className="fa-solid fa-angle-down" style={{ fontSize: "10px" }}></i>
+        <i className="fa-solid fa-angle-down" style={{ fontSize: "10px", marginLeft: "2px" }}></i>
       </div>
       {showUserMenu && (
         <div id="logout-div" ref={catMenu}>
           <p id="account">ACCOUNT</p>
           <div className="username-block">
-            <i className="fa-solid fa-check" style={{ color: "skyblue" }}></i>
+            <i
+              className="fa-solid fa-check"
+              style={{ color: "skyblue", padding: "0 5px 0 5px" }}
+            ></i>
             <img src={evernote_logo} alt="logo" className="user-image" />
             <div id="user-info">
               <p className="user-name">{user.username}</p>
