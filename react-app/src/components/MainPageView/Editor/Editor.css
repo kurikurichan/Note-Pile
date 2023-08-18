@@ -14,6 +14,10 @@
     --editor-placeholder-colour: white;
 }
 
+.hidden {
+  display: none;
+}
+
 .quill > .ql-container > .ql-editor.ql-blank::before{
     color: var(--sidebar-font);
 }

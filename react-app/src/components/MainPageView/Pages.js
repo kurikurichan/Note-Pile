@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getAllPages, editPage, addToTrash } from "../../store/pages";
 import Editor from "./Editor/Editor";
 import { getFormattedDate, isEmpty } from "../../utils";
+import CustomToolbar from "./Editor/CustomToolbar";
 
 import "./MainPageView.css";
 
@@ -17,6 +18,7 @@ export default function Pages({
   const [title, setTitle] = useState("");
   // name was content- changed to value for React-Quill
   const [content, setContent] = useState("");
+  const [showToolbar, setShowToolbar] = useState(false);
 
   // set state of the save button
   const [save, setSave] = useState("Save");
@@ -146,7 +148,8 @@ export default function Pages({
             </div>
             <div className="rich-text-stuff">
               <p className="page-title-date" style={{ marginRight: "5px" }}>
-                {getFormattedDate(currentPage.updated_at)}{" "}
+                {/* {getFormattedDate(currentPage.updated_at)}{" "} */}
+                <CustomToolbar content={content} />
               </p>
             </div>
           </div>
