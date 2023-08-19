@@ -10,6 +10,7 @@ import "./Scratch.css";
 
 import coffee from "./coffee.jpeg";
 import LoadSidebar from "../404/LoadSidebar.js";
+import useBreakpoints from "../../utils/useBreakpoints.js";
 
 export default function Home() {
   const user = useSelector((state) => state.session.user);
@@ -20,6 +21,7 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
 
   const dispatch = useDispatch();
+  const { isMobile } = useBreakpoints();
 
   // load the pages
   useEffect(() => {
@@ -66,6 +68,7 @@ export default function Home() {
   useEffect(() => {
     // get some pages to display up in herrr
     // grab 4 most recent ones
+
     const getPagesToDisplay = () => {
       if (allPages) {
         const allPagesArr = Object.values(allPages)
