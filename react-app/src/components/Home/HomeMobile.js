@@ -17,7 +17,8 @@ import coffee from "./coffee.jpeg";
 import LoadSidebar from "../404/LoadSidebar.js";
 import useBreakpoints from "../../utils/useBreakpoints.js";
 
-export default function Home() {
+export default function HomeMobile() {
+  // the mobile layout is so different I am making a new component
   const user = useSelector((state) => state.session.user);
   const allPages = useSelector((state) => state.all_pages);
 
