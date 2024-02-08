@@ -7,6 +7,7 @@ Note Pile is a full-stack clone of the popular website Evernote, which is used f
 ## Technologies used
 
 ### Frontend
+
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
@@ -14,6 +15,7 @@ Note Pile is a full-stack clone of the popular website Evernote, which is used f
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
 ### Backend
+
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![Flask](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -37,32 +39,41 @@ Note Pile is a full-stack clone of the popular website Evernote, which is used f
 # Code snippet
 
 Something I did that I found cool was create a "save" button that changes depending on whether the user is in the page, saving the page, or the page has been saved.
+
 ```javascript
- <button
-     className={`green-button save ${save === "Saving" ? 'loading' : save === "Saved" ? 'disabled' : ''}`}
-     onClick={handleBlur}
- >
-     {save}
-     {save === "Saved" && <i className="fa-solid fa-check in-save-icon" style={{color: 'rgb(214, 255, 225)'}}></i>}
- </button>
+<button
+  className={`green-button save ${
+    save === "Saving" ? "loading" : save === "Saved" ? "disabled" : ""
+  }`}
+  onClick={handleBlur}
+>
+  {save}
+  {save === "Saved" && (
+    <i
+      className="fa-solid fa-check in-save-icon"
+      style={{ color: "rgb(214, 255, 225)" }}
+    ></i>
+  )}
+</button>
 ```
+
 I did this by using a ternary if/if else/else operator on the classname based on the local state. I also had a "Save" useState effect, and then change that state in my saving function at different points, that is called whenever the page's textarea becomes out of focus, or the save button is otherwise pressed.
 
 How to run Note Pile locally:
 
-* Clone this repository: https://github.com/kurikurichan/Note-Pile
-* Create a database user
-* Create a database with your user as its owner
-* Run ```pipenv install``` in the project root directory
-* Add a .env file to the root directory following the .env example file format
-* cd into the react-app directory and run npm install
-* create a .env file in this folder and add ```REACT_APP_BASE_URL=http://localhost:5000``` to it
-* run ```pipenv shell``` in the root directory 
-* run database with ```flask db migrate```,  ```flask db upgrade```,  ```flask seed all```
-* cd into the react-app folder and run ```npm start```
+- Clone this repository: https://github.com/kurikurichan/Note-Pile
+- Create a database user
+- Create a database with your user as its owner
+- Run `pipenv install` in the project root directory
+- Add a .env file to the root directory following the .env example file format
+- cd into the react-app directory and run npm install
+- create a .env file in this folder and add `REACT_APP_BASE_URL=http://localhost:5000` to it
+- run `npm start`
+- run `pipenv shell` in the root directory
+- run database with `flask db migrate`, `flask db upgrade`, `flask seed all`
 
 ## Future Features
-* Rich text editor
-* AWS
-* Notebook display page
-* Drawing
+
+- AWS
+- Notebook display page
+- Drawing
