@@ -23,6 +23,7 @@ export default function NotebookView() {
   const history = useHistory();
 
   const [loaded, setLoaded] = useState(false);
+  const [currentNotebook, setCurrentNotebook] = useState(null);
 
   const user = useSelector((state) => state.session.user);
   const allNotebooks = useSelector((state) => state.notebooks);
@@ -45,10 +46,14 @@ export default function NotebookView() {
   // for notebook dropdown menu
   const [showMenu, setShowMenu] = useState(false);
 
-  // single notebook based on notebookId
-  let currentNotebook = Object.values(allNotebooks).filter(
-    (book) => book.id === +notebookId
-  )[0];
+  useEffect(() => {
+    // single notebook based on notebookId
+    setCurrentNotebook(
+      Object.values(allNotebooks).filter((book) => book.id === +notebookId)[0]
+    );
+    // load pages with each notebookId change
+    getPages();
+  }, [notebookId]);
 
   useEffect(() => {
     (async () => {
@@ -81,10 +86,6 @@ export default function NotebookView() {
     await dispatch(getAllPages(user.id, notebookId));
   };
 
-  // load pages with each notebookId change
-  useEffect(() => {
-    getPages();
-  }, [notebookId]);
 
   if (!loaded) return <LoadSidebar />;
   if (!user || !currentNotebook) return <NotFound />;
