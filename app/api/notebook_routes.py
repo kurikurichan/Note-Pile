@@ -1,8 +1,10 @@
 from flask import Blueprint, jsonify, request
-from ..models.db import db
-from flask_login import login_required, current_user
-from app.models.db import Notebook
+from flask_login import current_user, login_required
+
 from app.forms import NotebookForm
+from app.models.db import Notebook, Page
+
+from ..models.db import db
 from .auth_routes import validation_errors_to_error_messages
 
 notebook_routes = Blueprint('notebooks', __name__)
@@ -11,6 +13,8 @@ notebook_routes = Blueprint('notebooks', __name__)
 # or can do it here, doesn't matter
 
 # GET /api/notebooks/ - read all notebooks
+
+
 @notebook_routes.route('/')
 @login_required
 def notebooks():
@@ -18,25 +22,37 @@ def notebooks():
     return {'notebooks': [notebook.to_dict() for notebook in notebooks]}
 
 # POST /api/notebooks - make a new notebook
+
+
 @notebook_routes.route('/', methods=["POST"])
 @login_required
 def new_notebook():
 
     form = NotebookForm()
+    userId = request.json["userId"]
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if request.json["userId"] != current_user.id:
+    if userId != current_user.id:
         return {'errors': ["user: You don't own this account!"]}, 405
 
     if form.validate_on_submit():
 
         new_notebook = Notebook(
-            userId=request.json["userId"],
+            userId=userId,
             title=request.json["title"]
         )
 
         db.session.add(new_notebook)
+        db.session.commit()
+        db.session.refresh(new_notebook)
+
+        new_page = Page(
+            userId=userId,
+            notebookId=new_notebook.id
+        )
+
+        db.session.add(new_page)
         db.session.commit()
         return new_notebook.to_dict()
 
@@ -72,6 +88,8 @@ def update_notebook(notebookId):
         return {'errors': errz}, 400
 
 # DELETE /api/notebooks/:notebookId - delete single notebook
+
+
 @notebook_routes.route('/<int:notebookId>/', methods=["DELETE"])
 @login_required
 def delete_notebook(notebookId):
