@@ -27,13 +27,16 @@ export default function Pages({
   const [cWarn, setCWarn] = useState(false);
   // set state of sent to trash message
   // const [sent, setSent] = useState(false);
+  const [currentPage, setCurrentPage] = useState(null);
 
   const dispatch = useDispatch();
 
-  // single page to use in our dynamic page view
-  let currentPage = Object.values(allPages).filter(
-    (page) => +page.id === +pageId
-  )[0];
+  useEffect(() => {
+    // single page to use in our dynamic page view
+    setCurrentPage(
+      Object.values(allPages).filter((page) => +page.id === +pageId)[0]
+    );
+  }, [pageId]);
 
   useEffect(() => {
     // after a few seconds, get rid of of the title warning area

@@ -62,7 +62,7 @@
     border: none;
     overflow: hidden;
     outline: none;
-    white-space: pre-line;
+    white-space: pre;
     overflow-wrap: break-word;
 
     font-family: soleil, sans-serif;
