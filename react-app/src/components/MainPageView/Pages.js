@@ -13,26 +13,33 @@ export default function Pages({
   currentNb,
   allPages,
 }) {
-  // edit page title & content
+  // title of page
   const [title, setTitle] = useState("");
-  // name was content- changed to value for React-Quill
+  // content (text) of page
   const [content, setContent] = useState("");
 
-  // set state of the save button
+  // set state of the save button (Save, Saving, Saved)
   const [save, setSave] = useState("Save");
 
   // set state of title length warning
   const [tWarn, setTWarn] = useState(false);
   // set state of page body length warning
   const [cWarn, setCWarn] = useState(false);
-  // set state of sent to trash message
-  // const [sent, setSent] = useState(false);
+  // data of currentPage, {
+  //   "content": "<p>qiqiiqiqiiqi</p>",
+  //   "created_at": "Thu, 15 Feb 2024 20:11:18 GMT",
+  //   "id": 15,
+  //   "notebookId": 1,
+  //   "title": "",
+  //   "trashed": false,
+  //   "updated_at": "Thu, 15 Feb 2024 20:17:18 GMT",
+  //   "userId": 1
+  // }
   const [currentPage, setCurrentPage] = useState(null);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // single page to use in our dynamic page view
     setCurrentPage(
       Object.values(allPages).filter((page) => +page.id === +pageId)[0]
     );
@@ -55,17 +62,15 @@ export default function Pages({
 
   // load the fields we have with stuff we have already
   useEffect(() => {
-    // getCurrentPage();
-
     if (currentPage) {
       setTitle(currentPage.title || "");
       setContent(currentPage.content);
     }
     // reset the save button
     setSave("Save");
-  }, [currentPage, allPages, pageId]);
+  }, [currentPage]);
 
-  const handleBlur = async (e) => {
+  const handleBlur = async () => {
     // phase 2 save button
     setSave("Saving");
 
@@ -100,7 +105,6 @@ export default function Pages({
 
     if (sentToTrash) {
       getPages();
-      // setSent(true);
     }
   };
 
